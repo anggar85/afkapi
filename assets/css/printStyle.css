@@ -1,0 +1,11 @@
+
+@media print {
+
+    
+    * {
+        color: rgb(56, 56, 56);
+        font-size: 30px!important;    
+    }
+
+
+}

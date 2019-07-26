@@ -1,0 +1,16 @@
+.table th, .table td {
+    padding: 0.4rem 0.5rem!important;
+    vertical-align: middle;
+    border-top: none!important;
+}
+
+
+.table th, .table td {
+    vertical-align: middle!important;
+    line-height: 1!important;
+    white-space: initial!important;
+}
+
+.tableDataTable_wrapper_custom{
+    font-size: 13px!important;
+}
