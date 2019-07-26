@@ -1,20 +1,32 @@
 <?php
 class Hero_model extends CI_Model {
 
-    public function list_all(){
+    public function list_all($table = "tier_list_earlies", $columna = "overall"){
         try{
-            // $this->db->where("status", 1);
-            // $this->db->select("id, name");
-            $query = "SELECT 
-                            t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name
+
+            $default_table = "tier_list_earlies";
+            if (!isset($table) && $table != "") {
+                $default_table = $table;
+            }
+
+            $default_column = "overall";
+            if (!isset($columna) && $columna != "") {
+                $default_column = $columna;
+            }
+
+
+            $query = "SELECT t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$default_column." as sectionColumn, h.id as idHero 
                         FROM
-                            tier_list_earlies AS t
-                                JOIN
-                            hero_details AS h ON t.hero_name = h.name WHERE h.status = 1";
+                            ".$default_table." AS t
+                        JOIN
+                            hero_details AS h 
+                        ON h.name = t.hero_name where rarity!='Common' and h.status= 1 order by h.name asc";
+
             $q = $this->db->query($query);
             $heroes = [];
             foreach($q->result() as $hero){
-                array_push($heroes, $hero);
+                $hero = (array) $hero;
+                array_push($heroes, $this->addImages($hero));
             }
 
             $response['error']  = false;
@@ -35,7 +47,10 @@ class Hero_model extends CI_Model {
 
     // Add data
     public function addImages($hero){
-        
+        $img = "https://www.mxl-apps.com/afk/heroes/icons/".$hero['name'].".jpg";
+        $hero['icon'] = $img;
+        return $hero;
+
     }
 
     
