@@ -86,4 +86,3 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 //define('ADMIN_EMAIL', 'anggar85@gmail.com');
-define('ADMIN_EMAIL', 'Bbaltazar@goldenacorncasino.com');
