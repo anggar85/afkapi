@@ -25,6 +25,29 @@ class Extras extends CI_Controller {
         }
     }
 
+    public function items_list()
+	{
+        try {
+            header('Content-Type: application/json');
+            $response = $this->Extras_model->items_list();
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+
+    public function rol_definitions()
+	{
+        try {
+            header('Content-Type: application/json');
+            $response = $this->Extras_model->rol_definitions();
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
 
 
 
