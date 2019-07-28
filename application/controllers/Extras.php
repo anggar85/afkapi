@@ -49,6 +49,21 @@ class Extras extends CI_Controller {
     }
 
 
+    public function create_StrengthWeakness()
+	{
+        try {
+            header('Content-Type: application/json');
+            $data = json_decode(file_get_contents('php://input'), true);
+            $data = $data['data']['strengthWeakness'];
+            // var_dump($data);
+            $response = $this->Extras_model->create_StrengthWeakness($data);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+
 
 
 }

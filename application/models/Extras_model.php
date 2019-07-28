@@ -55,4 +55,22 @@ class Extras_model extends CI_Model {
     }
 
 
+
+    public function create_StrengthWeakness($data){
+
+        try {            
+            $this->db->insert('strengthWeakness', $data);
+            $response['error']  = false;
+            $response['data']['strengthWeakness']   = $data;
+            return $response;
+
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
+
+
 }
