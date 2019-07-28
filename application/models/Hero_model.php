@@ -134,6 +134,8 @@ class Hero_model extends CI_Model {
                 return '<font color="#f1c232">'.$rarity.'</font>';
             case "D":
                 return '<font color="#b45f06">'.$rarity.'</font>';
+            case "E":
+                return '<font color="#5b0f22">'.$rarity.'</font>';
             case "F":
                 return '<font color="#5b0f00">'.$rarity.'</font>';
             default:
@@ -188,7 +190,14 @@ class Hero_model extends CI_Model {
                 "soren"     => $this->colorRarity($data['soren'])
             ];                
         }else{
-            $data = [];
+            $data = [
+                "overall"   => "",
+                "pvp"       => "",
+                "pve"       => "",
+                "lab"       => "",
+                "wrizz"     => "",
+                "soren"     => ""
+            ];
         }
         return $data;
     }
