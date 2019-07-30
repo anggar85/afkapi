@@ -82,6 +82,12 @@ class Hero_model extends CI_Model {
                         $cont++;
                     }
                 }
+
+
+                # Strength & Weakness
+                $strengthWeakness = $this->strengthWeakness($heroe['id']);
+
+
                 
                 # Arma toda la informacion para el heroe
                 $heroe['early'] = $early;
@@ -91,6 +97,8 @@ class Hero_model extends CI_Model {
                 $heroe['skills']  = $skillsArray;
                 $icon = $this->addImages($heroe);
                 $heroe['smallImage']  = $icon['smallImage'];
+                $heroe['strengths'] = $strengthWeakness['strength'];
+                $heroe['weaknesses'] = $strengthWeakness['weakness'];
 
                 $response['error']  = false;
                 $response['data']['heroe']    = $heroe;
@@ -199,6 +207,26 @@ class Hero_model extends CI_Model {
                 "soren"     => ""
             ];
         }
+        return $data;
+    }
+
+
+    public function strengthWeakness($hero_id){
+        $this->db->where("hero_id", $hero_id);
+        $q =  $this->db->get("strengthWeakness");
+        $strength = [];
+        $weakness = [];
+        foreach ($q->result() as $value) {
+            if ($value->type == 1) {
+                array_push($strength, $value);
+            }else{
+                array_push($weakness, $value);
+            }
+        }
+        $data = [
+            'strength' => $strength,
+            'weakness' => $weakness
+        ];
         return $data;
     }
 

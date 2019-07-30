@@ -60,8 +60,13 @@ class Extras_model extends CI_Model {
 
         try {            
             $this->db->insert('strengthWeakness', $data);
+
+            $data =  $this->strengthWeakness($data['hero_id']);
+
             $response['error']  = false;
-            $response['data']['strengthWeakness']   = $data;
+            $response['data']['strengths']   = $data['strength'];
+            $response['data']['weaknesses']   = $data['weakness'];
+            $response['msg'] = "Awaiting for revision";
             return $response;
 
         }catch (Exception $e){
@@ -70,6 +75,25 @@ class Extras_model extends CI_Model {
             $response['msg']   = $e->getMessage();
             return $response;
         }
+    }
+
+    public function strengthWeakness($hero_id){
+        $this->db->where("hero_id", $hero_id);
+        $q =  $this->db->get("strengthWeakness");
+        $strength = [];
+        $weakness = [];
+        foreach ($q->result() as $value) {
+            if ($value->type == 1) {
+                array_push($strength, $value);
+            }else{
+                array_push($weakness, $value);
+            }
+        }
+        $data = [
+            'strength' => $strength,
+            'weakness' => $weakness
+        ];
+        return $data;
     }
 
 
