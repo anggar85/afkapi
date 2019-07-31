@@ -231,35 +231,17 @@
           
           <div class="container">
           <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+            <li class="active"><a data-toggle="tab" href="#home">Basic Info</a></li>
+            <li><a data-toggle="tab" href="#menu1">Artifacts</a></li>
+            <li><a data-toggle="tab" href="#menu2">Strengths & Weakness</a></li>
+            <li><a data-toggle="tab" href="#menu3">Skills</a></li>
           </ul>
 
           <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
-              <h3>HOME</h3>
-              <p>Some content.</p>
-            </div>
-            <div id="menu1" class="tab-pane fade">
-              <h3>Menu 1</h3>
-              <p>Some content in menu 1.</p>
-            </div>
-            <div id="menu2" class="tab-pane fade">
-              <h3>Menu 2</h3>
-              <p>Some content in menu 2.</p>
-            </div>
-          </div>
-          </div>
-          
-        </div>
-        
-      </div>
-      <div class="row">
-       
-         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <h4>Information</h4>
-             <table class="xxccc" id="tableDataOfHeroe">
+              <h3>Basic Info</h3>
+              <!-- BASIC INFO -->
+              <table class="xxccc" id="tableDataOfHeroe">
                  <tbody>
                     <tr>
                       <th>ID</th>
@@ -369,13 +351,24 @@
                    </tr>
                  </tbody>
                </table>
-         </div>  
-         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-         
-               <h4>Skills</h4>
-               {{#each skills}}
-               <h5>{{skill}}</h5>
-               <table class="table border border-primary rounded skilltable" id="skill{{id}}">
+               <!-- BASIC INFO -->
+              
+            </div>
+            <div id="menu1" class="tab-pane fade">
+              <h3>Artifacts</h3>
+              <p>Some content in menu 1.</p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+              <h3>Strengths & Weakness</h3>
+              <p>Some content in menu 2.</p>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+              <h3>Skills</h3>
+              <!-- SKILLS -->
+              {{#each skills}}
+              <div class="skillsDiv">
+              <button data-toggle="collapse" class="btn btn-primary btn-block btn-sm" data-target="#skill{{id}}"><h5>{{skill}}</h5></button>
+               <table class="table border border-primary rounded skilltable collapse" id="skill{{id}}">
                   <tr>
                       <th>
                         ID
@@ -433,16 +426,17 @@
                    </td>
                  </tr>
                </table>
+              </div>
                {{/each}}
-       
-         </div>
-         
+              <!-- SkILLS -->
+            </div>
+          </div>
+          
+        </div>
+        
       </div>
-      
-     
-       
  </div>
- 
+
 
 </script>
 

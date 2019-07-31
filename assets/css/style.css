@@ -21408,3 +21408,22 @@ dl li {
 .tableDataTable_wrapper_custom{
   font-size: 13px!important;
 }
+
+
+.skillsDiv{
+  margin: 10px;
+}
+
+.nav-tabs{
+  padding: 10px!important;
+}
+
+
+.nav-tabs li{
+  background: #2196F3!important;
+  padding: 10px!important;
+}
+.nav-tabs li a{
+  color: white!important;
+
+}
