@@ -188,8 +188,8 @@ function listHeroes() {
         heroesDiv = ""
         if(data.error == false){
             for (const hro of data.data.heroes) {
-                a = "<div class='col-md-2 pointerCursor imagenHeroe' id='" + hro.id + "'>";
-                a+="<img width='80' heigth='80' src='" + hro.smallImage + "' /> <br>";
+                a = "<div class='col-md-1 pointerCursor imagenHeroe' id='" + hro.id + "'>";
+                a+="<img width='100%' heigth='100%' src='" + hro.smallImage + "' /> ";
                 a+=hro.name;
                 a+="</div>";
                 heroesDiv+=a

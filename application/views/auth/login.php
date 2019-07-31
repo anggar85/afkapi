@@ -25,7 +25,7 @@
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
                 <center>
-                    <img src="<?php echo base_url(); ?>assets/images/logo-gac-310x84-rev.png" alt="" srcset="">
+                    <img width="100%" src="<?php echo base_url(); ?>assets/images/logo.png" alt="" srcset="">
                     <br>
                 </center>
             <div class="auth-form-light text-left py-5 px-4 px-sm-5"  id="div_login">
