@@ -105,7 +105,8 @@ class Hero_model extends CI_Model {
                 
             }else{
                 # No hay resultados
-                $response['error']  = false;
+                $response['error']  = true;
+                $response['id']  = $id;
                 $response['msg']    = "Can't find the hero.";
             }
 

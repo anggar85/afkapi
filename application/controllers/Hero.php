@@ -29,8 +29,8 @@ class Hero extends CI_Controller {
 	{
         try {
             header('Content-Type: application/json');
-            // $data = json_decode(file_get_contents('php://input'), true);
-            $hero_id = $_GET['hero_id'];
+            $data = json_decode(file_get_contents('php://input'), true);
+            $hero_id = $data['data']['hero']['id'];
             $response = $this->Hero_model->detail($hero_id);
             echo json_encode($response);
         } catch (Exception $e) {

@@ -213,22 +213,38 @@ function detalleHeroe() {
 }
 
 function verDetalleHeroe(id) {
-    $.get(URL_HOST + "hero/detail?token=1234567890&hero_id=" + id + "&ambiente=" + AMBIENTE, function(data){
-        heroesDiv = ""
-        if(data.error == false){
-            heroe = data.data.heroe
-            global_pinta_handlebars("detalleHeroe_hb", heroe, "mainSpace")
-            console.log(heroe)
-            // Ya que se pinta el heroe, se carga el listener para los select
-            listenerDinamicoSelectores()
-            $("#listHeroes").click(function (e) { 
-                e.preventDefault();
-                listHeroes();
-            });
-        }else{
-            alert("Hubo un error")
+    data = {
+        "meta": {
+            "token": 123456,
+            "enviroment": "P"
+        },
+        "data": {
+            "hero": {
+                "id": id
+            }
         }
-        // console.log(hero.name)
+    }
+
+    $.ajax({
+        type: "POST",
+        url: URL_HOST + "api/v2/hero/detail",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function (data) {
+            if(data.error == false){
+                heroe = data.heroe
+                global_pinta_handlebars("detalleHeroe_hb", heroe, "mainSpace")
+                console.log(heroe)
+                // Ya que se pinta el heroe, se carga el listener para los select
+                listenerDinamicoSelectores()
+                $("#listHeroes").click(function (e) { 
+                    e.preventDefault();
+                    listHeroes();
+                });
+            }else{
+                alert("Hubo un error")
+            }
+        }
     });
 }
 
