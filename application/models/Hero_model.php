@@ -99,6 +99,7 @@ class Hero_model extends CI_Model {
                 $heroe['smallImage']  = $icon['smallImage'];
                 $heroe['strengths'] = $strengthWeakness['strength'];
                 $heroe['weaknesses'] = $strengthWeakness['weakness'];
+                $heroe['synergi'] = []; // Debe leer de la tabla
 
                 $response['error']  = false;
                 $response['data']['heroe']    = $heroe;

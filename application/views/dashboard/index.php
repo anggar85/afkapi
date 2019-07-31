@@ -254,17 +254,17 @@
                       <td>
                         <img width="100px" src="{{smallImage}}?time={{random}}" />
                         <br>
-                        <input class="form-controls" type="text" name="imagen_big" />
+                        <input class="form-controls" placeholder="URL for icon of hero" type="text" name="imagen_big" />
                       </td>
                     </tr>
-                   <tr>
+                   <!-- <tr>
                      <th>Image Icon (JPG)</th>
                      <td>
                        <img width="100px" src="{{iconImage}}?time={{random}}" />
                        <br>
                        <input class="form-controls" type="text" name="imagen_icon" />
                      </td>
-                   </tr>
+                   </tr> -->
                    <tr>
                      <th>Name *</th>
                      <td><input class="form-controls" type="text" name="name" value="{{name}}"></td>
@@ -273,10 +273,10 @@
                      <th>Group</th>
                      <td><input class="form-controls" type="text" name="group" value="{{group}}"></td>
                    </tr>
-                   <tr>
+                   <!-- <tr>
                      <th>Race Name </th>
                      <td><input  disabled class="form-controls" type="text" name="race_name" value="{{race_name}}"></td>
-                   </tr>
+                   </tr> -->
                    <tr>
                      <th>Description</th>
                      <td><textarea class="form-controls"  name="desc">{{desc}}</textarea></td>
