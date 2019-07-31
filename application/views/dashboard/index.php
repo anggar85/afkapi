@@ -144,18 +144,11 @@
 
         <div id="mainSpace" class="row"></div>
 
-
-
-        <nav class="floating-menu">
-          <h3>AMBIENTE: <span></span></h3>
-        </nav>
-
-
       </div>
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
-      <footer class="sticky-footer">
+      <footer class="sticky-footer"> 
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright © Your Website 2019</span>
@@ -209,7 +202,7 @@
   <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.js"></script>
 
   <script src="<?php echo base_url(); ?>assets/js/handlebars-v4.1.0.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/busdriver.js"></script>
 
 </body>
 

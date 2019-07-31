@@ -7,7 +7,7 @@ $(document).ready(function () {
 function loadManifestList() {
     $.ajax({
         type: "GET",
-        url: "api/v1/manifest/list_all_manifest",
+        url: "api/v2/manifest/list_all_manifest",
         dataType: "JSON",
         success: function (response) {
             if (!response.error) {
@@ -40,7 +40,7 @@ function showManifesInfo(manifestId) {
 
     $.ajax({
         type: "POST",
-        url: "api/v1/manifest/show_manifest",
+        url: "api/v2/manifest/show_manifest",
         dataType: "JSON",
         data: JSON.stringify(info),
         success: function (response) {
@@ -116,7 +116,7 @@ function aceptCancelation(id) {
     }
     $.ajax({
         type: "POST",
-        url: "api/v1/manifest/acept_cancelation",
+        url: "api/v2/manifest/acept_cancelation",
         data: JSON.stringify(info),
         dataType: "JSON",
         success: function (response) {
@@ -136,7 +136,7 @@ function aceptCancelation(id) {
 function loadUsersList() {
     $.ajax({
         type: "GET",
-        url: "api/v1/users/users_list",
+        url: "api/v2/users/users_list",
         dataType: "JSON",
         success: function (response) {
             if (!response.error) {
@@ -186,7 +186,7 @@ function showUserInfo(userId) {
 
     $.ajax({
         type: "POST",
-        url: "api/v1/users/show_user",
+        url: "api/v2/users/show_user",
         dataType: "JSON",
         data: JSON.stringify(info),
         success: function (response) {
@@ -277,7 +277,7 @@ function saveNewUser() {
     if (validateUser(info.data.user)) {
         $.ajax({
             type: "POST",
-            url: "api/v1/users/create_user",
+            url: "api/v2/users/create_user",
             dataType: "JSON",
             data: JSON.stringify(info),
             success: function (response) {
@@ -332,7 +332,7 @@ function updateUserData() {
     if (validateUser(info.data.user)) {
         $.ajax({
             type: "POST",
-            url: "api/v1/users/update_user",
+            url: "api/v2/users/update_user",
             dataType: "JSON",
             data: JSON.stringify(info),
             success: function (response) {
@@ -401,7 +401,7 @@ function eventsSideBar() {
     $("#btn_logout").click(function (e) {
         $.ajax({
             type: "GET",
-            url: "api/v1/auth/logout",
+            url: "api/v2/auth/logout",
             dataType: "JSON",
             success: function (response) {
                 if (!response.error) {
@@ -498,7 +498,7 @@ var check_session;
 function CheckForSession() {
     $.ajax({
         type: "POST",
-        url: "api/v1/auth/checksession",
+        url: "api/v2/auth/checksession",
         cache: false,
         success: function(res){
             console.log(res)
