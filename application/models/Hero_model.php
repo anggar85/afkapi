@@ -120,6 +120,18 @@ class Hero_model extends CI_Model {
         }
     }
 
+    public function update_hero($data){
+
+        // try {
+            
+        // } catch (Exception $e) {
+        //     $response['error']  = true;
+        //     $response['msg']   = $e->getMessage();
+        //     return ($response);
+        // }
+
+    }
+
 
     // Add data
     public function addImages($hero){
@@ -210,7 +222,6 @@ class Hero_model extends CI_Model {
         }
         return $data;
     }
-
 
     public function strengthWeakness($hero_id){
         $this->db->where("hero_id", $hero_id);

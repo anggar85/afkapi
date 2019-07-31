@@ -225,17 +225,46 @@
         </div>
         
       </div>
-      
+      <div class="row">
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          
+          <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+              <h3>HOME</h3>
+              <p>Some content.</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+              <h3>Menu 1</h3>
+              <p>Some content in menu 1.</p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+              <h3>Menu 2</h3>
+              <p>Some content in menu 2.</p>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+        
+      </div>
       <div class="row">
        
          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <h4>Information</h4>
-             <table class="table table-hover" id="tableDataOfHeroe">
+             <table class="xxccc" id="tableDataOfHeroe">
                  <tbody>
                     <tr>
                       <th>ID</th>
                       <td>
-                        <input class="form-control" type="number" value="{{id}}" name="id" id="idHeroe" disabled />
+                        <input class="form-controls" type="number" value="{{id}}" name="id" id="idHeroe" disabled />
                       </td>
                     </tr>
                     <tr>
@@ -243,7 +272,7 @@
                       <td>
                         <img width="100px" src="{{smallImage}}?time={{random}}" />
                         <br>
-                        <input class="form-control" type="text" name="imagen_big" />
+                        <input class="form-controls" type="text" name="imagen_big" />
                       </td>
                     </tr>
                    <tr>
@@ -251,41 +280,41 @@
                      <td>
                        <img width="100px" src="{{iconImage}}?time={{random}}" />
                        <br>
-                       <input class="form-control" type="text" name="imagen_icon" />
+                       <input class="form-controls" type="text" name="imagen_icon" />
                      </td>
                    </tr>
                    <tr>
                      <th>Name *</th>
-                     <td><input class="form-control" type="text" name="name" value="{{name}}"></td>
+                     <td><input class="form-controls" type="text" name="name" value="{{name}}"></td>
                    </tr>
                    <tr>
                      <th>Group</th>
-                     <td><input class="form-control" type="text" name="group" value="{{group}}"></td>
+                     <td><input class="form-controls" type="text" name="group" value="{{group}}"></td>
                    </tr>
                    <tr>
                      <th>Race Name </th>
-                     <td><input  disabled class="form-control" type="text" name="race_name" value="{{race_name}}"></td>
+                     <td><input  disabled class="form-controls" type="text" name="race_name" value="{{race_name}}"></td>
                    </tr>
                    <tr>
                      <th>Description</th>
-                     <td><textarea class="form-control"  name="desc">{{desc}}</textarea></td>
+                     <td><textarea class="form-controls"  name="desc">{{desc}}</textarea></td>
                    </tr>
                    <tr>
                      <th>Rarity *</th>
                      <td>
-                         <select class="form-control" name="select_rarity_number" id="select_rarity_number">
+                         <select class="form-controls" name="select_rarity_number" id="select_rarity_number">
                              <option value="0">Select Rarity</option>
                              <option value="Legendary+">Legendary+</option>
                              <option value="Common">Common</option>
                              <option value="Ascended">Ascended</option>
                            </select>
-                       <input disabled class="form-control" type="text" name="rarity" id="rarity" value="{{rarity}}">
+                       <input disabled class="form-controls" type="text" name="rarity" id="rarity" value="{{rarity}}">
                      </td>
                    </tr>
                    <tr>
                      <th>Race *</th>
                      <td>
-                         <select class="form-control" name="select_race_number" id="select_race_number">
+                         <select class="form-controls" name="select_race_number" id="select_race_number">
                              <option value="0">Select Race</option>
                              <option value="1">LIGHTBEARERS</option>
                              <option value="2">MAULERS</option>
@@ -294,44 +323,44 @@
                              <option value="5">CELESTIAL</option>
                              <option value="6">HYPOGEAN</option>
                          </select>
-                       <input disabled class="form-control" type="number" id="race" name="race" value="{{race}}">
+                       <input disabled class="form-controls" type="number" id="race" name="race" value="{{race}}">
                      </td>
                    </tr>
                    <tr>
                      <th>Role</th>
-                     <td><input class="form-control" type="text" name="role" value="{{role}}"></td>
+                     <td><input class="form-controls" type="text" name="role" value="{{role}}"></td>
                    </tr>
                    <tr>
                      <th>Synergy</th>
-                     <td><input class="form-control" type="text" name="synergy" value="{{synergy}}"></td>
+                     <td><input class="form-controls" type="text" name="synergy" value="{{synergy}}"></td>
                    </tr>
                    <tr>
                      <th>Position</th>
-                     <td><input class="form-control" type="text" name="position" value="{{position}}"></td>
+                     <td><input class="form-controls" type="text" name="position" value="{{position}}"></td>
                    </tr>
                    <tr>
                      <th>Artifact</th>
-                     <td><input class="form-control" type="text" name="artifact" value="{{artifact}}"></td>
+                     <td><input class="form-controls" type="text" name="artifact" value="{{artifact}}"></td>
                    </tr>
                    <tr>
                      <th>Union</th>
-                     <td><input class="form-control" type="text" name="union" value="{{union}}"></td>
+                     <td><input class="form-controls" type="text" name="union" value="{{union}}"></td>
                    </tr>
                    <tr>
                      <th>Class *</th>
-                     <td><input class="form-control" type="text" name="classe" value="{{classe}}"></td>
+                     <td><input class="form-controls" type="text" name="classe" value="{{classe}}"></td>
                    </tr>
                    <tr>
                      <th>Introduction</th>
-                     <td><textarea class="form-control"  name="introduction" >{{introduction}}</textarea></td>
+                     <td><textarea class="form-controls"  name="introduction" >{{introduction}}</textarea></td>
                    </tr>
                    <tr>
                      <th>Lore</th>
-                     <td><input class="form-control" type="text" name="lore" value="{{lore}}"></td>
+                     <td><input class="form-controls" type="text" name="lore" value="{{lore}}"></td>
                    </tr>
                    <tr>
                      <th>Status</th>
-                     <td><input class="form-control" type="number" name="status" value="{{status}}"></td>
+                     <td><input class="form-controls" type="number" name="status" value="{{status}}"></td>
                    </tr>
                    <tr>
                      <td colspan="2">

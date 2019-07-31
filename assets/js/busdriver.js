@@ -232,9 +232,9 @@ function verDetalleHeroe(id) {
         dataType: "json",
         success: function (data) {
             if(data.error == false){
-                heroe = data.heroe
-                global_pinta_handlebars("detalleHeroe_hb", heroe, "mainSpace")
-                console.log(heroe)
+                console.log(data.data.heroe)
+                heroe = data.data.heroe
+                global_pinta_handlebars("detalleHeroe_hb", data.data.heroe, "mainSpace")
                 // Ya que se pinta el heroe, se carga el listener para los select
                 listenerDinamicoSelectores()
                 $("#listHeroes").click(function (e) { 
@@ -277,6 +277,8 @@ function listenerDinamicoSelectores() {
 
     $("#updateData").click(function (e) { 
         e.preventDefault();
+        console.log("ishishis");
+        
         if(AMBIENTE == "P"){
             var r = confirm("Actualizar en ambiente de PRODUCCION?");
             if (r == false) {
@@ -309,8 +311,8 @@ function listenerDinamicoSelectores() {
         console.log(datos)
 
         $.ajax({
-            type: "PUT",
-            url: URL_HOST + "hero/update_hero?token=1234567890&ambiente=" + AMBIENTE,
+            type: "POST",
+            url: URL_HOST + "hero/update_hero?token=1234567890",
             data: datos,
             dataType: "json",
             success: function (response) {
