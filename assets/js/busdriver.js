@@ -4,20 +4,19 @@ $(document).ready(function () {
     AMBIENTE = "";
     URL_HOST = "http://localhost/afkapi/";
     LISTADO_HEROES = [];
-    
+    LISTADO_HEROES_FLAG = false;
 
     listHeroes();
 
-    $("#ambiente").change(function (e) { 
-        e.preventDefault();
-        
-        listHeroes();
-
-    });
 
     $("#addNewHero").click(function (e) { 
         e.preventDefault();
         createNewHero()
+    });
+
+    $("#cargarListaDeHeroes").click(function (e) { 
+        e.preventDefault();
+        listHeroes();
     });
 
 });
@@ -184,7 +183,7 @@ hero = {
 
 
 function listHeroes() {
-    $.get(URL_HOST + "api/v2/hero/list", function(data){
+    $.get(URL_HOST + "api/v2/hero/list_all_interface", function(data){
         heroesDiv = ""
         if(data.error == false){
             for (const hro of data.data.heroes) {
@@ -193,8 +192,11 @@ function listHeroes() {
                 a+=hro.name;
                 a+="</div>";
                 heroesDiv+=a
-                LISTADO_HEROES.push(hro.name);
+                if (!LISTADO_HEROES_FLAG) {
+                    LISTADO_HEROES.push(hro.name);
+                }
             }
+            LISTADO_HEROES_FLAG = true;
             $("#mainSpace").html(heroesDiv)
             detalleHeroe()
         }else{
@@ -230,11 +232,11 @@ function verDetalleHeroe(id) {
                     placeholder: "Select Artifacts",
                     selectOnClose: false
                 });
-                synergiData = [];
-                if(heroe.synergi.length > 0){
-                    synergiData = heroe.synergi.split(",")
+                synergyData = [];
+                if(heroe.synergy.length > 0){
+                    synergyData = heroe.synergy.split(",")
                 }
-                $("#synergiSelect").val(synergiData).select2({
+                $("#synergiSelect").val(synergyData).select2({
                     tags: true,
                     data: LISTADO_HEROES,
                     placeholder: "Select Heroes",
@@ -321,13 +323,14 @@ function listenerDinamicoSelectores() {
             dataType: "json",
             success: function (response) {
                 console.log(response)
-                // if (!response.error) {
-                //     idHeroe = $("#idHeroe").val()
-                //     verDetalleHeroe(idHeroe)
-                //     alert("Se actualiazo el heroe")
-                // } else {
-                //     alert(response.msg)
-                // }
+                if (!response.error) {
+                    idHeroe = $("#idHeroe").val()
+                    verDetalleHeroe(idHeroe)
+                    Swal.fire("Great!","Hero Updated!", "success")
+                } else {
+                    Swal.fire("Oops!",response.msg, "error")
+                    
+                }
             }
         });
 

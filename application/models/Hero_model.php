@@ -121,18 +121,82 @@ class Hero_model extends CI_Model {
         }
     }
 
+
+
+    public function list_all_interface(){
+        try{
+            
+
+            $query = "SELECT * FROM
+                            hero_details where rarity!='Common' order by name asc";
+
+            $q = $this->db->query($query);
+            $heroes = [];
+            foreach($q->result() as $hero){
+                $hero = (array) $hero;
+                array_push($heroes, $this->addImages($hero));
+            }
+
+            $response['error']  = false;
+            $response['data']['heroes']    = $heroes;
+            
+            return ($response);
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+
+        }
+    }
+
+
+
     public function update_hero_basic_info($data){
 
         try {
             // Valida si los campos estan vacios o no son validos
-            if ($data['classe'] == "") {
-                throw new Exception("Class can't be empty");
+            if ($data['name'] == "") {
+                throw new Exception("Name can't be empty");
             }
             if ($data['classe'] == "") {
                 throw new Exception("Class can't be empty");
+            }
+            if ($data['type'] == "") {
+                throw new Exception("Type can't be empty");
+            }
+            if ($data['rarity'] == "") {
+                throw new Exception("Rarity can't be empty");
+            }
+            if ($data['select_race_number'] == "") {
+                throw new Exception("Race can't be empty");
             }
 
+            $d['artifact'] = implode(",", $data['artifact']);
+            $d['classe'] = $data['classe'];
+            $d['desc'] = $data['desc'];
+            $d['group'] = $data['group'];
+            $d['id'] = $data['id'];
+            $d['introduction'] = $data['introduction'];
+            $d['lore'] = $data['lore'];
+            $d['name'] = $data['name'];
+            $d['position'] = $data['position'];
+            $d['race'] = $data['race'];
+            $d['rarity'] = $data['select_rarity_number'];
+            $d['role'] = $data['role'];
+            $d['race_name'] = $data['select_race_number'];
+            $d['status'] = $data['status'];
+            $d['synergy'] = implode(",", $data['synergy']);
+            $d['type'] = $data['type'];
+            $d['union'] = $data['union'];
             
+            $this->db->where('id', $d['id']);
+            $this->db->update('hero_details', $d);
+            
+
+            $response['error']  = false;
+            $response['msg']   = "Hero Updated!";
+            return ($response);
 
             
         } catch (Exception $e) {

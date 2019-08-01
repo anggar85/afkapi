@@ -22,6 +22,7 @@
 
   <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css" integrity="sha256-JHRpjLIhLC03YGajXw6DoTtjpo64HQbY5Zu6+iiwRIc=" crossorigin="anonymous" />
 </head>
 
 <body id="page-top">
@@ -94,13 +95,13 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" id="cargarListaDeHeroes" href="#">
           <i class="fas fa-fw fa-list-alt"></i>
           <span>Hero List</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-user-alt"></i>
           <span>New Hero</span>
         </a>
@@ -149,7 +150,7 @@
       <footer class="sticky-footer"> 
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Your Website 2019</span>
+            <span>Copyright © AFKAPIGUIDE 2019</span>
           </div>
         </div>
       </footer>
@@ -197,9 +198,7 @@
   <!-- Page level plugin JavaScript-->
   <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.js"></script>
   <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js" integrity="sha256-FmcrRIeUicq2hy0eo5tD5h2Iv76IBfc3A51x8r9xeIY=" crossorigin="anonymous"></script>  <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.js"></script>
 
   <script src="<?php echo base_url(); ?>assets/js/handlebars-v4.1.0.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/busdriver.js"></script>

@@ -18,6 +18,7 @@ $route['api/v2/hero/list']  = 'hero/list_all';
 $route['api/v2/hero/detail']  = 'hero/detail';
 
 
+$route['api/v2/hero/list_all_interface']  = 'hero/list_all_interface';
 $route['hero/update_hero_basic_info']  = 'hero/update_hero_basic_info';
 
 $route['api/v2/extras/faq']  = 'extras/faq';

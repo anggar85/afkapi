@@ -40,13 +40,25 @@ class Hero extends CI_Controller {
 
 
 
+    public function list_all_interface()
+	{
+        try {
+            header('Content-Type: application/json');
+            $response = $this->Hero_model->list_all_interface();
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+
     public function update_hero_basic_info()
 	{
         try {
             header('Content-Type: application/json');
             $data = $_POST;
             $response = $this->Hero_model->update_hero_basic_info($data);
-            echo json_encode($data);
+            echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }
