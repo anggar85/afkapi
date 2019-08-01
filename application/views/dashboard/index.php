@@ -343,15 +343,8 @@
               {{#each skills}}
               <div class="skillsDiv">
               <button data-toggle="collapse" class="btn btn-primary btn-block btn-sm" data-target="#skill{{id}}"><h5>{{skill}}</h5></button>
+                          <input hidden type="number" class="form-control" name="id" value="{{id}}" readonly/>
                <table class="table border border-primary rounded skilltable collapse" id="skill{{id}}">
-                  <tr>
-                      <th>
-                        ID
-                      </th>
-                      <td>
-                          <input type="number" class="form-control" name="id" value="{{id}}" readonly/>
-                      </td>
-                    </tr>
                  <tr>
                    <th>Icon (PNG)</th>
                    <td><img width="80px" height="80px" src="{{skillIcon}}?time={{random}}"/></td>
