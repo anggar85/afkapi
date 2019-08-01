@@ -124,15 +124,15 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
-      </li> -->
+        </li> -->
+      <li class="nav-item">
+        <a class="nav-link" id="backUpDatabase" href="#">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>DB Backup</span></a>
+      </li>
     </ul>
 
     <div id="content-wrapper">

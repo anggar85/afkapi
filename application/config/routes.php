@@ -14,17 +14,22 @@ $route['password_reset']     = 'auth/password_reset'; // page where user put new
 $route['api/v1/auth/set_new_password']     = 'auth/set_new_password'; // save new password
 
 
+// Mobile
 $route['api/v2/hero/list']  = 'hero/list_all';
 $route['api/v2/hero/detail']  = 'hero/detail';
-
-
-$route['api/v2/hero/list_all_interface']  = 'hero/list_all_interface';
-$route['hero/update_hero_basic_info']  = 'hero/update_hero_basic_info';
 
 $route['api/v2/extras/faq']  = 'extras/faq';
 $route['api/v2/extras/items_list']  = 'extras/items_list';
 $route['api/v2/extras/rol_definitions']  = 'extras/rol_definitions';
 $route['api/v2/extras/create_StrengthWeakness']  = 'extras/create_StrengthWeakness';
+
+
+// Web Interface
+
+$route['api/v2/hero/list_all_interface']  = 'hero/list_all_interface';
+$route['hero/update_hero_basic_info']  = 'hero/update_hero_basic_info';
+
+$route['extras/dbBackup']  = 'extras/dbBackup';
 
 
 

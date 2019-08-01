@@ -96,5 +96,36 @@ class Extras_model extends CI_Model {
         return $data;
     }
 
+    public function dbBackup()
+    {
+        try {
+            $this->load->dbutil();
+
+    $backup = $this->dbutil->backup(array(
+        'tables'        => array(),   // Array of tables to backup.
+        'ignore'        => array('regencies', 'villages', 'provinces'),                     // List of tables to omit from the backup
+        'add_drop'      => TRUE,                        // Whether to add DROP TABLE statements to backup file
+        'add_insert'    => TRUE,                        // Whether to add INSERT data to backup file
+        'newline'       => "\n"                         // Newline character used in backup file
+    ));
+
+    $this->load->helper('file');
+
+    $latest = md5(uniqid());
+
+    write_file(APPPATH . 'backup/'. $latest .'.gz', $backup);
+                    
+
+
+            $response['error']  = false;
+            $response['msg']   = "Backup complete!";
+            return $response;
+        } catch (Exception $e) {
+            //throw $th;
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
 
 }

@@ -63,7 +63,18 @@ class Extras extends CI_Controller {
         }
     }
 
+    public function dbBackup()
+	{
+        try {
+            header('Content-Type: application/json');
+            $response = $this->Extras_model->dbBackup();
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
 
 
+    
 
 }

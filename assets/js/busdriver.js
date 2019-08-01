@@ -19,6 +19,11 @@ $(document).ready(function () {
         listHeroes();
     });
 
+    $("#backUpDatabase").click(function (e) { 
+        e.preventDefault();
+        backUpDatabase();
+    });
+    
 });
 
 function createNewHero() {
@@ -181,6 +186,18 @@ hero = {
     union: ""
 }
 
+function backUpDatabase() {
+    $.getJSON(URL_HOST + "extras/dbBackup",
+        function (data, textStatus, jqXHR) {
+            if (!data.error) {
+                Swal.fire("Great!","Database backup complete", "success")
+            } else {
+                Swal.fire("Oops!",data.msg, "error")
+                
+            }
+        }
+    );
+}
 
 function listHeroes() {
     $.get(URL_HOST + "api/v2/hero/list_all_interface", function(data){
