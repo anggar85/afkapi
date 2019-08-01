@@ -400,7 +400,32 @@
             </div>
             <div id="menu4" class="tab-pane fade">
               <h3>Tier Data</h3>
-              <p>Some content in menu 2.</p>
+              <table class="table">
+                <tr><th colspan="6"><h3>Early Game</h3></th></tr>
+                  <tr>
+                    <th>Overall</th>
+                    <th>PVP</th>
+                    <th>PVE</th>
+                    <th>LAB</th>
+                    <th>Wrizz</th>
+                    <th>Soren</th>
+                  </tr>
+                  <tr>
+                    <td>{{{listado_tier early.overall "earlyGame"}}}</td>
+                    <td>{{{listado_tier early.pvp "earlyGame"}}}</td>
+                    <td>{{{listado_tier early.pve "earlyGame"}}}</td>
+                    <td>{{{listado_tier early.lab "earlyGame"}}}</td>
+                    <td>{{{listado_tier early.wrizz "earlyGame"}}}</td>
+                    <td>{{{listado_tier early.soren "earlyGame"}}}</td>
+                  </tr>
+                  <tr>
+                    <th colspan="6">
+                      <center>
+                        <button class="btn btn-xs btn-primary">Update Tier Data</button>
+                      </center>
+                    </th>
+                  </tr>
+              </table>
             </div>
           </div>
           
@@ -413,6 +438,8 @@
 </script>
 
 <div>
+
+
 
 
 

@@ -64,7 +64,7 @@ class Hero_model extends CI_Model {
                 $this->db->where("name", $heroe['name']);
                 $skills =  $this->db->get("skills");
 
-                $base = "https://www.mxl-apps.com/afk/heroes/skills/";
+                $base = "assets/heroes/skills/";
                 if ($skills->num_rows() != 0) {
                     $cont = 1;
                     foreach ($skills->result() as $sk) {
@@ -219,6 +219,53 @@ class Hero_model extends CI_Model {
             return ($response);
         }
 
+    }
+
+    public function updateSkill($id, $data)
+    {
+        try {
+            $this->db->where("id", $id);
+            $this->db->limit(1);
+            $q = $this->db->get("skills");
+            if ($q->num_rows() > 0) {
+                $name =  strtolower($q->row()->name);
+                if($data['skillIcon'] != ""){
+                    if(copy($data['skillIcon'], "assets/heroes/skills/".$name.$data['skillOrder'].".png")){
+                        $imagen = true;
+                    }else{
+                        $imagen = false;
+                    }	
+                    $response['image']   = $imagen;
+                }
+
+                $skill = [
+                    'skill'       => $data['skill'],
+                    'skillOrder'  => $data['skillOrder'],
+                    'desc'        => $data['desc'],
+                    'name'        => $name,
+                    'lvlUpgrades' => $data['lvlUpgrades']
+                ];
+
+                $this->db->where("id", $id);
+                $this->db->limit(1);
+                $this->db->update("skills", $skill);
+                
+                $response['error']  = false;
+                $response['msg']   = "Skill Updated!";
+                $response['mswwg']   = $id;
+                $response['msg2']   = $name;
+                $response['msge2']   = $data;
+
+            } else {
+                throw new Exception("Can't find skill");
+            }
+                        
+        return ($response);
+        } catch (Exception $e) {
+            $response['error']  = false;
+            $response['msg']   = $e->getMessage();
+        }
+        
     }
 
 

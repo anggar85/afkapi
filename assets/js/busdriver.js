@@ -365,17 +365,17 @@ function actualizaSkill(id) {
     datos = $("#skill" + id + " input, #skill" + id + " textarea").serialize()
     console.log(datos)
     $.ajax({
-        type: "PUT",
-        url: URL_HOST + "hero/updateSkill?token=1234567890&id=" + id + "&ambiente=" + AMBIENTE,
+        type: "POST",
+        url: URL_HOST + "hero/updateSkill?token=1234567890&id=" + id,
         data: datos,
         dataType: "json",
         success: function (response) {
+            console.log(response)
+
             if (!response.error) {
-                idHeroe = $("#idHeroe").val()
-                verDetalleHeroe(idHeroe)
-                alert("Se actualiazo el Skill")
+                Swal.fire("Great!","Skill Updated!", "success")
             } else {
-                alert(response.msg)
+                Swal.fire("Oops!",response.msg, "error")
             }
         }
     });
@@ -507,5 +507,24 @@ Handlebars.registerHelper('random', function() {
   });
 
 
+  Handlebars.registerHelper('listado_tier', function(tier_value, seccion) {
+    tier = ["S+","S","A","B","C","D","E","F"]
+    a ='<select class="form-control" name="' + seccion + '">'
+    a+= '<option value="0">Select Tier Value</option>';
+    tier_value = tier_value.split(">")[1].split("<")[0]
+    for (let x = 0; x < tier.length; x++) {
+        if (tier_value == tier[x]) {
+            a+='<option value="' + tier[x] + '" selected="selected">' + tier[x] + '</option>'
+        } else {
+            a+='<option value="' + tier[x] + '">' + tier[x] + '</option>'
+        }
+    }
+
+    a+='</select>'
+    return a;
+  });
 
 
+
+
+  

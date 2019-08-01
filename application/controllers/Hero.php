@@ -66,5 +66,20 @@ class Hero extends CI_Controller {
 
 
 
+    public function updateSkill()
+	{
+        try {
+            header('Content-Type: application/json');
+            $data = $_POST;
+            $id = $_GET['id'];
+            $response = $this->Hero_model->updateSkill($id, $data);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+
+
 
 }
