@@ -252,7 +252,7 @@
                       <td>
                         <center><img width="100px" src="{{smallImage}}?time={{random}}" /></center>
                         <br>
-                        <input class="form-control" placeholder="URL for icon of hero" type="text" name="imagen_big" />
+                        <input class="form-control" placeholder="URL for icon of hero" type="text" name="image_icon" />
                       </td>
                       <td><input class="form-control" type="text" name="group" value="{{group}}"></td>
                       <td>

@@ -189,6 +189,15 @@ class Hero_model extends CI_Model {
             $d['synergy'] = implode(",", $data['synergy']);
             $d['type'] = $data['type'];
             $d['union'] = $data['union'];
+
+            if($data['image_icon'] != ""){
+                if(copy($data['image_icon'], "assets/heroes/icons/".$d['name'].".jpg")){
+                    $imagen = true;
+                }else{
+                    $imagen = false;
+                }	
+            }
+
             
             $this->db->where('id', $d['id']);
             $this->db->update('hero_details', $d);
@@ -196,6 +205,7 @@ class Hero_model extends CI_Model {
 
             $response['error']  = false;
             $response['msg']   = "Hero Updated!";
+            $response['image']   = $imagen;
             return ($response);
 
             
@@ -210,7 +220,9 @@ class Hero_model extends CI_Model {
 
     // Add data
     public function addImages($hero){
-        $img = "https://www.mxl-apps.com/afk/heroes/icons/".$hero['name'].".jpg";
+        $milliseconds = round(microtime(true) * 1000);
+
+        $img = "assets/heroes/icons/".$hero['name'].".jpg?t=".$milliseconds;
         $hero['smallImage'] = $img;
         return $hero;
 
