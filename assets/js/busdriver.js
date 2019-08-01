@@ -276,7 +276,40 @@ function verDetalleHeroe(id) {
     });
 }
 
+function updateTierData(gameLevel) {
+    overall = $("#earlygame select").eq(0).val()
+    pvp = $("#earlygame select").eq(1).val()
+    pve = $("#earlygame select").eq(2).val()
+    lab = $("#earlygame select").eq(3).val()
+    wrizz = $("#earlygame select").eq(4).val()
+    soren = $("#earlygame select").eq(5).val()
 
+    data = {
+        'overall': overall,
+        'pvp': pvp,
+        'pve': pve,
+        'lab': lab,
+        'wrizz': wrizz,
+        'soren': soren
+    }
+
+    $.ajax({
+        type: "GET",
+        url: URL_HOST + "hero/updateTierData?token=1234567890",
+        data: data,
+        dataType: "json",
+        success: function (response) {
+            if (!response.error) {
+                // alert("Se creo el nuevo heroe")
+                // listHeroes();
+            } else {
+                // alert(response.msg)
+            }
+        }
+    });
+
+
+}
 
 this.global_pinta_handlebars = function(plantilla, data, target, miMetodo) {
     var template;

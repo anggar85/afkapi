@@ -400,7 +400,7 @@
             </div>
             <div id="menu4" class="tab-pane fade">
               <h3>Tier Data</h3>
-              <table class="table">
+              <table class="table" id="earlygame">
                 <tr><th colspan="6"><b>Early Game</b></th></tr>
                   <tr>
                     <th>Overall</th>
@@ -421,12 +421,12 @@
                   <tr>
                     <th colspan="6">
                       <center>
-                        <button class="btn btn-xs btn-primary">Update Tier Data</button>
+                        <button onclick="updateTierData('earlygame')" class="btn btn-xs btn-primary">Update Tier Data</button>
                       </center>
                     </th>
                   </tr>
               </table>
-              <table class="table">
+              <table class="table" id="midgame">
                 <tr><th colspan="6"><b>Mid Game</b></th></tr>
                   <tr>
                     <th>Overall</th>
@@ -447,12 +447,12 @@
                   <tr>
                     <th colspan="6">
                       <center>
-                        <button class="btn btn-xs btn-primary">Update Tier Data</button>
+                        <button onclick="updateTierData('midgame')" class="btn btn-xs btn-primary">Update Tier Data</button>
                       </center>
                     </th>
                   </tr>
               </table>
-              <table class="table">
+              <table class="table" id="lategame">
                 <tr><th colspan="6"><b>Late Game</b></th></tr>
                   <tr>
                     <th>Overall</th>
@@ -473,7 +473,7 @@
                   <tr>
                     <th colspan="6">
                       <center>
-                        <button class="btn btn-xs btn-primary">Update Tier Data</button>
+                        <button onclick="updateTierData('lategame')" class="btn btn-xs btn-primary">Update Tier Data</button>
                       </center>
                     </th>
                   </tr>

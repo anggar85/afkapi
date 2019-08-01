@@ -268,6 +268,19 @@ class Hero_model extends CI_Model {
         
     }
 
+    public function updateTierData($data)
+    {
+        try {
+            $response['error']  = false;
+            $response['msg']   = "Skill Updated!";
+            $response['msge2']   = $data;
+        } catch (Exception $e) {
+            //throw $th;
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+        }
+    }
+
 
     // Add data
     public function addImages($hero){

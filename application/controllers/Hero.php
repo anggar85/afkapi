@@ -80,6 +80,19 @@ class Hero extends CI_Controller {
     }
 
 
+    public function updateTierData()
+	{
+        try {
+            header('Content-Type: application/json');
+            $data = $_GET;
+            $response = $this->Hero_model->updateTierData($data);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+
 
 
 }
