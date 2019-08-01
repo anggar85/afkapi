@@ -47,7 +47,7 @@ class Hero extends CI_Controller {
             // $data = json_decode(file_get_contents('php://input'), true);
             $data = $_POST;
             // $hero_id = $data['data']['hero']['id'];
-            $response = $this->Hero_model->update_hero($data);
+            // $response = $this->Hero_model->update_hero($data);
             echo json_encode($data);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);

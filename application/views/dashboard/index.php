@@ -21,7 +21,7 @@
   <link href="<?php echo base_url(); ?>assets/css/sb-admin-2.css" rel="stylesheet">
 
   <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -95,11 +95,17 @@
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
+          <i class="fas fa-fw fa-list-alt"></i>
+          <span>Hero List</span>
         </a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-user-alt"></i>
+          <span>New Hero</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
@@ -125,22 +131,14 @@
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
-      </li>
+      </li> -->
     </ul>
 
     <div id="content-wrapper">
-      <button type="button" id="addNewHero" class="btn btn-md  btn-primary pull-right">+ Add Heroe</button>
-      <br>
-      <br>
+      <!-- <button type="button" id="addNewHero" class="btn btn-md  btn-primary pull-right">+ Add Heroe</button> -->
+       <br>
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Overview</li>
-        </ol>
 
         <div id="mainSpace" class="row"></div>
 
@@ -190,6 +188,8 @@
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+
 
   <!-- Core plugin JavaScript-->
   <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -217,12 +217,12 @@
  <div class="container">
     <div class="row">
    
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
            <button id="listHeroes" class="btn btn-outline-info"> Heroes List</button>
        <br>
        <br>
       
-        </div>
+        </div> -->
         
       </div>
       <div class="row">
@@ -231,132 +231,105 @@
           
           <div class="container">
           <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Basic Info</a></li>
-            <li><a data-toggle="tab" href="#menu1">Artifacts</a></li>
+            <li class="active"><a data-toggle="tab" id="basi_info_li" href="#home">Basic Info</a></li>
             <li><a data-toggle="tab" href="#menu2">Strengths & Weakness</a></li>
             <li><a data-toggle="tab" href="#menu3">Skills</a></li>
+            <li><a data-toggle="tab" href="#menu4">Tier Data</a></li>
           </ul>
 
           <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
-              <h3>Basic Info</h3>
               <!-- BASIC INFO -->
-              <table class="xxccc" id="tableDataOfHeroe">
+              <table class="table" id="tableDataOfHeroe">
                  <tbody>
                     <tr>
+                      <th>Name *</th>
+                      <th>Image ICON (JPG)</th>
+                      <th>Group</th>
                       <th>ID</th>
-                      <td>
-                        <input class="form-controls" type="number" value="{{id}}" name="id" id="idHeroe" disabled />
-                      </td>
                     </tr>
                     <tr>
-                      <th>Image Big (PNG)</th>
+                      <td><input class="form-control" type="text" name="name" value="{{name}}"></td>
                       <td>
-                        <img width="100px" src="{{smallImage}}?time={{random}}" />
+                        <center><img width="100px" src="{{smallImage}}?time={{random}}" /></center>
                         <br>
-                        <input class="form-controls" placeholder="URL for icon of hero" type="text" name="imagen_big" />
+                        <input class="form-control" placeholder="URL for icon of hero" type="text" name="imagen_big" />
                       </td>
+                      <td><input class="form-control" type="text" name="group" value="{{group}}"></td>
+                      <td><input class="form-control" type="number" value="{{id}}" name="id" id="idHeroe" readonly /></td>
                     </tr>
-                   <!-- <tr>
-                     <th>Image Icon (JPG)</th>
-                     <td>
-                       <img width="100px" src="{{iconImage}}?time={{random}}" />
-                       <br>
-                       <input class="form-controls" type="text" name="imagen_icon" />
-                     </td>
-                   </tr> -->
-                   <tr>
-                     <th>Name *</th>
-                     <td><input class="form-controls" type="text" name="name" value="{{name}}"></td>
-                   </tr>
-                   <tr>
-                     <th>Group</th>
-                     <td><input class="form-controls" type="text" name="group" value="{{group}}"></td>
-                   </tr>
-                   <!-- <tr>
-                     <th>Race Name </th>
-                     <td><input  disabled class="form-controls" type="text" name="race_name" value="{{race_name}}"></td>
-                   </tr> -->
+                    
                    <tr>
                      <th>Description</th>
-                     <td><textarea class="form-controls"  name="desc">{{desc}}</textarea></td>
-                   </tr>
-                   <tr>
                      <th>Rarity *</th>
-                     <td>
-                         <select class="form-controls" name="select_rarity_number" id="select_rarity_number">
-                             <option value="0">Select Rarity</option>
-                             <option value="Legendary+">Legendary+</option>
-                             <option value="Common">Common</option>
-                             <option value="Ascended">Ascended</option>
-                           </select>
-                       <input disabled class="form-controls" type="text" name="rarity" id="rarity" value="{{rarity}}">
-                     </td>
-                   </tr>
-                   <tr>
                      <th>Race *</th>
-                     <td>
-                         <select class="form-controls" name="select_race_number" id="select_race_number">
-                             <option value="0">Select Race</option>
-                             <option value="1">LIGHTBEARERS</option>
-                             <option value="2">MAULERS</option>
-                             <option value="3">WILDERS</option>
-                             <option value="4">GRAVEBORN</option>
-                             <option value="5">CELESTIAL</option>
-                             <option value="6">HYPOGEAN</option>
-                         </select>
-                       <input disabled class="form-controls" type="number" id="race" name="race" value="{{race}}">
-                     </td>
-                   </tr>
-                   <tr>
                      <th>Role</th>
-                     <td><input class="form-controls" type="text" name="role" value="{{role}}"></td>
+                    </tr>
+                    <tr>
+                      <td><textarea class="form-control"  name="desc">{{desc}}</textarea></td>
+                      <td>
+                         {{{select_rarity_value rarity}}}
+                       <input readonly class="form-control" hidden type="text" name="rarity" id="rarity" value="{{rarity}}">
+                     </td>
+                     <td>
+                         {{{select_race_value race}}}
+                         <input readonly class="form-control" hidden type="number" id="race" name="race" value="{{race}}">
+                    </td>
+                    <td><input class="form-control" type="text" name="role" value="{{role}}"></td>
+                   
                    </tr>
                    <tr>
                      <th>Synergy</th>
-                     <td><input class="form-controls" type="text" name="synergy" value="{{synergy}}"></td>
-                   </tr>
-                   <tr>
                      <th>Position</th>
-                     <td><input class="form-controls" type="text" name="position" value="{{position}}"></td>
-                   </tr>
-                   <tr>
                      <th>Artifact</th>
-                     <td><input class="form-controls" type="text" name="artifact" value="{{artifact}}"></td>
-                   </tr>
-                   <tr>
                      <th>Union</th>
-                     <td><input class="form-controls" type="text" name="union" value="{{union}}"></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        {{{select_listado_heroes}}}
+                      </td>
+                      <td>{{{select_position_value position}}}</td>
+                      <td>
+                        
+                        <select name="artifact[]" multiple="multiple" id="inputartifact" class="form-control">
+                          <option value="nothing">Select Artifact</option>
+                          <option value="Dura's Grace">Dura's Grace</option>
+                          <option value="Dura's Eye">Dura's Eye</option>
+                          <option value="Dura's Call">Dura's Call</option>
+                          <option value="Dura's Drape">Dura's Drape</option>
+                          <option value="Dura's Blade">Dura's Blade</option>
+                          <option value="Dura's Chalice of Vitality">Dura's Chalice of Vitality</option>
+                          <option value="Dura's Conviction">Dura's Conviction</option>
+                        </select>
+                      </td>
+                      <td>{{{select_union_value union}}}</td>
                    </tr>
+                   
                    <tr>
                      <th>Class *</th>
-                     <td><input class="form-controls" type="text" name="classe" value="{{classe}}"></td>
-                   </tr>
-                   <tr>
                      <th>Introduction</th>
-                     <td><textarea class="form-controls"  name="introduction" >{{introduction}}</textarea></td>
-                   </tr>
-                   <tr>
                      <th>Lore</th>
-                     <td><input class="form-controls" type="text" name="lore" value="{{lore}}"></td>
-                   </tr>
-                   <tr>
                      <th>Status</th>
-                     <td><input class="form-controls" type="number" name="status" value="{{status}}"></td>
+                    </tr>
+                    <tr>
+                      <td>{{{select_class_value classe}}}</td>
+                      <td><textarea class="form-control"  name="introduction" >{{introduction}}</textarea></td>
+                      <td><input class="form-control" type="text" name="lore" value="{{lore}}"></td>
+                      <td><input class="form-control" type="number" name="status" value="{{status}}"></td>
                    </tr>
                    <tr>
-                     <td colspan="2">
+                     <td colspan="4">
+                       <center>
                        <input class="btn btn-success" type="button" id="updateData" value="Update Information">
+                       </center>
                      </td>
                    </tr>
                  </tbody>
                </table>
+
+
                <!-- BASIC INFO -->
               
-            </div>
-            <div id="menu1" class="tab-pane fade">
-              <h3>Artifacts</h3>
-              <p>Some content in menu 1.</p>
             </div>
             <div id="menu2" class="tab-pane fade">
               <h3>Strengths & Weakness</h3>
@@ -374,7 +347,7 @@
                         ID
                       </th>
                       <td>
-                          <input type="number" class="form-control" name="id" value="{{id}}" disabled/>
+                          <input type="number" class="form-control" name="id" value="{{id}}" readonly/>
                       </td>
                     </tr>
                  <tr>
@@ -429,6 +402,10 @@
               </div>
                {{/each}}
               <!-- SkILLS -->
+            </div>
+            <div id="menu4" class="tab-pane fade">
+              <h3>Tier Data</h3>
+              <p>Some content in menu 2.</p>
             </div>
           </div>
           

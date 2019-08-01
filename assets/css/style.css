@@ -21389,7 +21389,7 @@ dl li {
   background: #000;
 }
 
-.advanceSettings_tr{
+/* .advanceSettings_tr{
   display: none;
 }
 
@@ -21407,7 +21407,7 @@ dl li {
 
 .tableDataTable_wrapper_custom{
   font-size: 13px!important;
-}
+} */
 
 
 .skillsDiv{
@@ -21427,3 +21427,8 @@ dl li {
   color: white!important;
 
 }
+
+td img{
+  
+    border-radius: 0px!important;
+  }
