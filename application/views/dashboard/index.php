@@ -246,7 +246,7 @@
                       <th>Name *</th>
                       <th>Image ICON (JPG)</th>
                       <th>Group</th>
-                      <th>ID</th>
+                      <th>Type</th>
                     </tr>
                     <tr>
                       <td><input class="form-control" type="text" name="name" value="{{name}}"></td>
@@ -256,7 +256,10 @@
                         <input class="form-control" placeholder="URL for icon of hero" type="text" name="imagen_big" />
                       </td>
                       <td><input class="form-control" type="text" name="group" value="{{group}}"></td>
-                      <td><input class="form-control" type="number" value="{{id}}" name="id" id="idHeroe" readonly /></td>
+                      <td>
+                        <input class="form-control" type="text" value="{{type}}" name="type" id="type" />
+                        <input class="form-control" hidden type="number" value="{{id}}" name="id" id="idHeroe" readonly />
+                      </td>
                     </tr>
                     
                    <tr>

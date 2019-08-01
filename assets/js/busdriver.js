@@ -214,22 +214,10 @@ function detalleHeroe() {
 }
 
 function verDetalleHeroe(id) {
-    data = {
-        "meta": {
-            "token": 123456,
-            "enviroment": "P"
-        },
-        "data": {
-            "hero": {
-                "id": id
-            }
-        }
-    }
-
+    
     $.ajax({
-        type: "POST",
-        url: URL_HOST + "api/v2/hero/detail",
-        data: JSON.stringify(data),
+        type: "GET",
+        url: URL_HOST + "api/v2/hero/detail?hero_id=" + id,
         dataType: "json",
         success: function (data) {
             if(data.error == false){
@@ -328,7 +316,7 @@ function listenerDinamicoSelectores() {
 
         $.ajax({
             type: "POST",
-            url: URL_HOST + "hero/update_hero?token=1234567890",
+            url: URL_HOST + "hero/update_hero_basic_info?token=1234567890",
             data: datos,
             dataType: "json",
             success: function (response) {

@@ -29,8 +29,8 @@ class Hero extends CI_Controller {
 	{
         try {
             header('Content-Type: application/json');
-            $data = json_decode(file_get_contents('php://input'), true);
-            $hero_id = $data['data']['hero']['id'];
+            // $data = json_decode(file_get_contents('php://input'), true);
+            $hero_id = $_GET['hero_id'];
             $response = $this->Hero_model->detail($hero_id);
             echo json_encode($response);
         } catch (Exception $e) {
@@ -40,14 +40,12 @@ class Hero extends CI_Controller {
 
 
 
-    public function update_hero()
+    public function update_hero_basic_info()
 	{
         try {
             header('Content-Type: application/json');
-            // $data = json_decode(file_get_contents('php://input'), true);
             $data = $_POST;
-            // $hero_id = $data['data']['hero']['id'];
-            // $response = $this->Hero_model->update_hero($data);
+            $response = $this->Hero_model->update_hero_basic_info($data);
             echo json_encode($data);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);

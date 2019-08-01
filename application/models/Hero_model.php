@@ -121,15 +121,25 @@ class Hero_model extends CI_Model {
         }
     }
 
-    public function update_hero($data){
+    public function update_hero_basic_info($data){
 
-        // try {
+        try {
+            // Valida si los campos estan vacios o no son validos
+            if ($data['classe'] == "") {
+                throw new Exception("Class can't be empty");
+            }
+            if ($data['classe'] == "") {
+                throw new Exception("Class can't be empty");
+            }
+
             
-        // } catch (Exception $e) {
-        //     $response['error']  = true;
-        //     $response['msg']   = $e->getMessage();
-        //     return ($response);
-        // }
+
+            
+        } catch (Exception $e) {
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
 
     }
 
