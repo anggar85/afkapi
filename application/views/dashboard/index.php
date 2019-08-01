@@ -38,11 +38,11 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
-        <select class="form-control" name="ambiente" id="ambiente">
+        <!-- <select class="form-control" name="ambiente" id="ambiente">
           <option value="L">Local</option>
           <option value="S">Staging</option>
           <option value="P">Production</option>
-        </select>
+        </select> -->
       </div>
     </form>
 
@@ -248,9 +248,9 @@
                       <th>Type</th>
                     </tr>
                     <tr>
-                      <td><input class="form-control" type="text" name="name" value="{{name}}"></td>
+                      <td><input class="form-control" type="text" readonly name="name" value="{{name}}"></td>
                       <td>
-                        <center><img width="100px" src="{{smallImage}}?time={{random}}" /></center>
+                        <center><a target="new" href="{{smallImage}}?time={{random}}"><img width="100px" src="{{smallImage}}?time={{random}}" /></a></center>
                         <br>
                         <input class="form-control" placeholder="URL for icon of hero" type="text" name="image_icon" />
                       </td>
