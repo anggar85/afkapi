@@ -99,7 +99,6 @@ class Hero_model extends CI_Model {
                 $heroe['smallImage']  = $icon['smallImage'];
                 $heroe['strengths'] = $strengthWeakness['strength'];
                 $heroe['weaknesses'] = $strengthWeakness['weakness'];
-                $heroe['synergi'] = []; // Debe leer de la tabla
 
                 $response['error']  = false;
                 $response['data']['heroe']    = $heroe;
@@ -171,8 +170,10 @@ class Hero_model extends CI_Model {
             if ($data['select_race_number'] == "") {
                 throw new Exception("Race can't be empty");
             }
-
-            $d['artifact'] = implode(",", $data['artifact']);
+            
+            if (isset($data['artifact']) && $data['artifact'] != "") {
+                $d['artifact'] = implode(",", $data['artifact']);
+            }
             $d['classe'] = $data['classe'];
             $d['desc'] = $data['desc'];
             $d['group'] = $data['group'];
@@ -186,7 +187,9 @@ class Hero_model extends CI_Model {
             $d['role'] = $data['role'];
             $d['race_name'] = $data['select_race_number'];
             $d['status'] = $data['status'];
-            $d['synergy'] = implode(",", $data['synergy']);
+            if (isset($data['synergy']) && $data['synergy'] != "") {
+                $d['synergy'] = implode(",", $data['synergy']);
+            }
             $d['type'] = $data['type'];
             $d['union'] = $data['union'];
 
@@ -196,6 +199,8 @@ class Hero_model extends CI_Model {
                 }else{
                     $imagen = false;
                 }	
+                $response['image']   = $imagen;
+
             }
 
             
@@ -205,7 +210,6 @@ class Hero_model extends CI_Model {
 
             $response['error']  = false;
             $response['msg']   = "Hero Updated!";
-            $response['image']   = $imagen;
             return ($response);
 
             

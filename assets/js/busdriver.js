@@ -244,13 +244,17 @@ function verDetalleHeroe(id) {
                 heroe = data.data.heroe
                 global_pinta_handlebars("detalleHeroe_hb", data.data.heroe, "mainSpace")
                 $("#basi_info_li").trigger("click")
-                $("#inputartifact").val(heroe.artifact.split(",")).select2({
+                artifacts = []
+                if (heroe.artifact != null && heroe.artifact.length  > 0) {
+                    artifacts = heroe.artifact.split(",")
+                }
+                $("#inputartifact").val(artifacts).select2({
                     tags: true,
                     placeholder: "Select Artifacts",
                     selectOnClose: false
                 });
                 synergyData = [];
-                if(heroe.synergy.length > 0){
+                if(heroe.synergy != null && heroe.synergy.length > 0){
                     synergyData = heroe.synergy.split(",")
                 }
                 $("#synergiSelect").val(synergyData).select2({
