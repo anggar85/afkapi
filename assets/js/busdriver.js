@@ -23,6 +23,22 @@ $(document).ready(function () {
         e.preventDefault();
         backUpDatabase();
     });
+
+
+    $("#btn_logout").click(function (e) {
+        $.ajax({
+            type: "GET",
+            url: "api/v1/auth/logout",
+            dataType: "JSON",
+            success: function (response) {
+                if (!response.error) {
+                    location.reload();
+                } else {
+                    Swal.fire('Oops!',response.msg,'error')
+                }
+            }
+        });
+    })
     
 });
 
