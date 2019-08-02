@@ -336,7 +336,32 @@
             </div>
             <div id="menu2" class="tab-pane fade">
               <h3>Strengths & Weakness of {{name}}</h3>
-              <p>Some content in menu 2.</p>
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <span class="streweakness_1">Strengths</span>
+                <table class="table">
+                    {{#each strengths}}
+                    <tr id="streweakness{{id}}">
+                      <td>{{desc}} 
+                      <button onclick="deleteStrengtWeakness('{{id}}')" type="button" class="btn btn-xs btn-danger">x</button>
+                      </td>
+                    </tr>
+                    {{/each}}
+                </table>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <span class="streweakness_2">Weakness</span>
+                <table class="table">
+                    {{#each weaknesses}}
+                    <tr id="streweakness{{id}}">
+                      <td>{{desc}} 
+                      <button onclick="deleteStrengtWeakness('{{id}}')" type="button" class="btn btn-xs btn-danger">x</button>
+                      </td>
+                    </tr>
+                    {{/each}}
+                </table>
+                </div>
+              </div>
             </div>
             <div id="menu3" class="tab-pane fade">
               <h3>Skills of {{name}}</h3>
@@ -493,6 +518,7 @@
 </script>
 
 <div>
+
 
 
 

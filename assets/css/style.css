@@ -21432,3 +21432,15 @@ td img{
   
     border-radius: 0px!important;
   }
+
+  .streweakness_1{
+      color: green;
+      font-size: 18px;
+      font-weight: bold;
+  }
+
+  .streweakness_2{
+      color: #800000;
+      font-size: 18px;
+      font-weight: bold;
+  }

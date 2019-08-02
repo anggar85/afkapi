@@ -281,13 +281,30 @@ class Hero_model extends CI_Model {
             $this->db->where('hero_name', $name);
             $this->db->limit(1);
             $this->db->update($table, $data);
-            
-            
-            
 
             $response['error']  = false;
             $response['msg']   = "Tier Data Updated!";
             $response['msge2']   = $data;
+            return $response;
+        } catch (Exception $e) {
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
+
+    public function delete_strength_weakness($id)
+    {
+        try {
+            $this->db->where('id', $id);
+            
+            $this->db->limit(1);
+            
+            $this->db->delete("strengthWeakness");
+
+            $response['error']  = false;
+            $response['msg']   = "Data deleted!";
+            $response['msge2']   = $id;
             return $response;
         } catch (Exception $e) {
             $response['error']  = true;

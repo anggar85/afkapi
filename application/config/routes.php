@@ -30,6 +30,7 @@ $route['api/v2/hero/list_all_interface']  = 'hero/list_all_interface';
 $route['hero/update_hero_basic_info']  = 'hero/update_hero_basic_info';
 $route['hero/updateSkill']  = 'hero/updateSkill';
 $route['hero/updateTierData']  = 'hero/updateTierData';
+$route['hero/delete_strength_weakness']  = 'hero/delete_strength_weakness';
 
 $route['extras/dbBackup']  = 'extras/dbBackup';
 

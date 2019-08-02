@@ -308,8 +308,35 @@ function updateTierData(gameLevel, heroName) {
             }
         }
     });
+}
 
-
+function deleteStrengtWeakness(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: "GET",
+                url: URL_HOST + "hero/delete_strength_weakness?token=1234567890&id=" + id,
+                dataType: "json",
+                success: function (response) {
+                    if (!response.error) {
+                        $("#streweakness" + id).remove()
+                        Swal.fire("Great!",response.msg, "success")
+                    } else {
+                        Swal.fire("Oops!",response.msg, "error")
+                    }
+                }
+            });
+        }
+      })
+    
 }
 
 this.global_pinta_handlebars = function(plantilla, data, target, miMetodo) {
