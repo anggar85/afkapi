@@ -2,7 +2,7 @@ $(document).ready(function () {
     
 
     AMBIENTE = "";
-    URL_HOST = document.location.origin + "afkapi/";
+    URL_HOST = document.location.origin + "/afkapi/";
     LISTADO_HEROES = [];
     LISTADO_HEROES_FLAG = false;
 
