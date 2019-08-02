@@ -276,15 +276,17 @@ function verDetalleHeroe(id) {
     });
 }
 
-function updateTierData(gameLevel) {
-    overall = $("#earlygame select").eq(0).val()
-    pvp = $("#earlygame select").eq(1).val()
-    pve = $("#earlygame select").eq(2).val()
-    lab = $("#earlygame select").eq(3).val()
-    wrizz = $("#earlygame select").eq(4).val()
-    soren = $("#earlygame select").eq(5).val()
+function updateTierData(gameLevel, heroName) {
+    overall = $("#"+ gameLevel +" select").eq(0).val()
+    pvp = $("#"+ gameLevel +" select").eq(1).val()
+    pve = $("#"+ gameLevel +" select").eq(2).val()
+    lab = $("#"+ gameLevel +" select").eq(3).val()
+    wrizz = $("#"+ gameLevel +" select").eq(4).val()
+    soren = $("#"+ gameLevel +" select").eq(5).val()
 
     data = {
+        'heroName':heroName,
+        'gameLevel':gameLevel,
         'overall': overall,
         'pvp': pvp,
         'pve': pve,
@@ -300,10 +302,9 @@ function updateTierData(gameLevel) {
         dataType: "json",
         success: function (response) {
             if (!response.error) {
-                // alert("Se creo el nuevo heroe")
-                // listHeroes();
+                Swal.fire("Great!",response.msg, "success")
             } else {
-                // alert(response.msg)
+                Swal.fire("Oops!",response.msg, "error")
             }
         }
     });
@@ -544,6 +545,7 @@ Handlebars.registerHelper('random', function() {
     tier = ["S+","S","A","B","C","D","E","F"]
     a ='<select class="form-control" name="' + seccion + '">'
     a+= '<option value="0">Select Tier Value</option>';
+    console.log(tier_value + "-"+seccion)
     tier_value = tier_value.split(">")[1].split("<")[0]
     for (let x = 0; x < tier.length; x++) {
         if (tier_value == tier[x]) {

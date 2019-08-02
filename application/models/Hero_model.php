@@ -271,12 +271,25 @@ class Hero_model extends CI_Model {
     public function updateTierData($data)
     {
         try {
+            $name = $data['heroName'];
+            $table = $data['gameLevel'];
+
+            unset($data['gameLevel']);
+            unset($data['heroName']);
+            unset($data['token']);
+            
+            $this->db->where('hero_name', $name);
+            $this->db->limit(1);
+            $this->db->update($table, $data);
+            
+            
+            
+
             $response['error']  = false;
-            $response['msg']   = "Skill Updated!";
+            $response['msg']   = "Tier Data Updated!";
             $response['msge2']   = $data;
             return $response;
         } catch (Exception $e) {
-            //throw $th;
             $response['error']  = true;
             $response['msg']   = $e->getMessage();
             return $response;

@@ -239,6 +239,7 @@
           <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
               <!-- BASIC INFO -->
+              <h3>Basic Info for {{name}}</h3>
               <table class="table" id="tableDataOfHeroe">
                  <tbody>
                     <tr>
@@ -334,11 +335,11 @@
               
             </div>
             <div id="menu2" class="tab-pane fade">
-              <h3>Strengths & Weakness</h3>
+              <h3>Strengths & Weakness of {{name}}</h3>
               <p>Some content in menu 2.</p>
             </div>
             <div id="menu3" class="tab-pane fade">
-              <h3>Skills</h3>
+              <h3>Skills of {{name}}</h3>
               <!-- SKILLS -->
               {{#each skills}}
               <div class="skillsDiv">
@@ -399,8 +400,8 @@
               <!-- SkILLS -->
             </div>
             <div id="menu4" class="tab-pane fade">
-              <h3>Tier Data</h3>
-              <table class="table" id="earlygame">
+              <h3>Tier Data of {{name}}</h3>
+              <table class="table" id="tier_list_earlies">
                 <tr><th colspan="6"><b>Early Game</b></th></tr>
                   <tr>
                     <th>Overall</th>
@@ -411,22 +412,22 @@
                     <th>Soren</th>
                   </tr>
                   <tr>
-                    <td>{{{listado_tier early.overall "earlyGame"}}}</td>
-                    <td>{{{listado_tier early.pvp "earlyGame"}}}</td>
-                    <td>{{{listado_tier early.pve "earlyGame"}}}</td>
-                    <td>{{{listado_tier early.lab "earlyGame"}}}</td>
-                    <td>{{{listado_tier early.wrizz "earlyGame"}}}</td>
-                    <td>{{{listado_tier early.soren "earlyGame"}}}</td>
+                    <td>{{{listado_tier early.overall "tier_list_earlies"}}}</td>
+                    <td>{{{listado_tier early.pvp "tier_list_earlies"}}}</td>
+                    <td>{{{listado_tier early.pve "tier_list_earlies"}}}</td>
+                    <td>{{{listado_tier early.lab "tier_list_earlies"}}}</td>
+                    <td>{{{listado_tier early.wrizz "tier_list_earlies"}}}</td>
+                    <td>{{{listado_tier early.soren "tier_list_earlies"}}}</td>
                   </tr>
                   <tr>
                     <th colspan="6">
                       <center>
-                        <button onclick="updateTierData('earlygame')" class="btn btn-xs btn-primary">Update Tier Data</button>
+                        <button onclick="updateTierData('tier_list_earlies', '{{name}}')" class="btn btn-xs btn-primary">Update Tier Data</button>
                       </center>
                     </th>
                   </tr>
               </table>
-              <table class="table" id="midgame">
+              <table class="table" id="tier_list_mids">
                 <tr><th colspan="6"><b>Mid Game</b></th></tr>
                   <tr>
                     <th>Overall</th>
@@ -437,22 +438,23 @@
                     <th>Soren</th>
                   </tr>
                   <tr>
-                    <td>{{{listado_tier mid.overall "midGame"}}}</td>
-                    <td>{{{listado_tier mid.pvp "midGame"}}}</td>
-                    <td>{{{listado_tier mid.pve "midGame"}}}</td>
-                    <td>{{{listado_tier mid.lab "midGame"}}}</td>
-                    <td>{{{listado_tier mid.wrizz "midGame"}}}</td>
-                    <td>{{{listado_tier mid.soren "midGame"}}}</td>
+                    <td>{{{listado_tier mid.overall "tier_list_mids"}}}</td>
+                    <td>{{{listado_tier mid.pvp "tier_list_mids"}}}</td>
+                    <td>{{{listado_tier mid.pve "tier_list_mids"}}}</td>
+                    <td>{{{listado_tier mid.lab "tier_list_mids"}}}</td>
+                    <td>{{{listado_tier mid.wrizz "tier_list_mids"}}}</td>
+                    <td>{{{listado_tier mid.soren "tier_list_mids"}}}</td>
                   </tr>
                   <tr>
                     <th colspan="6">
                       <center>
-                        <button onclick="updateTierData('midgame')" class="btn btn-xs btn-primary">Update Tier Data</button>
+                        <button onclick="updateTierData('tier_list_mids', '{{name}}')" class="btn btn-xs btn-primary">Update Tier Data</button>
                       </center>
                     </th>
                   </tr>
               </table>
-              <table class="table" id="lategame">
+              {{#if late.overall}}
+              <table class="table" id="tier_list_lates">
                 <tr><th colspan="6"><b>Late Game</b></th></tr>
                   <tr>
                     <th>Overall</th>
@@ -463,21 +465,22 @@
                     <th>Soren</th>
                   </tr>
                   <tr>
-                    <td>{{{listado_tier late.overall "lateGame"}}}</td>
-                    <td>{{{listado_tier late.pvp "lateGame"}}}</td>
-                    <td>{{{listado_tier late.pve "lateGame"}}}</td>
-                    <td>{{{listado_tier late.lab "lateGame"}}}</td>
-                    <td>{{{listado_tier late.wrizz "lateGame"}}}</td>
-                    <td>{{{listado_tier late.soren "lateGame"}}}</td>
+                    <td>{{{listado_tier late.overall "tier_list_lates"}}}</td>
+                    <td>{{{listado_tier late.pvp "tier_list_lates"}}}</td>
+                    <td>{{{listado_tier late.pve "tier_list_lates"}}}</td>
+                    <td>{{{listado_tier late.lab "tier_list_lates"}}}</td>
+                    <td>{{{listado_tier late.wrizz "tier_list_lates"}}}</td>
+                    <td>{{{listado_tier late.soren "tier_list_lates"}}}</td>
                   </tr>
                   <tr>
                     <th colspan="6">
                       <center>
-                        <button onclick="updateTierData('lategame')" class="btn btn-xs btn-primary">Update Tier Data</button>
+                        <button onclick="updateTierData('tier_list_lates', '{{name}}')" class="btn btn-xs btn-primary">Update Tier Data</button>
                       </center>
                     </th>
                   </tr>
               </table>
+              {{/if}}
             </div>
           </div>
           
