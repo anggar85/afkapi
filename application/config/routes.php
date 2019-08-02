@@ -31,6 +31,7 @@ $route['hero/update_hero_basic_info']  = 'hero/update_hero_basic_info';
 $route['hero/updateSkill']  = 'hero/updateSkill';
 $route['hero/updateTierData']  = 'hero/updateTierData';
 $route['hero/delete_strength_weakness']  = 'hero/delete_strength_weakness';
+$route['hero/create_strength_weakness']  = 'hero/create_strength_weakness';
 
 $route['extras/dbBackup']  = 'extras/dbBackup';
 

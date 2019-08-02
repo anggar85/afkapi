@@ -91,12 +91,27 @@ class Hero extends CI_Controller {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }
     }
+
+
     public function delete_strength_weakness()
 	{
         try {
             header('Content-Type: application/json');
             $id = $_GET['id'];
             $response = $this->Hero_model->delete_strength_weakness($id);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+
+    public function create_strength_weakness()
+	{
+        try {
+            header('Content-Type: application/json');
+            $data = $_GET;
+            $response = $this->Hero_model->create_strength_weakness($data);
             echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);

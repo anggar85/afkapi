@@ -312,8 +312,34 @@ class Hero_model extends CI_Model {
             return $response;
         }
     }
+    public function create_strength_weakness($data)
+    {
+        try {
+            
+            $single = [
+                "hero_id" => $data['id'],
+                "type" => $data['type'],
+                "desc" => $data['desc'],
+                "autor" => 'AFK-Arena Guide',
+            ];
 
+            $title = "Weakness";
+            if ($data['type'] == 1) {
+                $title = "Strength";
+            }
 
+            $response['error']  = false;
+            $response['msg']   = $title." created!";
+            $response['msge2']   = $data;
+            return $response;
+        } catch (Exception $e) {
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
+
+    
     // Add data
     public function addImages($hero){
         $milliseconds = round(microtime(true) * 1000);

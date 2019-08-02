@@ -339,7 +339,10 @@
               <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <span class="streweakness_1">Strengths</span>
-                <table class="table">
+                
+                <button type="button" onclick="createStrengthWeakness(1)" class="btn btn-xs btn-primary pull-right">Add</button>
+                
+                <table class="table" id="tablaStrengths">
                     {{#each strengths}}
                     <tr id="streweakness{{id}}">
                       <td>{{desc}} 
@@ -351,7 +354,8 @@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <span class="streweakness_2">Weakness</span>
-                <table class="table">
+                <button type="button" onclick="createStrengthWeakness(2)" class="btn btn-xs btn-primary">Add</button>
+                <table class="table" id="tableWeakness">
                     {{#each weaknesses}}
                     <tr id="streweakness{{id}}">
                       <td>{{desc}} 
