@@ -2,7 +2,7 @@ $(document).ready(function () {
     
 
     AMBIENTE = "";
-    URL_HOST = document.location.origin;;
+    URL_HOST = document.location.origin;
     LISTADO_HEROES = [];
     LISTADO_HEROES_FLAG = false;
 
