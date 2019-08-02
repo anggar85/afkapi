@@ -38,10 +38,10 @@
                 </div>
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" id="btn_login" href="#">SIGN IN</a>
-                    <br>
+                    <!-- <br>
                     <center>
                         <a class="btn btn-block  btn-warning btn-xs" id="btn_dont_remeber_pass" href="#">Can't remeber my password</a>
-                    </center>
+                    </center> -->
                 </div>
               </form>
             </div>

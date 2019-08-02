@@ -21444,3 +21444,7 @@ td img{
       font-size: 18px;
       font-weight: bold;
   }
+
+  .content-wrapper{
+    background-color: rgb(37, 36, 36)!important;
+  }
