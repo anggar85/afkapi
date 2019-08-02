@@ -274,10 +274,12 @@ class Hero_model extends CI_Model {
             $response['error']  = false;
             $response['msg']   = "Skill Updated!";
             $response['msge2']   = $data;
+            return $response;
         } catch (Exception $e) {
             //throw $th;
             $response['error']  = true;
             $response['msg']   = $e->getMessage();
+            return $response;
         }
     }
 
