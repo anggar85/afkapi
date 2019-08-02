@@ -240,7 +240,7 @@ function verDetalleHeroe(id) {
         dataType: "json",
         success: function (data) {
             if(data.error == false){
-                console.log(data.data.heroe)
+                // console.log(data.data.heroe)
                 heroe = data.data.heroe
                 global_pinta_handlebars("detalleHeroe_hb", data.data.heroe, "mainSpace")
                 $("#basi_info_li").trigger("click")
@@ -355,8 +355,10 @@ function createStrengthWeakness(opc) {
                 success: function (response) {
                     if (!response.error) {
                         // $("#streweakness" + id).remove()
-                        Swal.fire("Great!",response.msg, "success")
                         verDetalleHeroe(idHeroe)
+                        Swal.fire("Great!",response.msg, "success").then((result) => {
+                            $("#strengthweakness_li").trigger("click")
+                          })
                     } else {
                         Swal.fire("Oops!",response.msg, "error")
                     }
@@ -599,7 +601,7 @@ Handlebars.registerHelper('random', function() {
     tier = ["S+","S","A","B","C","D","E","F"]
     a ='<select class="form-control" name="' + seccion + '">'
     a+= '<option value="0">Select Tier Value</option>';
-    console.log(tier_value + "-"+seccion)
+    // console.log(tier_value + "-"+seccion)
     tier_value = tier_value.split(">")[1].split("<")[0]
     for (let x = 0; x < tier.length; x++) {
         if (tier_value == tier[x]) {

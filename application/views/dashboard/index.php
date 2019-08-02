@@ -231,7 +231,7 @@
           <div class="container">
           <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" id="basi_info_li" href="#home">Basic Info</a></li>
-            <li><a data-toggle="tab" href="#menu2">Strengths & Weakness</a></li>
+            <li><a data-toggle="tab" id="strengthweakness_li" href="#menu2">Strengths & Weakness</a></li>
             <li><a data-toggle="tab" href="#menu3">Skills</a></li>
             <li><a data-toggle="tab" href="#menu4">Tier Data</a></li>
           </ul>

@@ -328,6 +328,10 @@ class Hero_model extends CI_Model {
                 $title = "Strength";
             }
 
+            
+            $this->db->insert('strengthWeakness', $single);
+            
+
             $response['error']  = false;
             $response['msg']   = $title." created!";
             $response['msge2']   = $data;
