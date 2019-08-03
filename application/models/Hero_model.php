@@ -64,7 +64,7 @@ class Hero_model extends CI_Model {
                 $this->db->where("name", $heroe['name']);
                 $skills =  $this->db->get("skills");
 
-                $base = "assets/heroes/skills/";
+                $base = base_url()."assets/heroes/skills/";
                 if ($skills->num_rows() != 0) {
                     $cont = 1;
                     foreach ($skills->result() as $sk) {
@@ -348,7 +348,7 @@ class Hero_model extends CI_Model {
     public function addImages($hero){
         $milliseconds = round(microtime(true) * 1000);
 
-        $img = "assets/heroes/icons/".$hero['name'].".jpg?t=".$milliseconds;
+        $img = base_url()."assets/heroes/icons/".$hero['name'].".jpg?t=".$milliseconds;
         $hero['smallImage'] = $img;
         return $hero;
 
