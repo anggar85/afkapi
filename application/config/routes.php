@@ -33,6 +33,11 @@ $route['hero/updateTierData']  = 'hero/updateTierData';
 $route['hero/delete_strength_weakness']  = 'hero/delete_strength_weakness';
 $route['hero/create_strength_weakness']  = 'hero/create_strength_weakness';
 
+$route['items/list']  = 'items/list';
+$route['items/edit/(:num)']  = 'items/edit/$1';
+$route['items/update/(:num)']  = 'items/update/$1';
+$route['items/delete']  = 'items/delete';
+
 $route['extras/dbBackup']  = 'extras/dbBackup';
 
 

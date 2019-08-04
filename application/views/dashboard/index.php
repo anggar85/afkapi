@@ -95,6 +95,12 @@
 
       <?php } ?>
 
+      <li class="nav-item">
+        <a class="nav-link" id="backUpDatabase" href="items/list">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Items</span></a>
+      </li>
+
     </ul>
 
     <div id="content-wrapper">
