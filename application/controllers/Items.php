@@ -23,10 +23,16 @@ class Items extends CI_Controller {
 	{
         try {
             $response['data'] = $this->Items_model->list();
-            $this->load->view('dashboard/items/items', $response);
+            $this->load->view('dashboard/items/list', $response);
         } catch (Exception $e) {
-            $this->load->view('dashboard/items/items', $response);
+            $this->load->view('dashboard/items/list', $response);
         }
+    }
+
+
+    public function new()
+	{
+        $this->load->view('dashboard/items/new');
     }
 
     public function edit($id = NULL)
@@ -35,7 +41,21 @@ class Items extends CI_Controller {
             $response['data'] = $this->Items_model->edit($id);
             $this->load->view('dashboard/items/edit', $response);
         } catch (Exception $e) {
-            $this->load->view('dashboard/items/items', $response);
+            $this->load->view('dashboard/items/list', $response);
+        }
+    }
+
+    public function delete($id = NULL)
+	{
+        try {
+            $response['data'] = $this->Items_model->delete($id);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/items/list');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 
@@ -66,6 +86,49 @@ class Items extends CI_Controller {
             }
 
             $response  = $this->Items_model->update($data['upload_data']['file_name'], $_POST);
+
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/items/list');
+            }
+            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+    
+    public function save()
+	{
+        try {
+            $data['upload_data']['file_name'] = "";
+            // var_dump($_FILES['image']['name']);
+            // return;
+            if ($_FILES['image']['name'] != "") {
+                // Upload the new image
+                $config['upload_path']          = './assets/heroes/items';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 0;
+                $config['remove_spaces']		= true;
+                $config['encrypt_name']		    = true;
+                $config['overwrite']		    = true;
+    
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+    
+                if ( ! $this->upload->do_upload('image'))
+                {
+                    $error = array('error' => $this->upload->display_errors());
+                    return var_dump($this->upload->display_errors());
+                }
+                $data = array('upload_data' => $this->upload->data());
+            }else{
+                return "Can't create new item without an image";
+            }
+
+            $response  = $this->Items_model->save($data['upload_data']['file_name'], $_POST);
 
             if ($response['error']) {
                 echo $response['msg'];
