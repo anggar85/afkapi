@@ -41,6 +41,15 @@ $route['items/new']             = 'items/new';
 $route['items/save']            = 'items/save';
 $route['items/delete/(:num']    = 'items/delete/$1';
 
+
+// Items
+$route['hero/list']            = 'hero/list_all_interface';
+// $route['items/edit/(:num)']     = 'items/edit/$1';
+// $route['items/update/(:num)']   = 'items/update/$1';
+// $route['items/new']             = 'items/new';
+// $route['items/save']            = 'items/save';
+// $route['items/delete/(:num']    = 'items/delete/$1';
+
 $route['extras/dbBackup']  = 'extras/dbBackup';
 
 

@@ -40,3 +40,23 @@
 <div>
 
 </div>
+
+
+<script>
+
+
+    console.log(document.location.href)
+
+    select_section  = document.location.href.split("/")[4]
+    $(".navbar-nav li").removeClass("active");
+    switch (select_section) {
+      case "items":
+      $(".navbar-nav li").eq(1).addClass("active");
+        break;
+    
+      default:
+        break;
+    }
+
+
+</script>

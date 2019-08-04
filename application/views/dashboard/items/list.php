@@ -44,7 +44,6 @@
         }).then((result) => {
           if (result.value) {
             var url = $(this).attr("href");
-            console.log(document.location.origin + "/afkapi/items/" + url)
             window.location.href = url;
 
 

@@ -35,10 +35,11 @@
       <a class="navbar-brand" href="#">AFK ARENA GUIDE</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="<?php echo base_url() ?>items/list">Items</a></li>
+      <li class="active"><a href="<?php echo base_url("hero/list") ?>">Heroes</a></li>
+      <li><a href="<?php echo base_url("items/list") ?>">Items</a></li>
+      <li><a href="#">Artifacts</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Rol Description</a></li>
     </ul>
   </div>
 </nav>
