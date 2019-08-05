@@ -9,6 +9,8 @@ class Hero extends CI_Controller {
         parent::__construct();
         $this->load->model('Hero_model');
         // Helpers
+        $this->load->helper('form');
+
         $this->load->helper('Util_helper');
         
     }
@@ -43,9 +45,24 @@ class Hero extends CI_Controller {
     public function list_all_interface()
 	{
         try {
-            header('Content-Type: application/json');
-            $response = $this->Hero_model->list_all_interface();
-            echo json_encode($response);
+            // header('Content-Type: application/json');
+            
+            $response['data'] = $this->Hero_model->list_all_interface();
+            $this->load->view('dashboard/heroes/list', $response);
+            // echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+    public function edit($id = NULL)
+	{
+        try {
+            $response['data'] = $this->Hero_model->detail($id);
+            $response['data']['heroes'] = $this->Hero_model->list_all();
+
+            $this->load->view('dashboard/heroes/edit', $response);
+            // echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }

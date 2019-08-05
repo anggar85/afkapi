@@ -39,15 +39,15 @@ $route['items/edit/(:num)']     = 'items/edit/$1';
 $route['items/update/(:num)']   = 'items/update/$1';
 $route['items/new']             = 'items/new';
 $route['items/save']            = 'items/save';
-$route['items/delete/(:num']    = 'items/delete/$1';
+$route['items/delete/(:num)']    = 'items/delete/$1';
 
 
-// Items
+// Heroes
 $route['hero/list']            = 'hero/list_all_interface';
-// $route['items/edit/(:num)']     = 'items/edit/$1';
-// $route['items/update/(:num)']   = 'items/update/$1';
-// $route['items/new']             = 'items/new';
-// $route['items/save']            = 'items/save';
+$route['hero/edit/(:num)']     = 'hero/edit/$1';
+$route['hero/update/(:num)']   = 'hero/update/$1';
+$route['hero/new']             = 'hero/new';
+$route['hero/save']            = 'hero/save';
 // $route['items/delete/(:num']    = 'items/delete/$1';
 
 $route['extras/dbBackup']  = 'extras/dbBackup';

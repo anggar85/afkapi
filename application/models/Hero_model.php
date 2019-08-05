@@ -455,4 +455,23 @@ class Hero_model extends CI_Model {
         return $data;
     }
 
+
+    public function edit($id){
+
+        try {
+            $this->db->where('id', $id);
+            $this->db->limit(1);
+            $list = $this->db->get("hero_details");
+            $response['error']          = false;
+            $response['data']['item']    = $list->row();
+            return $response;
+
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
+
 }

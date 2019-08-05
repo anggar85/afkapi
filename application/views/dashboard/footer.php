@@ -31,7 +31,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js" integrity="sha256-FmcrRIeUicq2hy0eo5tD5h2Iv76IBfc3A51x8r9xeIY=" crossorigin="anonymous"></script>  <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.js"></script>
 
   <script src="<?php echo base_url(); ?>assets/js/handlebars-v4.1.0.js"></script>
-  <script src="<?php echo base_url(); ?>asssets/js/busdriver.js"></script>
 
 </body>
 
