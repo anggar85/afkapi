@@ -7,15 +7,17 @@
 <?php foreach ($skills as $skill) { ?>
     
     <?php echo form_open_multipart('hero/update_skill/'.$skill['id']);?>
-
+    
+    <input type="text" name="hero_name" value="<?php echo $data['data']['heroe']['name']; ?>" hidden>
+    <input type="text" name="hero_id" value="<?php echo $data['data']['heroe']['id']; ?>" hidden>
+    
     <div class="skillsDiv">
-    <input type="number" class="form-control" name="id" value="<?php echo $skill['id'] ?>" style="display:none">
-        <h3><b><?php echo $skill['skill']; ?></b></h3>
+    <h3><b><?php echo $skill['skill']; ?></b></h3>
 
     <table class="table " id="skill<?php echo $skill['id'] ?>" style="width:100%">
         <tr>
             <th>Icon (PNG)</th>
-            <td><img width="80px" height="80px" src="<?php echo $skill['skillIcon']?>"/></td>
+            <td><img width="80px" height="80px" src="<?php echo $skill['skillIcon']?>?t=<?php echo time(); ?>"/></td>
         </tr>
         <tr>
             <td colspan="2">

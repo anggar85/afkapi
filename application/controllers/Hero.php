@@ -76,18 +76,26 @@ class Hero extends CI_Controller {
 	{
         try {
 
-            // $skill = $this->Skills_model->show($id);
-
+            
             $data['upload_data']['file_name'] = "";
-            // var_dump($_FILES['image']['name']);
+            // var_dump($_FILES['skillIcon']['name']);
+            // var_dump($_POST);
             // return;
+
             if ($_FILES['skillIcon']['name'] != "") {
+                $ext = explode(".", $_FILES['skillIcon']['name'])[1];
+                if ($ext != "png") {
+                    throw new Exception("The format of the skill image MUST be '.png'");
+                }
+                $file_name =  strtolower($_POST['hero_name'].$_POST['skillOrder'].".".$ext);
+
                 // Upload the new image
                 $config['upload_path']          = './assets/heroes/skills/';
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 0;
                 $config['remove_spaces']		= true;
-                $config['encrypt_name']		    = true;
+                $config['overwrite']		    = true;
+                $config['file_name']		    = $file_name;
     
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
@@ -100,21 +108,15 @@ class Hero extends CI_Controller {
                 $data = array('upload_data' => $this->upload->data());
             }
 
-            // $response  = $this->Items_model->update($data['upload_data']['file_name'], $_POST);
-            // var_dump($data['data']['file_name']);
-            // if ($response['error']) {
-                //     echo $response['msg'];
-                // } else {
-                    //     redirect('/items/list');
-                    // }
-            $response['data'] = $this->Hero_model->update_skill($id, $_POST);
-            var_dump($data['upload_data']['file_name']);
-            // $response['data']['heroes'] = $this->Hero_model->list_all();
+            $response = $this->Hero_model->update_skill($id, $_POST);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/hero/edit/'.$_POST['hero_id']);
+            }
 
-            // $this->load->view('dashboard/heroes/edit', $response);
-            // echo json_encode($response);
         } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+            echo $e->getMessage();
         }
     }
 

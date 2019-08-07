@@ -225,27 +225,19 @@ class Hero_model extends CI_Model {
     {
         try {
 
-            var_dump($data);
-            return;
+            // var_dump($data);
+            // return;
             $this->db->where("id", $id);
             $this->db->limit(1);
             $q = $this->db->get("skills");
             if ($q->num_rows() > 0) {
-                $name =  strtolower($q->row()->name);
-                if($data['skillIcon'] != ""){
-                    if(copy($data['skillIcon'], "assets/heroes/skills/".$name.$data['skillOrder'].".png")){
-                        $imagen = true;
-                    }else{
-                        $imagen = false;
-                    }	
-                    $response['image']   = $imagen;
-                }
+                
 
                 $skill = [
                     'skill'       => $data['skill'],
                     'skillOrder'  => $data['skillOrder'],
                     'desc'        => $data['desc'],
-                    'name'        => $name,
+                    // 'name'        => $name,
                     'lvlUpgrades' => $data['lvlUpgrades']
                 ];
 
@@ -255,9 +247,6 @@ class Hero_model extends CI_Model {
                 
                 $response['error']  = false;
                 $response['msg']   = "Skill Updated!";
-                $response['mswwg']   = $id;
-                $response['msg2']   = $name;
-                $response['msge2']   = $data;
 
             } else {
                 throw new Exception("Can't find skill");
