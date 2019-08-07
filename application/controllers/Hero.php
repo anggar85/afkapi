@@ -71,6 +71,20 @@ class Hero extends CI_Controller {
         }
     }
 
+    public function strengthweakenes_delete($id = NULL, $hero_id =NULL)
+	{
+        try {
+            $response = $this->Hero_model->strengthweakenes_delete($id);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/hero/edit/'.$hero_id);
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
 
     public function update_skill($id = NULL)
 	{

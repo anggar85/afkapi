@@ -285,7 +285,7 @@ class Hero_model extends CI_Model {
         }
     }
 
-    public function delete_strength_weakness($id)
+    public function strengthweakenes_delete($id)
     {
         try {
             $this->db->where('id', $id);
@@ -296,7 +296,6 @@ class Hero_model extends CI_Model {
 
             $response['error']  = false;
             $response['msg']   = "Data deleted!";
-            $response['msge2']   = $id;
             return $response;
         } catch (Exception $e) {
             $response['error']  = true;

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    URL_HOST = document.location.origin + "/afkapi/";
 
     synergySelect();
     artifactSelect();
@@ -29,4 +30,34 @@ function artifactSelect() {
         placeholder: "Select Artifacts",
         selectOnClose: false
     });
+}
+
+
+function createStrengthWeakness(opc) {
+    idHeroe = $("#idHeroe").val()
+    Swal.fire({
+        title: "Write something",
+        input: 'text',
+        confirmButtonText: 'Save',
+        showCancelButton: true,
+      }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: "GET",
+                url: URL_HOST + "hero/create_strength_weakness?token=1234567890",
+                dataType: "json",
+                data: {'id':idHeroe, 'desc': result.value, 'type':opc},
+                success: function (response) {
+                    if (!response.error) {
+                        // $("#streweakness" + id).remove()
+                        Swal.fire("Great!",response.msg, "success").then((result) => {
+                            location.reload();
+                          })
+                    } else {
+                        Swal.fire("Oops!",response.msg, "error")
+                    }
+                }
+            });
+        }
+      })
 }

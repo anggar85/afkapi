@@ -31,7 +31,6 @@ $route['hero/update_hero_basic_info']  = 'hero/update_hero_basic_info';
 $route['hero/updateSkill']  = 'hero/updateSkill';
 $route['hero/updateTierData']  = 'hero/updateTierData';
 $route['hero/delete_strength_weakness']  = 'hero/delete_strength_weakness';
-$route['hero/create_strength_weakness']  = 'hero/create_strength_weakness';
 
 // Items
 $route['items/list']            = 'items/list';
@@ -47,6 +46,8 @@ $route['hero/list']            = 'hero/list_all_interface';
 $route['hero/edit/(:num)']     = 'hero/edit/$1';
 $route['hero/update/(:num)']   = 'hero/update/$1';
 $route['hero/update_skill/(:num)']   = 'hero/update_skill/$1';
+$route['hero/strengthweakenes_delete/(:num)/hero/(:num)']   = 'hero/strengthweakenes_delete/$1/$2';
+$route['hero/create_strength_weakness']  = 'hero/create_strength_weakness';
 $route['hero/new']             = 'hero/new';
 $route['hero/save']            = 'hero/save';
 // $route['items/delete/(:num']    = 'items/delete/$1';
