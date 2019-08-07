@@ -221,9 +221,12 @@ class Hero_model extends CI_Model {
 
     }
 
-    public function updateSkill($id, $data)
+    public function update_skill($id, $data)
     {
         try {
+
+            var_dump($data);
+            return;
             $this->db->where("id", $id);
             $this->db->limit(1);
             $q = $this->db->get("skills");

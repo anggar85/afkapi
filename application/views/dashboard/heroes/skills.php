@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td colspan="2">
-            <input type="text" name="skillIcon" class="form-control">
+            <input class="form-control" type="file" name="skillIcon" />
             </td>
         </tr>
         <tr>

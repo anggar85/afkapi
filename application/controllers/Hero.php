@@ -8,6 +8,9 @@ class Hero extends CI_Controller {
 
         parent::__construct();
         $this->load->model('Hero_model');
+        $this->load->model('Skills_model');
+
+        
         // Helpers
         $this->load->helper('form');
 
@@ -62,6 +65,53 @@ class Hero extends CI_Controller {
             $response['data']['heroes'] = $this->Hero_model->list_all();
 
             $this->load->view('dashboard/heroes/edit', $response);
+            // echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+
+    public function update_skill($id = NULL)
+	{
+        try {
+
+            // $skill = $this->Skills_model->show($id);
+
+            $data['upload_data']['file_name'] = "";
+            // var_dump($_FILES['image']['name']);
+            // return;
+            if ($_FILES['skillIcon']['name'] != "") {
+                // Upload the new image
+                $config['upload_path']          = './assets/heroes/skills/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 0;
+                $config['remove_spaces']		= true;
+                $config['encrypt_name']		    = true;
+    
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+    
+                if ( ! $this->upload->do_upload('skillIcon'))
+                {
+                    $error = array('error' => $this->upload->display_errors());
+                    return var_dump($this->upload->display_errors());
+                }
+                $data = array('upload_data' => $this->upload->data());
+            }
+
+            // $response  = $this->Items_model->update($data['upload_data']['file_name'], $_POST);
+            // var_dump($data['data']['file_name']);
+            // if ($response['error']) {
+                //     echo $response['msg'];
+                // } else {
+                    //     redirect('/items/list');
+                    // }
+            $response['data'] = $this->Hero_model->update_skill($id, $_POST);
+            var_dump($data['upload_data']['file_name']);
+            // $response['data']['heroes'] = $this->Hero_model->list_all();
+
+            // $this->load->view('dashboard/heroes/edit', $response);
             // echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);

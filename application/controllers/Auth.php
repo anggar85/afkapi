@@ -21,7 +21,8 @@ class Auth extends CI_Controller {
             if ($this->session->userdata('level') == 5 || $this->session->userdata('level') == 100 ){
                 $this->load->view('system/index');
             }else{
-                $this->load->view('dashboard/index');
+                
+                redirect('/items/list');
             }
         }
 

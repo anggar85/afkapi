@@ -12,6 +12,8 @@
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
   <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/favicon-16x16.png">
 
@@ -19,13 +21,16 @@
 </head>
 
 <body>
-  <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
-          <div class="col-lg-4 mx-auto">
+  <div class="container">
+    
+    <div class="row">
+    
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+
+    
+    <div class="col-lg-4 mx-auto">
                 <center>
-                    <img width="100%" src="<?php echo base_url(); ?>assets/images/logo.png" alt="" srcset="">
+                    <img width="150px" src="<?php echo base_url(); ?>assets/images/logo.png" alt="" srcset="">
                     <br>
                 </center>
             <div class="auth-form-light text-left py-5 px-4 px-sm-5"  id="div_login">
@@ -61,10 +66,11 @@
               </form>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- content-wrapper ends -->
     </div>
+
+
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+    
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
