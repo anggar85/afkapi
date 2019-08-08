@@ -83,85 +83,85 @@ function createNewHero() {
     $("#updateData").val("Create Heroe")
 
     
-    $("#updateData").click(function (e) { 
-        e.preventDefault();
-        // valida ciertos campos, si todo esta bien, entonces envia la informacion al server para que se actualice
-        if ($("[name=name]").val() =="") {
-            alert("Campo obligatorio vacio")
-            $("[name=name]").focus()
-            return false;
-        }
-        if ($("[name=rarity]").val() =="" || $("[name=rarity]").val() == 0) {
-            alert("Campo obligatorio vacio")
-            $("[name=rarity]").focus()
-            return false;
-        }
-        if ($("[name=race]").val() =="" || $("[name=race]").val() == 0) {
-            alert("Campo obligatorio vacio")
-            $("[name=race]").focus()
-            return false;
-        }
-        if ($("[name=classe]").val() =="" || $("[name=classe]").val() == 0) {
-            alert("Campo obligatorio vacio")
-            $("[name=classe]").focus()
-            return false;
-        }
+    // $("#updateData").click(function (e) { 
+    //     e.preventDefault();
+    //     // valida ciertos campos, si todo esta bien, entonces envia la informacion al server para que se actualice
+    //     if ($("[name=name]").val() =="") {
+    //         alert("Campo obligatorio vacio")
+    //         $("[name=name]").focus()
+    //         return false;
+    //     }
+    //     if ($("[name=rarity]").val() =="" || $("[name=rarity]").val() == 0) {
+    //         alert("Campo obligatorio vacio")
+    //         $("[name=rarity]").focus()
+    //         return false;
+    //     }
+    //     if ($("[name=race]").val() =="" || $("[name=race]").val() == 0) {
+    //         alert("Campo obligatorio vacio")
+    //         $("[name=race]").focus()
+    //         return false;
+    //     }
+    //     if ($("[name=classe]").val() =="" || $("[name=classe]").val() == 0) {
+    //         alert("Campo obligatorio vacio")
+    //         $("[name=classe]").focus()
+    //         return false;
+    //     }
             
-        datos = $("#tableDataOfHeroe input,#tableDataOfHeroe textarea").serialize()
+    //     datos = $("#tableDataOfHeroe input,#tableDataOfHeroe textarea").serialize()
         
-        arraySkills = []
+    //     arraySkills = []
 
-        for (let x = 0; x < $(".skilltable").length; x++) {
-            skill ={
-                "icon" : $(".skilltable").eq(x).find('input').eq(1).val(),
-                "skill" : $(".skilltable").eq(x).find('input').eq(2).val(),
-                "skillOrder" : $(".skilltable").eq(x).find('input').eq(2).val(),
-                "desc" : $(".skilltable").eq(x).find('textarea').eq(0).val(),
-                "lvlUpgrades" : $(".skilltable").eq(x).find('textarea').eq(1).val()
-            }
-            arraySkills.push(skill)
-        }
-
-
-        newHero = {
-            "name": $("[name=name]").val(),
-            "group": $("[name=group]").val(),
-            "race_name": $("[name=race_name]").val(),
-            "description": $("[name=description]").val(),
-            "rarity": $("[name=rarity]").val(),
-            "race": $("[name=race]").val(),
-            "role": $("[name=role]").val(),
-            "synergy": $("[name=synergy]").val(),
-            "position": $("[name=position]").val(),
-            "artifact": $("[name=artifact]").val(),
-            "union": $("[name=union]").val(),
-            "classe": $("[name=classe]").val(),
-            "introduction": $("[name=introduction]").val(),
-            "lore": $("[name=lore]").val(),
-            "status": $("[name=status]").val(),
-            "skills": arraySkills
-
-        }
+    //     for (let x = 0; x < $(".skilltable").length; x++) {
+    //         skill ={
+    //             "icon" : $(".skilltable").eq(x).find('input').eq(1).val(),
+    //             "skill" : $(".skilltable").eq(x).find('input').eq(2).val(),
+    //             "skillOrder" : $(".skilltable").eq(x).find('input').eq(2).val(),
+    //             "desc" : $(".skilltable").eq(x).find('textarea').eq(0).val(),
+    //             "lvlUpgrades" : $(".skilltable").eq(x).find('textarea').eq(1).val()
+    //         }
+    //         arraySkills.push(skill)
+    //     }
 
 
-        $.ajax({
-            type: "POST",
-            url: URL_HOST + "hero/create_hero?token=1234567890&ambiente=" + AMBIENTE,
-            data: newHero,
-            dataType: "json",
-            success: function (response) {
-                if (!response.error) {
-                    alert("Se creo el nuevo heroe")
-                    listHeroes();
-                } else {
-                    alert(response.msg)
-                }
-            }
-        });
+    //     newHero = {
+    //         "name": $("[name=name]").val(),
+    //         "group": $("[name=group]").val(),
+    //         "race_name": $("[name=race_name]").val(),
+    //         "description": $("[name=description]").val(),
+    //         "rarity": $("[name=rarity]").val(),
+    //         "race": $("[name=race]").val(),
+    //         "role": $("[name=role]").val(),
+    //         "synergy": $("[name=synergy]").val(),
+    //         "position": $("[name=position]").val(),
+    //         "artifact": $("[name=artifact]").val(),
+    //         "union": $("[name=union]").val(),
+    //         "classe": $("[name=classe]").val(),
+    //         "introduction": $("[name=introduction]").val(),
+    //         "lore": $("[name=lore]").val(),
+    //         "status": $("[name=status]").val(),
+    //         "skills": arraySkills
+
+    //     }
+
+
+    //     $.ajax({
+    //         type: "POST",
+    //         url: URL_HOST + "hero/create_hero?token=1234567890&ambiente=" + AMBIENTE,
+    //         data: newHero,
+    //         dataType: "json",
+    //         success: function (response) {
+    //             if (!response.error) {
+    //                 alert("Se creo el nuevo heroe")
+    //                 listHeroes();
+    //             } else {
+    //                 alert(response.msg)
+    //             }
+    //         }
+    //     });
 
 
 
-    });
+    // });
 
 }
 
@@ -409,61 +409,61 @@ function listenerDinamicoSelectores() {
     });
 
 
-    $("#updateData").click(function (e) { 
-        e.preventDefault();
+    // $("#updateData").click(function (e) { 
+    //     e.preventDefault();
         
-        // if(AMBIENTE == "P"){
-        //     var r = confirm("Actualizar en ambiente de PRODUCCION?");
-        //     if (r == false) {
-        //         return false;   
-        //     }
-        // }
-        // valida ciertos campos, si todo esta bien, entonces envia la informacion al server para que se actualice
-        // if ($("[name=name]").val() =="") {
-        //     alert("Campo obligatorio vacio")
-        //     $("[name=name]").focus()
-        //     return false;
-        // }
-        // if ($("[name=rarity]").val() =="" || $("[name=rarity]").val() == 0) {
-        //     alert("Campo obligatorio vacio")
-        //     $("[name=rarity]").focus()
-        //     return false;
-        // }
-        // if ($("[name=race]").val() =="" || $("[name=race]").val() == 0) {
-        //     alert("Campo obligatorio vacio")
-        //     $("[name=race]").focus()
-        //     return false;
-        // }
-        // if ($("[name=classe]").val() =="" || $("[name=classe]").val() == 0) {
-        //     alert("Campo obligatorio vacio")
-        //     $("[name=classe]").focus()
-        //     return false;
-        // }
+    //     // if(AMBIENTE == "P"){
+    //     //     var r = confirm("Actualizar en ambiente de PRODUCCION?");
+    //     //     if (r == false) {
+    //     //         return false;   
+    //     //     }
+    //     // }
+    //     // valida ciertos campos, si todo esta bien, entonces envia la informacion al server para que se actualice
+    //     // if ($("[name=name]").val() =="") {
+    //     //     alert("Campo obligatorio vacio")
+    //     //     $("[name=name]").focus()
+    //     //     return false;
+    //     // }
+    //     // if ($("[name=rarity]").val() =="" || $("[name=rarity]").val() == 0) {
+    //     //     alert("Campo obligatorio vacio")
+    //     //     $("[name=rarity]").focus()
+    //     //     return false;
+    //     // }
+    //     // if ($("[name=race]").val() =="" || $("[name=race]").val() == 0) {
+    //     //     alert("Campo obligatorio vacio")
+    //     //     $("[name=race]").focus()
+    //     //     return false;
+    //     // }
+    //     // if ($("[name=classe]").val() =="" || $("[name=classe]").val() == 0) {
+    //     //     alert("Campo obligatorio vacio")
+    //     //     $("[name=classe]").focus()
+    //     //     return false;
+    //     // }
             
-        datos = $("#tableDataOfHeroe input,#tableDataOfHeroe textarea,#tableDataOfHeroe select").serialize()
-        console.log(datos)
+    //     datos = $("#tableDataOfHeroe input,#tableDataOfHeroe textarea,#tableDataOfHeroe select").serialize()
+    //     console.log(datos)
 
-        $.ajax({
-            type: "POST",
-            url: URL_HOST + "hero/update_hero_basic_info?token=1234567890",
-            data: datos,
-            dataType: "json",
-            success: function (response) {
-                console.log(response)
-                if (!response.error) {
-                    idHeroe = $("#idHeroe").val()
-                    verDetalleHeroe(idHeroe)
-                    Swal.fire("Great!","Hero Updated!", "success")
-                } else {
-                    Swal.fire("Oops!",response.msg, "error")
+    //     $.ajax({
+    //         type: "POST",
+    //         url: URL_HOST + "hero/update_hero_basic_info?token=1234567890",
+    //         data: datos,
+    //         dataType: "json",
+    //         success: function (response) {
+    //             console.log(response)
+    //             if (!response.error) {
+    //                 idHeroe = $("#idHeroe").val()
+    //                 verDetalleHeroe(idHeroe)
+    //                 Swal.fire("Great!","Hero Updated!", "success")
+    //             } else {
+    //                 Swal.fire("Oops!",response.msg, "error")
                     
-                }
-            }
-        });
+    //             }
+    //         }
+    //     });
 
 
 
-    });
+    // });
 }
 
 

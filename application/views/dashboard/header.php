@@ -32,7 +32,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">AFK ARENA GUIDE</a>
+      <a class="navbar-brand" href="<?php echo base_url("hero/list") ?>">AFK ARENA GUIDE</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="<?php echo base_url("hero/list") ?>">Heroes</a></li>

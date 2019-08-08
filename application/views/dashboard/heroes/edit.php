@@ -12,15 +12,15 @@
     <div class="panel with-nav-tabs panel-default">
         <div class="panel-heading">
                 <ul class="nav nav-tabs">
-                    <li ><a href="#tab1default" data-toggle="tab">Basic Info</a></li>
-                    <li class="active"><a href="#tab2default" data-toggle="tab">Skills</a></li>
+                    <li class="active"><a href="#tab1default" data-toggle="tab">Basic Info</a></li>
+                    <li><a href="#tab2default" data-toggle="tab">Skills</a></li>
                     <li><a href="#tab3default" data-toggle="tab">Pros/Cons</a></li>
                     <li><a href="#tab4default" data-toggle="tab">Tier Data</a></li>
                 </ul>
         </div>
         <div class="panel-body">
             <div class="tab-content">
-                <div class="tab-pane fade " id="tab1default">
+                <div class="tab-pane fade in active" id="tab1default">
                 <?php $this->view('dashboard/heroes/basic_info', $data['data']['heroe']); ?>
                 </div>
                 <div class="tab-pane fade " id="tab2default">
@@ -29,7 +29,7 @@
                 <div class="tab-pane fade " id="tab3default">
                 <?php $this->view('dashboard/heroes/pros_contras', $data['data']['heroe']); ?>
                 </div>
-                <div class="tab-pane fade in active" id="tab4default">
+                <div class="tab-pane fade " id="tab4default">
                 <?php $this->view('dashboard/heroes/tier_data', $data['data']['heroe']); ?>
                 </div>
             </div>

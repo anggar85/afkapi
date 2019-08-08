@@ -102,6 +102,52 @@ class Hero extends CI_Controller {
     }
 
 
+    public function update($id = NULL)
+	{
+        try {
+
+            
+            $data['upload_data']['file_name'] = "";
+            if ($_FILES['image_icon']['name'] != "") {
+                $ext = explode(".", $_FILES['image_icon']['name'])[1];
+                if ($ext != "jpg") {
+                    throw new Exception("The format of the skill image MUST be '.jpg'");
+                }
+                $file_name =  strtolower($_POST['hero_name'].$_POST['skillOrder'].".".$ext);
+
+                // Upload the new image
+                $config['upload_path']          = './assets/heroes/icons/';
+                $config['allowed_types']        = 'jpg';
+                $config['max_size']             = 0;
+                $config['remove_spaces']		= true;
+                $config['overwrite']		    = true;
+                $config['file_name']		    = $file_name;
+    
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+    
+                if ( ! $this->upload->do_upload('image_icon'))
+                {
+                    $error = array('error' => $this->upload->display_errors());
+                    return var_dump($this->upload->display_errors());
+                }
+                $data = array('upload_data' => $this->upload->data());
+            }
+
+            $response = $this->Hero_model->update_hero_basic_info($id, $_POST);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/hero/edit/'.$_POST['hero_id']);
+            }
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+
     public function update_skill($id = NULL)
 	{
         try {
@@ -147,33 +193,6 @@ class Hero extends CI_Controller {
     }
 
 
-    public function update_hero_basic_info()
-	{
-        try {
-            header('Content-Type: application/json');
-            $data = $_POST;
-            $response = $this->Hero_model->update_hero_basic_info($data);
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-
-
-    public function updateSkill()
-	{
-        try {
-            header('Content-Type: application/json');
-            $data = $_POST;
-            $id = $_GET['id'];
-            $response = $this->Hero_model->updateSkill($id, $data);
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
 
     public function updateTierData()
 	{
@@ -181,19 +200,6 @@ class Hero extends CI_Controller {
             header('Content-Type: application/json');
             $data = $_GET;
             $response = $this->Hero_model->updateTierData($data);
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-
-    public function delete_strength_weakness()
-	{
-        try {
-            header('Content-Type: application/json');
-            $id = $_GET['id'];
-            $response = $this->Hero_model->delete_strength_weakness($id);
             echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);

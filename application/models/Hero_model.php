@@ -154,6 +154,8 @@ class Hero_model extends CI_Model {
     public function update_hero_basic_info($data){
 
         try {
+            var_dump($data);
+            return false;
             // Valida si los campos estan vacios o no son validos
             if ($data['name'] == "") {
                 throw new Exception("Name can't be empty");
