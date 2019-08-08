@@ -42,14 +42,15 @@ $route['items/delete/(:num)']    = 'items/delete/$1';
 
 
 // Heroes
-$route['hero/list']            = 'hero/list_all_interface';
-$route['hero/edit/(:num)']     = 'hero/edit/$1';
-$route['hero/update/(:num)']   = 'hero/update/$1';
-$route['hero/update_skill/(:num)']   = 'hero/update_skill/$1';
+$route['hero/list']                                         = 'hero/list_all_interface';
+$route['hero/edit/(:num)']                                  = 'hero/edit/$1';
+$route['hero/update/(:num)']                                = 'hero/update/$1';
+$route['hero/update_skill/(:num)']                          = 'hero/update_skill/$1';
 $route['hero/strengthweakenes_delete/(:num)/hero/(:num)']   = 'hero/strengthweakenes_delete/$1/$2';
-$route['hero/create_strength_weakness']  = 'hero/create_strength_weakness';
-$route['hero/new']             = 'hero/new';
-$route['hero/save']            = 'hero/save';
+$route['hero/create_strength_weakness']                     = 'hero/create_strength_weakness';
+$route['hero/update_tier_data/(:any)/(:any)/(:any)']          = 'hero/update_tier_data/$1/$2/$3';
+$route['hero/new']                                          = 'hero/new';
+$route['hero/save']                                         = 'hero/save';
 // $route['items/delete/(:num']    = 'items/delete/$1';
 
 $route['extras/dbBackup']  = 'extras/dbBackup';

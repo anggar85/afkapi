@@ -26,10 +26,12 @@
                 <div class="tab-pane fade " id="tab2default">
                 <?php $this->view('dashboard/heroes/skills', $data['data']['heroe']); ?>
                 </div>
-                <div class="tab-pane fade in active" id="tab3default">
+                <div class="tab-pane fade " id="tab3default">
                 <?php $this->view('dashboard/heroes/pros_contras', $data['data']['heroe']); ?>
                 </div>
-                <div class="tab-pane fade" id="tab4default">Default 4</div>
+                <div class="tab-pane fade in active" id="tab4default">
+                <?php $this->view('dashboard/heroes/tier_data', $data['data']['heroe']); ?>
+                </div>
             </div>
         </div>
     </div>

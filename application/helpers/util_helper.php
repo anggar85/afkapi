@@ -74,4 +74,23 @@ if ( ! function_exists('validaRequest'))
         }
         return 1;
     }
+
+    function selects($tier_value, $section){
+
+        $tier = ["S+","S","A","B","C","D","E","F"];
+        $a ='<select class="form-control" name="' . $section . '">';
+        $a.= '<option value="0">Select Tier Value</option>';
+        $tier_value = explode("<", explode(">", $tier_value)[1])[0];
+        for ($x = 0; $x < sizeof($tier); $x++) {
+            if ($tier_value == $tier[$x]) {
+                $a.='<option value="' . $tier[$x] . '" selected="selected">' . $tier[$x] . '</option>';
+            } else {
+                $a.='<option value="' . $tier[$x] . '">' . $tier[$x] . '</option>';
+            }
+        }
+        $a.='</select>';
+        return $a;
+        
+
+    }
 }

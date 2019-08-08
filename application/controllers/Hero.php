@@ -86,16 +86,28 @@ class Hero extends CI_Controller {
     }
 
 
+
+    public function update_tier_data($hero_id = NULL,$table = NULL, $hero_name =NULL)
+	{
+        try {
+            $response = $this->Hero_model->update_tier_data($table, $hero_name, $_POST);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/hero/edit/'.$hero_id);
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
     public function update_skill($id = NULL)
 	{
         try {
 
             
             $data['upload_data']['file_name'] = "";
-            // var_dump($_FILES['skillIcon']['name']);
-            // var_dump($_POST);
-            // return;
-
             if ($_FILES['skillIcon']['name'] != "") {
                 $ext = explode(".", $_FILES['skillIcon']['name'])[1];
                 if ($ext != "png") {

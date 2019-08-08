@@ -260,6 +260,49 @@ class Hero_model extends CI_Model {
         
     }
 
+
+    public function update_tier_data($table, $name, $data)
+    {
+        try {
+            // var_dump($table);
+            // var_dump($name);
+            // var_dump($data);
+            // return false;
+            $this->db->where("hero_name", $name);
+            $this->db->limit(1);
+            $q = $this->db->get($table);
+            if ($q->num_rows() > 0) {
+                $id =  $q->row()->id;
+                $info = [
+                    "overall"   => $data['overall'],
+                    "pvp"       => $data['pvp'],
+                    "pve"       => $data['pve'],
+                    "lab"       => $data['lab'],
+                    "wrizz"     => $data['wrizz'],
+                    "soren"     => $data['soren']
+                ];    
+
+                $this->db->where("id", $id);
+                $this->db->limit(1);
+                $this->db->update($table, $info);
+                
+                $response['error']  = false;
+                $response['msg']   = "Tier Data Updated!";
+
+            } else {
+                throw new Exception("Can't find Tier Data");
+            }
+                        
+        return ($response);
+        } catch (Exception $e) {
+            $response['error']  = false;
+            $response['msg']   = $e->getMessage();
+        }
+        
+    }
+
+    
+
     public function updateTierData($data)
     {
         try {
