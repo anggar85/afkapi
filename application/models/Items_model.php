@@ -19,10 +19,11 @@ class Items_model extends CI_Model {
                     'desc' => $item['desc'],
                     'image' => base_url()."/assets/heroes/items/".$item['image'],
                 ];
+                array_push($items, $it);
             }
 
             $response['error']          = false;
-            $response['data']['items']    = $list->result();
+            $response['data']['items']    = $items;
             return $response;
 
         }catch (Exception $e){
