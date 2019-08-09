@@ -1,3 +1,6 @@
+<?php // var_dump($data['heroes']['data']['heroes']); ?>
+<?php // var_dump($data['data']['heroe']); ?>
+
 <?php $hero = $data['data']['heroe']; ?>
 <?php echo form_open_multipart('hero/update/'.$hero['id']);?>
     
@@ -14,7 +17,7 @@
             <td>
             <center>
                 <a target="new" href="<?php echo $hero['smallImage']?>">
-                <img width="80px" height="80px" src="<?php echo $hero['smallImage']?>?t=<?php echo time(); ?>"/>
+                <img src="<?php echo $hero['smallImage']?>?t=<?php echo time(); ?>"/>
                 </a>
             </center>
             <br>
@@ -54,7 +57,7 @@
                 </select>
             </td>
             <td>
-                <select name="rarity" class="form-control">            
+                <select name="race_name" class="form-control">            
                 <?php
                     $races = [
                         "LIGHTBEARER",
@@ -164,10 +167,15 @@
             <td><textarea class="form-control"  name="introduction" ><?php echo $hero['introduction']; ?></textarea></td>
             <td><input class="form-control" type="text" name="lore" value="<?php echo $hero['lore']?>"></td>
             <td><input class="form-control" type="number" name="status" value="<?php echo $hero['status']; ?>"></td>
-        </tr>>
+        </tr>
+        <tr>
+            <td colspan="4">
+            <center>
+            <input class="btn btn-success" type="submit" id="updateData" value="Update Information">
+            </center>
+            </td>
+        </tr>
         </tbody>
     </table>
-    <center>
-        <button class="btn btn-success" type="button" id="updateData">Update Information</button>
-    </center>
+
 </form>

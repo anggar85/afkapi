@@ -10,51 +10,21 @@ class Hero extends CI_Controller {
         $this->load->model('Hero_model');
         $this->load->model('Skills_model');
 
-        
         // Helpers
         $this->load->helper('form');
-
         $this->load->helper('Util_helper');
         
-    }
-
-    public function list_all()
-	{
-        try {
-            header('Content-Type: application/json');
-            $response = $this->Hero_model->list_all();
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-
-    public function detail()
-	{
-        try {
-            header('Content-Type: application/json');
-            // $data = json_decode(file_get_contents('php://input'), true);
-            $hero_id = $_GET['hero_id'];
-            $response = $this->Hero_model->detail($hero_id);
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
     }
 
 
 
     public function list_all_interface()
 	{
-        try {
-            // header('Content-Type: application/json');
-            
+        try {            
             $response['data'] = $this->Hero_model->list_all_interface();
             $this->load->view('dashboard/heroes/list', $response);
-            // echo json_encode($response);
         } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+            echo $e->getMessage();
         }
     }
 
@@ -65,21 +35,6 @@ class Hero extends CI_Controller {
             $response['data']['heroes'] = $this->Hero_model->list_all();
 
             $this->load->view('dashboard/heroes/edit', $response);
-            // echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-    public function strengthweakenes_delete($id = NULL, $hero_id =NULL)
-	{
-        try {
-            $response = $this->Hero_model->strengthweakenes_delete($id);
-            if ($response['error']) {
-                echo $response['msg'];
-            } else {
-                redirect('/hero/edit/'.$hero_id);
-            }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -87,33 +42,19 @@ class Hero extends CI_Controller {
 
 
 
-    public function update_tier_data($hero_id = NULL,$table = NULL, $hero_name =NULL)
-	{
-        try {
-            $response = $this->Hero_model->update_tier_data($table, $hero_name, $_POST);
-            if ($response['error']) {
-                echo $response['msg'];
-            } else {
-                redirect('/hero/edit/'.$hero_id);
-            }
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-    }
+    
 
 
     public function update($id = NULL)
 	{
         try {
-
-            
             $data['upload_data']['file_name'] = "";
             if ($_FILES['image_icon']['name'] != "") {
                 $ext = explode(".", $_FILES['image_icon']['name'])[1];
                 if ($ext != "jpg") {
-                    throw new Exception("The format of the skill image MUST be '.jpg'");
+                    throw new Exception("The format of the icon image MUST be '.jpg'");
                 }
-                $file_name =  strtolower($_POST['hero_name'].$_POST['skillOrder'].".".$ext);
+                $file_name =  ucfirst($_POST['name'].".".$ext);
 
                 // Upload the new image
                 $config['upload_path']          = './assets/heroes/icons/';
@@ -133,12 +74,11 @@ class Hero extends CI_Controller {
                 }
                 $data = array('upload_data' => $this->upload->data());
             }
-
-            $response = $this->Hero_model->update_hero_basic_info($id, $_POST);
+            $response = $this->Hero_model->update_hero_basic_info($_POST);
             if ($response['error']) {
                 echo $response['msg'];
             } else {
-                redirect('/hero/edit/'.$_POST['hero_id']);
+                redirect('/hero/edit/'.$id);
             }
 
         } catch (Exception $e) {
@@ -151,8 +91,6 @@ class Hero extends CI_Controller {
     public function update_skill($id = NULL)
 	{
         try {
-
-            
             $data['upload_data']['file_name'] = "";
             if ($_FILES['skillIcon']['name'] != "") {
                 $ext = explode(".", $_FILES['skillIcon']['name'])[1];
@@ -193,20 +131,6 @@ class Hero extends CI_Controller {
     }
 
 
-
-    public function updateTierData()
-	{
-        try {
-            header('Content-Type: application/json');
-            $data = $_GET;
-            $response = $this->Hero_model->updateTierData($data);
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-
     public function create_strength_weakness()
 	{
         try {
@@ -216,6 +140,34 @@ class Hero extends CI_Controller {
             echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+    public function strengthweakenes_delete($id = NULL, $hero_id =NULL)
+	{
+        try {
+            $response = $this->Hero_model->strengthweakenes_delete($id);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/hero/edit/'.$hero_id);
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function update_tier_data($hero_id = NULL,$table = NULL, $hero_name =NULL)
+	{
+        try {
+            $response = $this->Hero_model->update_tier_data($table, $hero_name, $_POST);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/hero/edit/'.$hero_id);
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 

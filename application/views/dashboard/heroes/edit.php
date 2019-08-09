@@ -3,7 +3,7 @@
 <!-- Sidebar -->
 <?php //$this->view('dashboard/sidebar'); ?>
 
-  <div class="container ">
+  <div class="container-fluid">
     <hr>
     <br>
     <?php $hero = $data['data']['heroe']; ?>

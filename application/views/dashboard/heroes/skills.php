@@ -17,7 +17,7 @@
     <table class="table " id="skill<?php echo $skill['id'] ?>" style="width:100%">
         <tr>
             <th>Icon (PNG)</th>
-            <td><img width="80px" height="80px" src="<?php echo $skill['skillIcon']?>?t=<?php echo time(); ?>"/></td>
+            <td><img src="<?php echo $skill['skillIcon']?>?t=<?php echo time(); ?>"/></td>
         </tr>
         <tr>
             <td colspan="2">

@@ -1,96 +1,71 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if ( ! function_exists('validaRequest'))
-{
-    function validaRequest($req = '')
-    {
-        $error = false;
-        if (!isset($req['data'])) {
-            return $msg = 'Nodo data no encontrado';
-        }
-        if (!isset($req['data']['token'])) {
-            return 'No se encontro el token';
-        }
-        if ($req['data']['token'] != MOBILE_TOKEN) {
-            return 'El token es incorrecto';
+function addImages($hero){
+    $milliseconds = round(microtime(true) * 1000);
+    $img = base_url()."assets/heroes/icons/".$hero['name'].".jpg?t=".$milliseconds;
+    $hero['smallImage'] = $img;
+    return $hero;
+}
+
+function colorRarity($rarity){
+    switch($rarity){
+        case "S+":
+            return '<font color="#a64d79">'.$rarity.'</font>';        
+        case "S":
+            return '<font color="#674ea7">'.$rarity.'</font>';
+        case "A":
+            return '<font color="#3c78d8">'.$rarity.'</font>';
+        case "B":
+            return '<font color="#6aa84f">'.$rarity.'</font>';
+        case "C":
+            return '<font color="#f1c232">'.$rarity.'</font>';
+        case "D":
+            return '<font color="#b45f06">'.$rarity.'</font>';
+        case "E":
+            return '<font color="#5b0f22">'.$rarity.'</font>';
+        case "F":
+            return '<font color="#5b0f00">'.$rarity.'</font>';
+        default:
+            return "";
+    }
+}
+
+function race_identify($race){
+    switch ($race) {
+        case 1:
+            return "Lightbearer";
+        case 2:
+            return "Mauler";
+        case 3:
+            return "Wilder";
+        case 4:
+            return "Graveborn";
+        case 5:
+            return "Celestial";
+        case 6:
+            return "Hypogean";
+        default:
+            return "";
+    }
+}
+
+
+
+function selects($tier_value, $section){
+
+    $tier = ["S+","S","A","B","C","D","E","F"];
+    $a ='<select class="form-control" name="' . $section . '">';
+    $a.= '<option value="0">Select Tier Value</option>';
+    $tier_value = explode("<", explode(">", $tier_value)[1])[0];
+    for ($x = 0; $x < sizeof($tier); $x++) {
+        if ($tier_value == $tier[$x]) {
+            $a.='<option value="' . $tier[$x] . '" selected="selected">' . $tier[$x] . '</option>';
+        } else {
+            $a.='<option value="' . $tier[$x] . '">' . $tier[$x] . '</option>';
         }
     }
+    $a.='</select>';
+    return $a;
+    
 
-    function validateStats($stats){
-        if ($stats != null){
-            $data = [
-                'id' => (int)$stats->id,
-                'atk' => (float)$stats->atk,
-                'chc' => (float)$stats->chc,
-                'chd' => (float)$stats->chd,
-                'cp' => (float)$stats->cp,
-                'dac' => (float)$stats->dac,
-                'def' => (float)$stats->def,
-                'eff' => (float)$stats->eff,
-                'efr' => (float)$stats->efr,
-                'hp' => (float)$stats->hp,
-                'spd' => (float)$stats->spd,
-            ];
-        }else{
-            $data  = [
-                'id' => (int)$stats->id,
-                'atk' => "",
-                'chc' => "",
-                'chd' => "",
-                'cp' => "",
-                'dac' => "",
-                'def' => "",
-                'eff' => "",
-                'efr' => "",
-                'hp' => "",
-                'spd' => "",
-            ];
-        }
-        return $data;
-    }
-
-    function requestValidation($REQUEST, $opcion){
-        if (!isset($REQUEST['data'])) {
-            return ('Nodo data no encontrado');
-        }
-        if (!isset($REQUEST['data']['token'])) {
-            return ('No se encontro el token');
-        }
-        if ($REQUEST['data']['token'] != MOBILE_TOKEN) {
-            return ('El token es incorrecto');
-        }
-
-        switch ($opcion){
-            case 1:
-                if (!isset($REQUEST['data']['event_id'])) {
-                    return('No se recibio event_id');
-                }
-                if ($REQUEST['data']['event_id'] < 1) {
-                    return('El event_id no es valido');
-                }
-                break;
-            default:
-                break;
-        }
-        return 1;
-    }
-
-    function selects($tier_value, $section){
-
-        $tier = ["S+","S","A","B","C","D","E","F"];
-        $a ='<select class="form-control" name="' . $section . '">';
-        $a.= '<option value="0">Select Tier Value</option>';
-        $tier_value = explode("<", explode(">", $tier_value)[1])[0];
-        for ($x = 0; $x < sizeof($tier); $x++) {
-            if ($tier_value == $tier[$x]) {
-                $a.='<option value="' . $tier[$x] . '" selected="selected">' . $tier[$x] . '</option>';
-            } else {
-                $a.='<option value="' . $tier[$x] . '">' . $tier[$x] . '</option>';
-            }
-        }
-        $a.='</select>';
-        return $a;
-        
-
-    }
 }

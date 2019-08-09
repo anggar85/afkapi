@@ -1,17 +1,15 @@
 <?php $this->view('dashboard/header'); ?>
 
 <!-- Sidebar -->
-<?php //$this->view('dashboard/sidebar'); ?>
 
 
-  <div class="container ">
+  <div class="container-fluid">
     <br>
     <h4>Heroes</h4>
     
     <a href="<?php echo base_url('heroes/new');?>"  class="btn btn-primary fa-pull-right">New Hero</a>
     <br>
     <br>
-    <?php //var_dump($data['data']['heroes'][0]); ?>
       <?php
       foreach ($data['data']['heroes'] as $hero) {
         echo "<div class='col-md-1 col-xs-2'><a href='edit/".$hero['id']."'><img  src='".$hero['smallImage']."'></a></div>";
