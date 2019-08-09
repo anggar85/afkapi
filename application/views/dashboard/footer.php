@@ -28,7 +28,7 @@
   <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Page level plugin JavaScript-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js" integrity="sha256-FmcrRIeUicq2hy0eo5tD5h2Iv76IBfc3A51x8r9xeIY=" crossorigin="anonymous"></script>  <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js" integrity="sha256-FmcrRIeUicq2hy0eo5tD5h2Iv76IBfc3A51x8r9xeIY=" crossorigin="anonymous"></script> 
 
   <script src="<?php echo base_url(); ?>assets/js/handlebars-v4.1.0.js"></script>
 
@@ -44,11 +44,14 @@
 <script>
 
 
-    console.log(document.location.href)
+    // console.log(document.location.href)
 
     select_section  = document.location.href.split("/")[4]
     $(".navbar-nav li").removeClass("active");
     switch (select_section) {
+      case "hero":
+      $(".navbar-nav li").eq(0).addClass("active");
+        break;
       case "items":
       $(".navbar-nav li").eq(1).addClass("active");
         break;

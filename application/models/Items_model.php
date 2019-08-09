@@ -16,6 +16,7 @@ class Items_model extends CI_Model {
             foreach ($list->result() as $item) {
                 $item = (array) $item;
                 $it = [
+                    'id' => $item['id'],
                     'title' => $item['title'],
                     'desc' => $item['desc'],
                     'image' => base_url()."/assets/heroes/items/".$item['image'],
@@ -24,7 +25,7 @@ class Items_model extends CI_Model {
             }
 
             $response['error']          = false;
-            $response['data']['items']    = $item;
+            $response['data']['items']    = $items;
             return $response;
 
         }catch (Exception $e){
