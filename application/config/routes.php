@@ -27,6 +27,7 @@ $route['password_reset']     = 'auth/password_reset'; // page where user put new
 $route['api/v1/auth/set_new_password']     = 'auth/set_new_password'; // save new password
 
 
+
 // Heroes
 $route['hero/list']                                         = 'hero/list_all_interface';
 $route['hero/edit/(:num)']                                  = 'hero/edit/$1';
@@ -37,6 +38,7 @@ $route['hero/create_strength_weakness']                     = 'hero/create_stren
 $route['hero/update_tier_data/(:any)/(:any)/(:any)']        = 'hero/update_tier_data/$1/$2/$3';
 $route['hero/new']                                          = 'hero/new';
 $route['hero/save']                                         = 'hero/save';
+// $route['items/delete/(:num']    = 'items/delete/$1';
 
 
 // Items
