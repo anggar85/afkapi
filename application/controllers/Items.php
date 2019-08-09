@@ -19,7 +19,7 @@ class Items extends CI_Controller {
     }
 
 
-    public function list()
+    public function list_items()
 	{
         try {
             $response['data'] = $this->Items_model->list();

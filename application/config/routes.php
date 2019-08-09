@@ -42,7 +42,7 @@ $route['hero/save']                                         = 'hero/save';
 
 
 // Items
-$route['items/list']            = 'items/list';
+$route['items/list']            = 'items/list_items';
 $route['items/edit/(:num)']     = 'items/edit/$1';
 $route['items/update/(:num)']   = 'items/update/$1';
 $route['items/new']             = 'items/new_item';
