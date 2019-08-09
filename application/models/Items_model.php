@@ -10,6 +10,17 @@ class Items_model extends CI_Model {
             $this->db->order_by('id', 'desc');
             
             $list = $this->db->get("items");
+            
+            $items = [];
+
+            foreach ($list->result() as $item) {
+                $it = [
+                    'title' => $item['title'],
+                    'desc' => $item['desc'],
+                    'image' => base_url()."/assets/heroes/items/".$item['image'],
+                ];
+            }
+
             $response['error']          = false;
             $response['data']['items']    = $list->result();
             return $response;
@@ -78,7 +89,7 @@ class Items_model extends CI_Model {
                 $item = [
                     'title' => $data['title'],
                     'desc'  => $data['desc'],
-                    'image' => base_url()."assets/heroes/items/".$imgName
+                    'image' => $imgName
                 ];
             } else {
                 $item = [
@@ -117,7 +128,7 @@ class Items_model extends CI_Model {
             $item = [
                 'title' => $data['title'],
                 'desc'  => $data['desc'],
-                'image' => base_url()."assets/heroes/items/".$imgName
+                'image' => $imgName
             ];
             
             $this->db->insert("items", $item);
