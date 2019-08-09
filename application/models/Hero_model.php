@@ -40,7 +40,7 @@ class Hero_model extends CI_Model {
                 // El hero no existe
                 $number_skills = $data['num_skills'];
                 unset($data['num_skills']);
-                $data['name'] = ucfirst($data['name']);
+                $data['name'] = ucfirst(str_replace(" ", "_", $data['name']));
                 // Se crea heroe con los campos minimos
                 $this->db->insert('hero_details', $data);
                 $id = $this->db->insert_id();

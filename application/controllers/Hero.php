@@ -75,7 +75,7 @@ class Hero extends CI_Controller {
                 if ($ext != "jpg") {
                     throw new Exception("The format of the icon image MUST be '.jpg'");
                 }
-                $file_name =  ucfirst($_POST['name'].".".$ext);
+                $file_name =  ucfirst(str_replace(" ", "_", $_POST['name']).".".$ext);
 
                 // Upload the new image
                 $config['upload_path']          = './assets/heroes/icons/';
