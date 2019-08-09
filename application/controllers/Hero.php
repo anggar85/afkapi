@@ -32,7 +32,7 @@ class Hero extends CI_Controller {
 	{
         try {
             $response['data'] = $this->Hero_model->detail($id);
-            $response['data']['heroes'] = $this->Hero_model->list_all();
+            $response['data']['heroes'] = $this->Hero_model->list_all_interface();
 
             $this->load->view('dashboard/heroes/edit', $response);
         } catch (Exception $e) {
@@ -40,9 +40,30 @@ class Hero extends CI_Controller {
         }
     }
 
+    public function new()
+	{
+        try {
+            $response['data']['heroes'] = $this->Hero_model->list_all_interface();
+            $this->load->view('dashboard/heroes/new', $response);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 
-
-    
+    public function save()
+	{
+        try {
+            $response = $this->Hero_model->save_new_hero($_POST);
+            // var_dump($response);
+            if ($response['error']) {
+                echo $response['msg'];
+            } else {
+                redirect('/hero/edit/'.$response['id']);
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 
 
     public function update($id = NULL)

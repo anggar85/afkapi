@@ -3,54 +3,159 @@ class Hero_model extends CI_Model {
     function __construct() {
 
         parent::__construct();
-        
+
         // Metodos disponibles
         $this->load->helper('Util_helper');
         
     }
 
-    // MOBILE
+    // WEB INTERFACE
 
-    public function list_all($table = "tier_list_earlies", $columna = "overall"){
+    public function save_new_hero($data){        
+        try {
+            if ($data['name'] == "") {
+                throw new Exception("Name can't be empty");
+            }
+            if ($data['num_skills'] == "") {
+                throw new Exception("Num Skills can't be empty");
+            }
+            if ($data['rarity'] == "") {
+                throw new Exception("Type can't be empty");
+            }
+            if ($data['race_name'] == "") {
+                throw new Exception("Rarity can't be empty");
+            }
+            if ($data['classe'] == "") {
+                throw new Exception("Class can't be empty");
+            }
+
+            // Valida que no exista hero con ese nombre
+            
+            $this->db->where('name', $data['name']);
+            $this->db->limit(1);
+            $q = $this->db->get('hero_details');
+            if ($q->num_rows() > 0) {
+                throw new Exception("This hero already exist");
+            } else {
+                // El hero no existe
+                $number_skills = $data['num_skills'];
+                unset($data['num_skills']);
+                // Se crea heroe con los campos minimos
+                $this->db->insert('hero_details', $data);
+                $id = $this->db->insert_id();
+
+                // Se crean los skills vacios
+                for ($x=1; $x <= $number_skills ; $x++) { 
+                    $skill = [
+                        'name'      => $data['name'],
+                        'skillOrder'=> $x
+                    ];
+                    $this->db->insert('skills', $skill);
+                }
+                
+                // Se crean rows para tier data
+                // Por defecto se ponen en A
+                $tier = [
+                    'hero_name'      => $data['name'],
+                    'overall'   => "A",
+                    'pvp'       => "A",
+                    'pve'       => "A",
+                    'lab'       => "A",
+                    'wrizz'     => "A",
+                    'soren'     => "A"
+                ];
+                
+                $this->db->insert('tier_list_earlies', $tier);
+                $this->db->insert('tier_list_lates', $tier);
+                $this->db->insert('tier_list_mids', $tier);
+                
+                $response['error']  = false;
+                $response['id']     = $id;
+                return ($response);
+                
+            }
+            
+                        
+            
+            
+            
+        } catch (Exception $e) {
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
+
+    }
+
+
+    public function list_all_interface(){
         try{
-            $default_table = "tier_list_earlies";
-            if (!isset($table) && $table != "") {
-                $default_table = $table;
-            }
-
-            $default_column = "overall";
-            if (!isset($columna) && $columna != "") {
-                $default_column = $columna;
-            }
-
-            $query = "SELECT h.id, t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$default_column." as section, h.id as idHero 
-                        FROM
-                            ".$default_table." AS t
-                        JOIN
-                            hero_details AS h 
-                        ON h.name = t.hero_name where rarity!='Common' and h.status= 1 order by h.name asc";
-
+            $query = "SELECT * FROM
+                            hero_details where rarity!='Common' order by name asc";
             $q = $this->db->query($query);
             $heroes = [];
             foreach($q->result() as $hero){
                 $hero = (array) $hero;
                 array_push($heroes, addImages($hero));
             }
-
             $response['error']  = false;
             $response['data']['heroes']    = $heroes;
-            
             return ($response);
         }catch (Exception $e){
 
             $response['error']  = true;
             $response['msg']   = $e->getMessage();
             return ($response);
-
         }
     }
 
+    public function update_hero_basic_info($data){
+        try {
+            // Valida si los campos estan vacios o no son validos
+            if ($data['name'] == "") {
+                throw new Exception("Name can't be empty");
+            }
+            if ($data['classe'] == "") {
+                throw new Exception("Class can't be empty");
+            }
+            if ($data['type'] == "") {
+                throw new Exception("Type can't be empty");
+            }
+            if ($data['rarity'] == "") {
+                throw new Exception("Rarity can't be empty");
+            }
+            
+            $d['group'] = $data['group'];
+            $d['type']  = $data['type'];
+            $d['desc']  = $data['desc'];
+            $d['race_name'] = $data['race_name'];
+            $d['role'] = $data['role'];
+            if (isset($data['synergy']) && $data['synergy'] != "") {
+                $d['synergy'] = implode(",", $data['synergy']);
+            }
+            $d['position'] = $data['position'];
+            if (isset($data['artifact']) && $data['artifact'] != "") {
+                $d['artifact'] = implode(",", $data['artifact']);
+            }
+            $d['union'] = $data['union'];
+            $d['classe'] = $data['classe'];
+            $d['introduction'] = $data['introduction'];
+            $d['lore'] = $data['lore'];
+            $d['status'] = $data['status'];
+            
+            $this->db->where('id', $data['id']);
+            $this->db->update('hero_details', $d);
 
+            $response['error']  = false;
+            $response['msg']   = "Hero Updated!";
+            return ($response);
+
+        } catch (Exception $e) {
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
+    }
 
     public function detail($id){
 
@@ -189,81 +294,6 @@ class Hero_model extends CI_Model {
         return $data;
     }
 
-
-
-
-
-    // WEB INTERFACE
-
-    public function list_all_interface(){
-        try{
-            $query = "SELECT * FROM
-                            hero_details where rarity!='Common' order by name asc";
-            $q = $this->db->query($query);
-            $heroes = [];
-            foreach($q->result() as $hero){
-                $hero = (array) $hero;
-                array_push($heroes, addImages($hero));
-            }
-            $response['error']  = false;
-            $response['data']['heroes']    = $heroes;
-            return ($response);
-        }catch (Exception $e){
-
-            $response['error']  = true;
-            $response['msg']   = $e->getMessage();
-            return ($response);
-        }
-    }
-
-    public function update_hero_basic_info($data){
-        try {
-            // Valida si los campos estan vacios o no son validos
-            if ($data['name'] == "") {
-                throw new Exception("Name can't be empty");
-            }
-            if ($data['classe'] == "") {
-                throw new Exception("Class can't be empty");
-            }
-            if ($data['type'] == "") {
-                throw new Exception("Type can't be empty");
-            }
-            if ($data['rarity'] == "") {
-                throw new Exception("Rarity can't be empty");
-            }
-            
-            $d['group'] = $data['group'];
-            $d['type']  = $data['type'];
-            $d['desc']  = $data['desc'];
-            $d['race_name'] = $data['race_name'];
-            $d['role'] = $data['role'];
-            if (isset($data['synergy']) && $data['synergy'] != "") {
-                $d['synergy'] = implode(",", $data['synergy']);
-            }
-            $d['position'] = $data['position'];
-            if (isset($data['artifact']) && $data['artifact'] != "") {
-                $d['artifact'] = implode(",", $data['artifact']);
-            }
-            $d['union'] = $data['union'];
-            $d['classe'] = $data['classe'];
-            $d['introduction'] = $data['introduction'];
-            $d['lore'] = $data['lore'];
-            $d['status'] = $data['status'];
-            
-            $this->db->where('id', $data['id']);
-            $this->db->update('hero_details', $d);
-
-            $response['error']  = false;
-            $response['msg']   = "Hero Updated!";
-            return ($response);
-
-        } catch (Exception $e) {
-            $response['error']  = true;
-            $response['msg']   = $e->getMessage();
-            return ($response);
-        }
-    }
-
     public function update_skill($id, $data){
         try {
             $this->db->where("id", $id);
@@ -295,7 +325,6 @@ class Hero_model extends CI_Model {
         }
         
     }
-
 
     public function update_tier_data($table, $name, $data){
         try {
@@ -331,31 +360,6 @@ class Hero_model extends CI_Model {
         }
         
     }
-
-    // public function updateTierData($data)
-    // {
-    //     try {
-    //         $name = $data['heroName'];
-    //         $table = $data['gameLevel'];
-
-    //         unset($data['gameLevel']);
-    //         unset($data['heroName']);
-    //         unset($data['token']);
-            
-    //         $this->db->where('hero_name', $name);
-    //         $this->db->limit(1);
-    //         $this->db->update($table, $data);
-
-    //         $response['error']  = false;
-    //         $response['msg']   = "Tier Data Updated!";
-    //         $response['msge2']   = $data;
-    //         return $response;
-    //     } catch (Exception $e) {
-    //         $response['error']  = true;
-    //         $response['msg']   = $e->getMessage();
-    //         return $response;
-    //     }
-    // }
 
     public function strengthweakenes_delete($id){
         try {
@@ -403,26 +407,4 @@ class Hero_model extends CI_Model {
         }
     }
 
-    
-    // TOOLS
-
-
-
-    // public function edit($id){
-
-    //     try {
-    //         $this->db->where('id', $id);
-    //         $this->db->limit(1);
-    //         $list = $this->db->get("hero_details");
-    //         $response['error']          = false;
-    //         $response['data']['heroes']    = $list->row();
-    //         return $response;
-
-    //     }catch (Exception $e){
-
-    //         $response['error']  = true;
-    //         $response['msg']   = $e->getMessage();
-    //         return $response;
-    //     }
-    // }
 }

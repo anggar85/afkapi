@@ -7,7 +7,7 @@
     <br>
     <h4>Heroes</h4>
     
-    <a href="<?php echo base_url('heroes/new');?>"  class="btn btn-primary fa-pull-right">New Hero</a>
+    <a href="<?php echo base_url('hero/new');?>"  class="btn btn-primary fa-pull-right">New Hero</a>
     <br>
     <br>
       <?php
