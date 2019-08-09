@@ -22,7 +22,7 @@ class Auth extends CI_Controller {
                 $this->load->view('system/index');
             }else{
                 
-                redirect('/items/list');
+                redirect('/hero/list');
             }
         }
 
@@ -90,9 +90,7 @@ class Auth extends CI_Controller {
 
     public function logout(){
         $this->session->sess_destroy();
-        $response['error'] = false;
-        $response['logged_in'] = false;
-        echo json_encode($response);
+        redirect('/');
     }
 
     public function checkSession(){

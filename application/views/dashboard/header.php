@@ -40,6 +40,7 @@
       <li><a href="#">Artifacts</a></li>
       <li><a href="#">FAQ</a></li>
       <li><a href="#">Rol Description</a></li>
+      <li><a href="<?php echo base_url("auth/logout") ?>">Logout</a></li>
     </ul>
   </div>
 </nav>
