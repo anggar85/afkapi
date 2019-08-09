@@ -30,7 +30,7 @@ class Items extends CI_Controller {
     }
 
 
-    public function new()
+    public function new_item()
 	{
         $this->load->view('dashboard/items/new');
     }

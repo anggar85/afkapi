@@ -45,7 +45,7 @@ $route['hero/save']                                         = 'hero/save';
 $route['items/list']            = 'items/list';
 $route['items/edit/(:num)']     = 'items/edit/$1';
 $route['items/update/(:num)']   = 'items/update/$1';
-$route['items/new']             = 'items/new';
+$route['items/new']             = 'items/new_item';
 $route['items/save']            = 'items/save';
 $route['items/delete/(:num)']    = 'items/delete/$1';
 
