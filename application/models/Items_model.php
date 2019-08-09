@@ -14,6 +14,7 @@ class Items_model extends CI_Model {
             $items = [];
 
             foreach ($list->result() as $item) {
+                $item = (array) $item;
                 $it = [
                     'title' => $item['title'],
                     'desc' => $item['desc'],
@@ -23,7 +24,7 @@ class Items_model extends CI_Model {
             }
 
             $response['error']          = false;
-            $response['data']['items']    = $items;
+            $response['data']['items']    = $item;
             return $response;
 
         }catch (Exception $e){
