@@ -22,7 +22,7 @@ class Items extends CI_Controller {
     public function list_items()
 	{
         try {
-            $response['data'] = $this->Items_model->list();
+            $response['data'] = $this->Items_model->list_items();
             $this->load->view('dashboard/items/list', $response);
         } catch (Exception $e) {
             $this->load->view('dashboard/items/list', $response);
