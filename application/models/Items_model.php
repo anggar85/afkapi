@@ -3,7 +3,7 @@ class Items_model extends CI_Model {
 
    
 
-    public function list(){
+    public function list_items(){
 
         try {
             
