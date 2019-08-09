@@ -36,7 +36,7 @@ $route['hero/update_skill/(:num)']                          = 'hero/update_skill
 $route['hero/strengthweakenes_delete/(:num)/hero/(:num)']   = 'hero/strengthweakenes_delete/$1/$2';
 $route['hero/create_strength_weakness']                     = 'hero/create_strength_weakness';
 $route['hero/update_tier_data/(:any)/(:any)/(:any)']        = 'hero/update_tier_data/$1/$2/$3';
-$route['hero/new']                                          = 'hero/new';
+$route['hero/new']                                          = 'hero/new_hero';
 $route['hero/save']                                         = 'hero/save';
 // $route['items/delete/(:num']    = 'items/delete/$1';
 

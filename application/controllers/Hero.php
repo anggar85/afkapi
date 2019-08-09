@@ -40,7 +40,7 @@ class Hero extends CI_Controller {
         }
     }
 
-    public function new()
+    public function new_hero()
 	{
         try {
             $response['data']['heroes'] = $this->Hero_model->list_all_interface();
