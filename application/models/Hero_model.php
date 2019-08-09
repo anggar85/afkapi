@@ -40,6 +40,7 @@ class Hero_model extends CI_Model {
                 // El hero no existe
                 $number_skills = $data['num_skills'];
                 unset($data['num_skills']);
+                $data['name'] = ucfirst($data['name']);
                 // Se crea heroe con los campos minimos
                 $this->db->insert('hero_details', $data);
                 $id = $this->db->insert_id();
@@ -74,17 +75,11 @@ class Hero_model extends CI_Model {
                 return ($response);
                 
             }
-            
-                        
-            
-            
-            
         } catch (Exception $e) {
             $response['error']  = true;
             $response['msg']   = $e->getMessage();
             return ($response);
         }
-
     }
 
 
