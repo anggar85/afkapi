@@ -32,6 +32,9 @@ class Hero extends CI_Controller {
 	{
         try {
             $response['data'] = $this->Hero_model->detail($id);
+            // var_dump($response);
+            // return;
+
             $response['data']['heroes'] = $this->Hero_model->list_all_interface();
 
             $this->load->view('dashboard/heroes/edit', $response);
@@ -69,6 +72,8 @@ class Hero extends CI_Controller {
     public function update($id = NULL)
 	{
         try {
+            var_dump($_POST);
+            return;
             $data['upload_data']['file_name'] = "";
             if ($_FILES['image_icon']['name'] != "") {
                 $ext = explode(".", $_FILES['image_icon']['name'])[1];

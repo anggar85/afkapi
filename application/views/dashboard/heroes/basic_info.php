@@ -57,17 +57,17 @@
                 </select>
             </td>
             <td>
-                <select name="race_name" class="form-control">            
+                <select name="race_name" class="form-control">   
                 <?php
                     $races = [
-                        "LIGHTBEARER",
-                        "MAULER",
-                        "WILDER",
-                        "GRAVEBORN",
-                        "CELESTIAL",
-                        "HYPOGEAN"];
+                        "Lightbearer",
+                        "Mauler",
+                        "Wilder",
+                        "Graveborn",
+                        "Celestial",
+                        "Hypogean"];
                 foreach ($races as $r) {
-                    if ($r == strtoupper($hero['race_name'])) {
+                    if ($r == $hero['race_name']) {
                         echo "<option selected='selected' value='".$r."'>".$r."</option>";
                     } else {
                         echo "<option value='".$r."'>".$r."</option>";
