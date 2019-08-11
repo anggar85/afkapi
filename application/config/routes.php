@@ -8,10 +8,10 @@ $route['default_controller']    = 'auth/index';
 $route['api/v1/hero/list']                          = 'api/v1/hero/list_all';
 $route['api/v1/hero/detail/(:num)']                 = 'api/v1/hero/detail/$1';
 
-$route['api/v2/extras/faq']                         = 'extras/faq';
-$route['api/v2/extras/items_list']                  = 'extras/items_list';
-$route['api/v2/extras/rol_definitions']             = 'extras/rol_definitions';
-$route['api/v2/extras/create_StrengthWeakness']     = 'extras/create_StrengthWeakness';
+$route['api/v1/extras/faq']                         = 'extras/faq';
+$route['api/v1/extras/items_list']                  = 'extras/items_list';
+$route['api/v1/extras/rol_definitions']             = 'extras/rol_definitions';
+$route['api/v1/extras/create_StrengthWeakness']     = 'extras/create_StrengthWeakness';
 
 
 // Web Interface
