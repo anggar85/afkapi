@@ -31,4 +31,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 
 #assets
-/assets/heroes/*
+/assets/heroes/icons/*
+/assets/heroes/skills/*
+/assets/heroes/items/*
