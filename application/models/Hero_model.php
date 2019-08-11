@@ -86,7 +86,7 @@ class Hero_model extends CI_Model {
     public function list_all_interface(){
         try{
             $query = "SELECT * FROM
-                            hero_details where rarity!='Common' order by name asc";
+                            hero_details  order by name asc";
             $q = $this->db->query($query);
             $heroes = [];
             foreach($q->result() as $hero){
