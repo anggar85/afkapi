@@ -109,7 +109,7 @@ class Hero_model extends CI_Model {
                 $heroe['early'] = $early;
                 $heroe['mid']   = $mid;
                 $heroe['late']  = $late;
-                $heroe['race_name']  = race_identify($heroe['race']);
+                $heroe['race_name']  = $heroe['race_name'];
                 $heroe['skills']  = $skillsArray;
                 $icon = addImages($heroe);
                 $heroe['smallImage']  = $icon['smallImage'];
