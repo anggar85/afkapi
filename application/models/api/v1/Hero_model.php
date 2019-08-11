@@ -28,7 +28,7 @@ class Hero_model extends CI_Model {
                             ".$default_table." AS t
                         JOIN
                             hero_details AS h 
-                        ON h.name = t.hero_name where rarity!='Common' and h.status= 1 order by h.name asc";
+                        ON h.name = t.hero_name where  h.status= 1 order by h.name asc";
 
             $q = $this->db->query($query);
             $heroes = [];
