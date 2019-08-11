@@ -72,8 +72,8 @@ class Hero extends CI_Controller {
     public function update($id = NULL)
 	{
         try {
-            var_dump($_POST);
-            return;
+            // var_dump($_POST);
+            // return;
             $data['upload_data']['file_name'] = "";
             if ($_FILES['image_icon']['name'] != "") {
                 $ext = explode(".", $_FILES['image_icon']['name'])[1];
