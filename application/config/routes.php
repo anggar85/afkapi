@@ -10,6 +10,7 @@ $route['api/v1/hero/detail/(:num)']                 = 'api/v1/hero/detail/$1';
 
 $route['api/v1/extras/faq']                         = 'extras/faq';
 $route['api/v1/extras/items_list']                  = 'extras/items_list';
+$route['api/v1/extras/contributors']                  = 'extras/contributors';
 $route['api/v1/extras/rol_definitions']             = 'extras/rol_definitions';
 $route['api/v1/extras/create_StrengthWeakness']     = 'extras/create_StrengthWeakness';
 

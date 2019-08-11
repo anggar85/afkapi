@@ -1,6 +1,23 @@
 <?php
 class Extras_model extends CI_Model {
 
+    public function contributors(){
+
+        try {
+
+            $contributors = $this->db->get("contributors");
+            $response['error']          = false;
+            $response['data']['contributors']    = $contributors->result();
+            return $response;
+
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
+
     public function faq(){
 
         try {
