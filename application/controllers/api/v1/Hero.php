@@ -14,7 +14,11 @@ class Hero extends CI_Controller {
 	{
         try {
             header('Content-Type: application/json');
-            $response = $this->Hero_model->list_all();
+
+            $tier = $_GET['gameLevel'];
+            $section = $_GET['section'];
+
+            $response = $this->Hero_model->list_all($tier, $section);
             echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);

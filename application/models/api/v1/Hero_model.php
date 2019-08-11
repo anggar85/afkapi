@@ -11,7 +11,7 @@ class Hero_model extends CI_Model {
 
     // MOBILE
 
-    public function list_all($table = "tier_list_earlies", $columna = "overall"){
+    public function list_all($table, $columna){
         try{
             $default_table = "tier_list_earlies";
             if (!isset($table) && $table != "") {
@@ -23,9 +23,9 @@ class Hero_model extends CI_Model {
                 $default_column = $columna;
             }
 
-            $query = "SELECT h.id, t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$default_column." as section, h.id as idHero 
+            $query = "SELECT h.id, t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$columna." as section, h.id as idHero 
                         FROM
-                            ".$default_table." AS t
+                            ".$table." AS t
                         JOIN
                             hero_details AS h 
                         ON h.name = t.hero_name where  h.status= 1 order by h.name asc";
