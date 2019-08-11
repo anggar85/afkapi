@@ -23,7 +23,7 @@ class Hero_model extends CI_Model {
                 $default_column = $columna;
             }
 
-            $query = "SELECT h.id, t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$columna." as section, h.id as idHero 
+            $query = "SELECT h.id, h.rarity, h.classe, h.race_name, t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$columna." as section, h.id as idHero 
                         FROM
                             ".$table." AS t
                         JOIN
