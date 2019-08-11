@@ -100,6 +100,12 @@ class Hero_model extends CI_Model {
 
                 
                 # Arma toda la informacion para el heroe
+                if ($heroe['synergy'] == null) {
+                    $heroe['synergy'] = "";
+                }
+                if ($heroe['artifact'] == null) {
+                    $heroe['artifact'] = "";
+                }
                 $heroe['early'] = $early;
                 $heroe['mid']   = $mid;
                 $heroe['late']  = $late;

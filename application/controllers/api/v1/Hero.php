@@ -7,7 +7,7 @@ class Hero extends CI_Controller {
     function __construct() {
 
         parent::__construct();
-        $this->load->model('Hero_model');        
+        $this->load->model('api/v1/Hero_model');        
     }
 
     public function list_all()
