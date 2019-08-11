@@ -50,7 +50,7 @@ function createStrengthWeakness(opc) {
                 success: function (response) {
                     if (!response.error) {
                         // $("#streweakness" + id).remove()
-                        Swal.fire("Great!",response.msg, "success").then((result) => {
+                        // Swal.fire("Great!",response.msg, "success").then((result) => {
                             location.reload();
                           })
                     } else {
