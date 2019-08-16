@@ -85,4 +85,7 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-//define('ADMIN_EMAIL', 'anggar85@gmail.com');
+define('AFK_USER', 'mxlappsc_afkapi');
+define('AFK_PASSWORD', '1985_angel');
+define('AFK_DATABASE_STAGING', 'mxlappsc_afkapi_staging');
+define('AFK_DATABASE', 'mxlappsc_afkapi');
