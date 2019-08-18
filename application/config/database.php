@@ -7,6 +7,7 @@ $query_builder = TRUE;
 $a = base_url();
 
 if (strpos($a, 'localhost') !== false) {
+	// echo "es local";
     $db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => 'localhost',
@@ -29,10 +30,12 @@ if (strpos($a, 'localhost') !== false) {
 		'save_queries' => TRUE
 	);
 
-	
+
 }else{
 
 	if (strpos($a, 'staging') !== false) {
+		// echo "es staging";
+
 		$db['default'] = array(
 			'dsn'	=> '',
 			'hostname' => 'localhost',
@@ -55,6 +58,8 @@ if (strpos($a, 'localhost') !== false) {
 			'save_queries' => TRUE
 		);
 	}else{
+		// echo "es produccion";
+
 			$db['default'] = array(
 				'dsn'	=> '',
 				'hostname' => 'localhost',
