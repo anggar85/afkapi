@@ -11,7 +11,7 @@ class Hero_model extends CI_Model {
 
     // MOBILE
 
-    public function list_all($table, $columna, $rarity, $classe, $race_name){
+    public function list_all($table, $columna){
         try{
             $default_table = "tier_list_earlies";
             if (!isset($table) && $table != "") {
@@ -22,34 +22,13 @@ class Hero_model extends CI_Model {
             if (!isset($columna) && $columna != "") {
                 $default_column = $columna;
             }
-            $queryExtra = "";
-            $array = [$rarity, $classe, $race_name];
 
-            // var_dump($array);
-            for ($i=0; $i < sizeOf($array); $i++) { 
-                if ($array[$i] != "All") {
-                    switch ($i) {
-                        case 0:
-                        $queryExtra.=" and `rarity`= '".$rarity."' ";
-                        break;
-                        case 1:
-                        $queryExtra.=" and `classe`= '".$classe."' ";
-                        break;
-                        case 2:
-                        $queryExtra.=" and `race_name` = '".$race_name."'";
-                        break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            
             $query = "SELECT h.id, h.rarity, h.classe, h.race_name, t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$columna." as section, h.id as idHero 
                         FROM
                             ".$table." AS t
                         JOIN
                             hero_details AS h 
-                        ON h.name = t.hero_name where  h.status= 1 ".$queryExtra."  order by field(t.".$columna.", 'S+', 'S', 'A','B','C', 'D','E', 'F')  ASC";
+                        ON h.name = t.hero_name where  h.status= 1  order by field(t.".$columna.", 'S+', 'S', 'A','B','C', 'D','E', 'F')  ASC";
 
             $q = $this->db->query($query);
             $heroes = [];
