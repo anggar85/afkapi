@@ -8,6 +8,13 @@ $route['default_controller']    = 'auth/index';
 $route['api/v1/hero/list']                          = 'api/v1/hero/list_all';
 $route['api/v1/hero/detail/(:num)']                 = 'api/v1/hero/detail/$1';
 
+$route['api/v2/hero/list']                          = 'api/v2/hero/list_all';
+$route['api/v2/hero/detail/(:num)']                 = 'api/v2/hero/detail/$1';
+
+
+
+
+
 $route['api/v1/extras/faq']                         = 'extras/faq';
 $route['api/v1/extras/items_list']                  = 'extras/items_list';
 $route['api/v1/extras/contributors']                  = 'extras/contributors';
