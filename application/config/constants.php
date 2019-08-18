@@ -85,7 +85,14 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
+define('AFK_USER_LOCAL', 'root');
+define('AFK_PASSWORD_LOCAL', 'root');
+define('AFK_DATABASE_LOCAL', 'mxlappsc_afkapi');
+
 define('AFK_USER', 'mxlappsc_afkapi');
-define('AFK_PASSWORD', '1985_angel');
-define('AFK_DATABASE_STAGING', 'mxlappsc_afkapi_staging');
+define('AFK_PASSWORD', 'mxlappsc_afkapi');
 define('AFK_DATABASE', 'mxlappsc_afkapi');
+
+define('AFK_USER_STAGING', 'mxlappsc_afkapi');
+define('AFK_PASSWORD_STAGING', 'root');
+define('AFK_DATABASE_STAGING', 'mxlappsc_afkapi_staging');
