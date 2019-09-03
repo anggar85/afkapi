@@ -28,7 +28,7 @@ $route['api/v2/extras/contributors']                = 'extras/contributors';
 $route['api/v2/extras/rol_definitions']             = 'extras/rol_definitions';
 $route['api/v2/extras/create_StrengthWeakness']     = 'extras/create_StrengthWeakness';
 
-
+$route['api/v2/user/show']                          = 'api/v2/user/show';
 
 
 
