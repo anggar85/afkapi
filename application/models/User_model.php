@@ -28,13 +28,13 @@ class User_model extends CI_Model {
                 $response['error']  = false;
                 $response['data']['user']    = $q->row();
             }else{
-                $response['error']  = true;
+                $response['data']['error']  = true;
                 $response['msg']    = "Can't find that User.";
             }
 
             return ($response);
         }catch (Exception $e){
-            $response['error']  = true;
+            $response['data']['error']  = true;
             $response['msg']   = $e->getMessage();
             return ($response);
         }
@@ -64,19 +64,30 @@ class User_model extends CI_Model {
         }
     }
 
-    public function create_fb($data){
+    public function create_fb($user){
         try{
             // Valida que el correo no exista en la db
-            $this->db->where('email', $data['email']);
+            $this->db->where('token', $user['token']);
             $this->db->limit(1);
             $q = $this->db->get('users');
             if ($q->num_rows() == 1){
                 $response['error']  = true;
-                $response['data']['msg']    = "Email is already in use";
+                $response['msg']    = "Email is already in use";
                 return $response;
+            }else{
+                $u =[
+                    "name"      => $user['name'],
+                    "status"    => 1,
+                    "token"     => $user['token'],
+                    // "email"     => $user['email']
+                ];
+                $this->db->insert('users', $u);
+                $response['error']  = false;
+                $response['user']  = $user;
+                return ($response);
+                
             }
-            $response['error']  = false;
-            return ($response);
+            
 
         }
         catch (Exception $e){
