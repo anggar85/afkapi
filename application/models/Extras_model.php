@@ -73,17 +73,51 @@ class Extras_model extends CI_Model {
 
 
 
-    public function create_StrengthWeakness($data){
-
+    public function add_suggestion($data){
         try {            
-            $this->db->insert('strengthWeakness', $data);
+            // Busca el nombre del usuario que subio la sugerencia
+            $this->db->where('token', $data['user_token']);
+            $this->db->limit(1);
+            $q = $this->db->get("users");
 
-            $data =  $this->strengthWeakness($data['hero_id']);
+            // Hace validaciones para evitar campos vacios
+            if ($q->num_rows() == 0) {
+                throw new Exception("Can't find your user, sorry");
+            }
+
+            if ($data['hero_id'] == "" || $data['hero_id'] == 0) {
+                throw new Exception("Hero id is empty");
+            }
+
+            if ($data['type'] == "" ) {
+                throw new Exception("Type of suggestion is empty");
+            }
+
+            if ($data['suggestion'] == "" ) {
+                throw new Exception("Suggestion is empty");
+            }
+
+            $user = $q->row();
+            $user = (array) $user;
+
+            // Parsea el type a int
+            $type = 1;
+            if ($data['type'] != "Positive") {
+                $type = 2;
+            }
+
+            $d = [
+                "hero_id"   => $data['hero_id'],
+                "type"      => $type,
+                "desc"      => $data['suggestion'],
+                "autor"     => $user['name']
+            ];
+
+            $this->db->insert('strengthWeakness', $d);
 
             $response['error']  = false;
-            $response['data']['strengths']   = $data['strength'];
-            $response['data']['weaknesses']   = $data['weakness'];
-            $response['msg'] = "Awaiting for revision";
+            $response['data']['sugestion']   = $data;
+            $response['data']['user']   = $user;
             return $response;
 
         }catch (Exception $e){
@@ -113,36 +147,6 @@ class Extras_model extends CI_Model {
         return $data;
     }
 
-    public function dbBackup()
-    {
-        try {
-            $this->load->dbutil();
-
-    $backup = $this->dbutil->backup(array(
-        'tables'        => array(),   // Array of tables to backup.
-        'ignore'        => array('regencies', 'villages', 'provinces'),                     // List of tables to omit from the backup
-        'add_drop'      => TRUE,                        // Whether to add DROP TABLE statements to backup file
-        'add_insert'    => TRUE,                        // Whether to add INSERT data to backup file
-        'newline'       => "\n"                         // Newline character used in backup file
-    ));
-
-    $this->load->helper('file');
-
-    $latest = md5(uniqid());
-
-    write_file(APPPATH . 'backup/'. $latest .'.gz', $backup);
-                    
-
-
-            $response['error']  = false;
-            $response['msg']   = "Backup complete!";
-            return $response;
-        } catch (Exception $e) {
-            //throw $th;
-            $response['error']  = true;
-            $response['msg']   = $e->getMessage();
-            return $response;
-        }
-    }
+    
 
 }
