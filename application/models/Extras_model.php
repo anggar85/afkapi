@@ -110,7 +110,8 @@ class Extras_model extends CI_Model {
                 "hero_id"   => $data['hero_id'],
                 "type"      => $type,
                 "desc"      => $data['suggestion'],
-                "autor"     => $user['name']
+                "autor"     => $user['name'],
+                "status"    =>  0
             ];
 
             $this->db->insert('strengthWeakness', $d);

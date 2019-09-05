@@ -199,6 +199,7 @@ class Hero_model extends CI_Model {
 
     public function strengthWeakness($hero_id){
         $this->db->where("hero_id", $hero_id);
+        $this->db->where("status", 1);
         $q =  $this->db->get("strengthWeakness");
         $strength = [];
         $weakness = [];
