@@ -16,6 +16,31 @@ class User_model extends CI_Model {
         }
     }
 
+
+    public function show_fb($data){
+        try{
+            $user_id = $data['user']['token'];
+
+            $this->db->where('token', $user_id);
+            $this->db->limit(1);
+            $q = $this->db->get('users');
+            if ($q->num_rows() == 1){
+                $response['error']  = false;
+                $response['data']['user']    = $q->row();
+            }else{
+                $response['data']['error']  = true;
+                $response['msg']    = "Can't find that User.";
+            }
+
+            return ($response);
+        }catch (Exception $e){
+            $response['data']['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
+    }
+
+
     public function show($data){
         try{
             $user_id = $data['id'];
@@ -33,6 +58,39 @@ class User_model extends CI_Model {
 
             return ($response);
         }catch (Exception $e){
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
+    }
+
+    public function create_fb($user){
+        try{
+            // Valida que el correo no exista en la db
+            $this->db->where('token', $user['token']);
+            $this->db->limit(1);
+            $q = $this->db->get('users');
+            if ($q->num_rows() == 1){
+                $response['error']  = true;
+                $response['msg']    = "Email is already in use";
+                return $response;
+            }else{
+                $u =[
+                    "name"      => $user['name'],
+                    "status"    => 1,
+                    "token"     => $user['token'],
+                    // "email"     => $user['email']
+                ];
+                $this->db->insert('users', $u);
+                $response['error']  = false;
+                $response['user']  = $user;
+                return ($response);
+                
+            }
+            
+
+        }
+        catch (Exception $e){
             $response['error']  = true;
             $response['msg']   = $e->getMessage();
             return ($response);

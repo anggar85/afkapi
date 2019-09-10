@@ -6,7 +6,7 @@ $query_builder = TRUE;
 
 $a = base_url();
 
-if (strpos($a, 'localhost') !== false) {
+if (strpos($a, 'localhost') !== false || strpos($a, "ngrok") !== false) {
 	// echo "es local";
     $db['default'] = array(
 		'dsn'	=> '',

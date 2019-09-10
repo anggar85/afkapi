@@ -27,9 +27,21 @@ class Users extends CI_Controller {
         }
     }
 
+    public function show_fb()
+	{
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $user = $data['data']["user"];
+
+            header('Content-Type: application/json');
+            $response = $this->User_model->show_fb($_GET);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
     public function show()
 	{
-
         try {
             $data = json_decode(file_get_contents('php://input'), true);
             $user = $data['data']["user"];
@@ -43,6 +55,19 @@ class Users extends CI_Controller {
     }
 
 
+    public function create_fb()
+	{
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $user = $data['data']["user"];
+            header('Content-Type: application/json');
+            $res = $this->User_model->create_fb($user);
+            $response['data'] = $res;
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
     public function create()
 	{
         try {
