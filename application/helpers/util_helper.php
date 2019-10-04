@@ -8,6 +8,14 @@ function addImages($hero){
     return $hero;
 }
 
+function getImage($hero){
+    $milliseconds = round(microtime(true) * 1000);
+    $name = str_replace(" ", "_", $hero);
+    $img = base_url()."assets/heroes/icons/".$name.".jpg";
+    // $img = base_url()."assets/pins/".$name.".png?t=".$milliseconds;
+    return $img;
+}
+
 function colorRarity($rarity){
     switch($rarity){
         case "S+":
