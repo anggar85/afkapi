@@ -88,6 +88,12 @@ class Deck_model extends CI_Model {
     
     public function create_deck($deck){
         try{
+            $this->db->where('id', $deck['user_id']);
+            $this->db->limit(1);
+            $x = $this->db->get('users');
+
+            $deck['author'] = $x->row()->name;
+
             $this->db->insert("decks", $deck);
             $response['error']  = false;
             $response['data']['deck']    = $deck;
