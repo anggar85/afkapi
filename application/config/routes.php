@@ -33,12 +33,13 @@ $route['api/v2/user/show_fb']                       = 'users/show_fb';
 $route['api/v2/user/create_fb']                     = 'users/create_fb';
 
 // DECKS
-$route['api/v2/deck/decks_list']                    = 'api/v2/deck/decks_list';
+$route['api/v2/deck/decks_lists']                    = 'api/v2/deck/decks_list';
 $route['api/v2/deck/mydecks/(:num)']                = 'api/v2/deck/mydecks/$1';
 $route['api/v2/deck/show_deck/(:num)']              = 'api/v2/deck/show_deck/$1';
 $route['api/v2/deck/create_deck/']                  = 'api/v2/deck/create_deck/';
 
-
+// VOTES
+$route['api/v2/votes/create_vote']                  = 'api/v2/votes/create_vote';
 
 // Web Interface
 
