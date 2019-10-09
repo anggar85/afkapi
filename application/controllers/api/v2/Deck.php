@@ -21,11 +21,11 @@ class Deck extends CI_Controller {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }
     }
-    public function decks_list()
+    public function decks_list($columna = "id", $asc_desc = "desc")
 	{
         try {
             header('Content-Type: application/json');
-            $response = $this->Deck_model->decks_list();
+            $response = $this->Deck_model->decks_list($columna, $asc_desc);
             echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
