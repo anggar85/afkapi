@@ -81,7 +81,7 @@ class Votes_model extends CI_Model {
 
             // Cuando termina de sumar los votos y promediarlos, los ingresa en el item
             $newVotesValue = $votes / $votes_rows;
-            $newVotesValue = sprintf('%0.1f', $newVotesValue,2);
+            $newVotesValue = sprintf('%0.2f', $newVotesValue);
 
             // Actualiza los votos en el item
             $this->db->where('id', $item_id);
