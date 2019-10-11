@@ -28,6 +28,21 @@ class Hero extends CI_Controller {
         }
     }
 
+    public function list_advanced()
+	{
+        try {
+            header('Content-Type: application/json');
+
+            $data = json_decode(file_get_contents('php://input'), true);
+            $filters = $data['data']["list"];
+
+            $response = $this->Hero_model->list_advanced($filters);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
 
     public function detail($id = NULL)
 	{
