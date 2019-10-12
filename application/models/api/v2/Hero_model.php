@@ -17,7 +17,7 @@ class Hero_model extends CI_Model {
             $artifact = addslashes($d['artifact']);
 
             $queryExtra.= ($d['rarity'] == "All") ? "" : " AND `rarity`= '".$d['rarity']."'";
-            $queryExtra.= ($d['class'] == "All") ? "" : " AND `classe`= '".$d['class']."'";
+            $queryExtra.= ($d['classe'] == "All") ? "" : " AND `classe`= '".$d['classe']."'";
             $queryExtra.= ($d['race_name'] == "All") ? "" : " AND `race_name`= '".$d['race_name']."'";
             $queryExtra.= ($d['position'] == "All") ? "" : " AND `position` LIKE '%".$d['position']."%'";
             $queryExtra.= ($d['synergy'] == "All") ? "" : " AND `synergy` LIKE '%".$d['synergy']."%'";
