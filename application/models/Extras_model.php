@@ -53,6 +53,24 @@ class Extras_model extends CI_Model {
     }
 
 
+    public function news_list(){
+
+        try {
+
+            $news_list = $this->db->get("news");
+            $response['error']          = false;
+            $response['data']['news']    = $news_list->result();
+            return $response;
+
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
+
+
 
     public function rol_definitions(){
 

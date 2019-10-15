@@ -14,6 +14,16 @@ class Extras extends CI_Controller {
         
     }
 
+    public function news_list()
+	{
+        try {
+            header('Content-Type: application/json');
+            $response = $this->Extras_model->news_list();
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
     public function faq()
 	{
         try {
