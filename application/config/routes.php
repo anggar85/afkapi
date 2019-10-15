@@ -28,7 +28,7 @@ $route['api/v2/extras/items_list']                  = 'extras/items_list';
 $route['api/v2/extras/contributors']                = 'extras/contributors';
 $route['api/v2/extras/rol_definitions']             = 'extras/rol_definitions';
 $route['api/v2/extras/add_suggestion']              = 'extras/add_suggestion';
-
+$route['api/v2/extras/news']                        = 'extras/news';
 
 $route['api/v2/user/show_fb']                       = 'users/show_fb';
 $route['api/v2/user/create_fb']                     = 'users/create_fb';

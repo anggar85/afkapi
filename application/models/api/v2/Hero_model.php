@@ -14,7 +14,7 @@ class Hero_model extends CI_Model {
         try{
             $queryExtra = "";
 
-            $artifact = addslashes($d['artifact']);
+            // $artifact = addslashes($d['artifact']);
 
             $queryExtra.= ($d['rarity'] == "All") ? "" : " AND `rarity`= '".$d['rarity']."'";
             $queryExtra.= ($d['classe'] == "All") ? "" : " AND `classe`= '".$d['classe']."'";
@@ -23,7 +23,6 @@ class Hero_model extends CI_Model {
             $queryExtra.= ($d['synergy'] == "All") ? "" : " AND `synergy` LIKE '%".$d['synergy']."%'";
             $queryExtra.= ($d['primary_rol'] == "All") ? "" : " AND `primary_rol` = '".$d['primary_rol']."'";
             $queryExtra.= ($d['secondary_rol'] == "All") ? "" : " AND `secondary_rol` = '".$d['secondary_rol']."'";
-            $queryExtra.= ($d['artifact'] == "All") ? "" : " AND `artifact` LIKE '%".$artifact."%'";
             $queryExtra.= ($d['union'] == "All") ? "" : " AND `union` = '".$d['union']."'";
             $queryExtra.= ($d['type'] == "All") ? "" : " AND `type` = '".$d['type']."'";
             
