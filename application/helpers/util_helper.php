@@ -2,10 +2,18 @@
 
 function addImages($hero){
     $milliseconds = round(microtime(true) * 1000);
-    $img = base_url()."assets/heroes/icons/".$hero['name'].".jpg?t=".$milliseconds;
+    $img = base_url()."assets/heroes/icons/".$hero['name'].".jpg";
     // $img = base_url()."assets/heroes/icons/".$hero['name'].".jpg?t=".$milliseconds;
     $hero['smallImage'] = $img;
     return $hero;
+}
+
+function getImage($hero){
+    $milliseconds = round(microtime(true) * 1000);
+    $name = str_replace(" ", "_", $hero);
+    $img = base_url()."assets/heroes/icons/".$name.".jpg";
+    // $img = base_url()."assets/pins/".$name.".png?t=".$milliseconds;
+    return $img;
 }
 
 function colorRarity($rarity){

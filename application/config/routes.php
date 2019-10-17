@@ -20,6 +20,7 @@ $route['api/v1/extras/create_StrengthWeakness']     = 'extras/create_StrengthWea
 
 // V2
 $route['api/v2/hero/list']                          = 'api/v2/hero/list_all';
+$route['api/v2/hero/list_advanced']                 = 'api/v2/hero/list_advanced';
 $route['api/v2/hero/detail/(:num)']                 = 'api/v2/hero/detail/$1';
 
 $route['api/v2/extras/faq']                         = 'extras/faq';
@@ -27,12 +28,19 @@ $route['api/v2/extras/items_list']                  = 'extras/items_list';
 $route['api/v2/extras/contributors']                = 'extras/contributors';
 $route['api/v2/extras/rol_definitions']             = 'extras/rol_definitions';
 $route['api/v2/extras/add_suggestion']              = 'extras/add_suggestion';
-
+$route['api/v2/extras/news']                        = 'extras/news_list';
 
 $route['api/v2/user/show_fb']                       = 'users/show_fb';
 $route['api/v2/user/create_fb']                     = 'users/create_fb';
 
+// DECKS
+$route['api/v2/deck/decks_list/(:num)/(:num)']      = 'api/v2/deck/decks_list/$1/$2';
+$route['api/v2/deck/mydecks/(:num)']                = 'api/v2/deck/mydecks/$1';
+$route['api/v2/deck/show_deck/(:num)']              = 'api/v2/deck/show_deck/$1';
+$route['api/v2/deck/create_deck/']                  = 'api/v2/deck/create_deck/';
 
+// VOTES
+$route['api/v2/votes/create_vote']                  = 'api/v2/votes/create_vote';
 
 // Web Interface
 

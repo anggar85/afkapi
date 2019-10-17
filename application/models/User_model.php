@@ -79,7 +79,7 @@ class User_model extends CI_Model {
                     "name"      => $user['name'],
                     "status"    => 1,
                     "token"     => $user['token'],
-                    // "email"     => $user['email']
+                    "email"     => $user['email']
                 ];
                 $this->db->insert('users', $u);
                 $response['error']  = false;

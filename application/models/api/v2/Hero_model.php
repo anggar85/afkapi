@@ -9,7 +9,51 @@ class Hero_model extends CI_Model {
         
     }
 
-    // MOBILE
+
+    public function list_advanced($d){
+        try{
+            $queryExtra = "";
+
+            // $artifact = addslashes($d['artifact']);
+
+            $queryExtra.= ($d['rarity'] == "All") ? "" : " AND `rarity`= '".$d['rarity']."'";
+            $queryExtra.= ($d['classe'] == "All") ? "" : " AND `classe`= '".$d['classe']."'";
+            $queryExtra.= ($d['race_name'] == "All") ? "" : " AND `race_name`= '".$d['race_name']."'";
+            $queryExtra.= ($d['position'] == "All") ? "" : " AND `position` LIKE '%".$d['position']."%'";
+            $queryExtra.= ($d['synergy'] == "All") ? "" : " AND `synergy` LIKE '%".$d['synergy']."%'";
+            $queryExtra.= ($d['primary_rol'] == "All") ? "" : " AND `primary_rol` = '".$d['primary_rol']."'";
+            $queryExtra.= ($d['secondary_rol'] == "All") ? "" : " AND `secondary_rol` = '".$d['secondary_rol']."'";
+            $queryExtra.= ($d['union'] == "All") ? "" : " AND `union` = '".$d['union']."'";
+            $queryExtra.= ($d['type'] == "All") ? "" : " AND `type` = '".$d['type']."'";
+            
+            $query = "SELECT h.id,  h.rarity, h.classe, h.race_name, h.position, t.overall, t.pve, t.pvp, t.lab, t.wrizz, t.soren, h.name, ".$d['section']." as section, h.id as idHero 
+                        FROM
+                            ".$d['gameLevel']." AS t
+                        JOIN
+                            hero_details AS h 
+                        ON h.name = t.hero_name where  h.status= 1 ".$queryExtra."  order by field(t.".$d['section'].", 'S+', 'S', 'A','B','C', 'D','E', 'F')  ASC";
+            //echo $query;
+            $q = $this->db->query($query);
+            $heroes = [];
+            foreach($q->result() as $hero){
+                $hero = (array) $hero;
+                array_push($heroes, addImages($hero));
+            }
+
+            $response['error']  = false;
+            $response['data']['heroes']    = $heroes;
+            
+            return ($response);
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+
+        }
+    }
+
+
 
     public function list_all($table, $columna, $rarity, $classe, $race_name){
         try{

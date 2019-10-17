@@ -86,7 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 define('AFK_USER_LOCAL', 'root');
-define('AFK_PASSWORD_LOCAL', 'root');
+define('AFK_PASSWORD_LOCAL', '1985_angel');
 define('AFK_DATABASE_LOCAL', 'mxlappsc_afkapi');
 
 define('AFK_USER', 'mxlappsc_afkapi');
