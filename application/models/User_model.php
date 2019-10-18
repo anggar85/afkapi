@@ -82,6 +82,8 @@ class User_model extends CI_Model {
                     "email"     => $user['email']
                 ];
                 $this->db->insert('users', $u);
+                $user_id = $this->db->insert_id();
+                $user['id'] = $user_id;
                 $response['error']  = false;
                 $response['user']  = $user;
                 return ($response);
