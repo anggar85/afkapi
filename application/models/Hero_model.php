@@ -63,7 +63,9 @@ class Hero_model extends CI_Model {
                     'pve'       => "A",
                     'lab'       => "A",
                     'wrizz'     => "A",
-                    'soren'     => "A"
+                    'soren'     => "A",
+                    'created_at'=> "2019-12-12 12:12:12",
+                    'updated_at'=> "2019-12-12 12:12:12"
                 ];
                 
                 $this->db->insert('tier_list_earlies', $tier);

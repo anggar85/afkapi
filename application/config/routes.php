@@ -77,9 +77,3 @@ $route['items/new']             = 'items/new_item';
 $route['items/save']            = 'items/save';
 $route['items/delete/(:num)']    = 'items/delete/$1';
 
-
-
-$route['extras/dbBackup']  = 'extras/dbBackup';
-
-
-
