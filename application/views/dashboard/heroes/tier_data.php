@@ -45,12 +45,12 @@
         <th>Soren</th>
         </tr>
         <tr>
-        <td><?php  echo selects($data['data']['heroe']['mid']['overall'], 'tier_list_mids'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['mid']['pvp'], 'tier_list_mids'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['mid']['pve'], 'tier_list_mids'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['mid']['lab'], 'tier_list_mids'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['mid']['wrizz'], 'tier_list_mids'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['mid']['soren'], 'tier_list_mids'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['mid']['overall'], 'overall'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['mid']['pvp'], 'pvp'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['mid']['pve'], 'pve'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['mid']['lab'], 'lab'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['mid']['wrizz'], 'wrizz'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['mid']['soren'], 'soren'); ?></td>
         </tr>
         <tr>
         <th colspan="6">
@@ -74,12 +74,12 @@
         <th>Soren</th>
         </tr>
         <tr>
-        <td><?php  echo selects($data['data']['heroe']['late']['overall'], 'tier_list_lates'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['late']['pvp'], 'tier_list_lates'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['late']['pve'], 'tier_list_lates'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['late']['lab'], 'tier_list_lates'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['late']['wrizz'], 'tier_list_lates'); ?></td>
-        <td><?php  echo selects($data['data']['heroe']['late']['soren'], 'tier_list_lates'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['late']['overall'], 'overall'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['late']['pvp'], 'pvp'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['late']['pve'], 'pve'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['late']['lab'], 'lab'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['late']['wrizz'], 'wrizz'); ?></td>
+        <td><?php  echo selects($data['data']['heroe']['late']['soren'], 'soren'); ?></td>
         </tr>
         <tr>
         <th colspan="6">
