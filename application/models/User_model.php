@@ -151,6 +151,8 @@ class User_model extends CI_Model {
             if ($q->num_rows() == 1){
                 // Si el usuario existe, entonces actualiza el nombre
                 $d = ["name"=> $user['name']];
+                $this->db->where('id', $id);
+                $this->db->limit(1);
                 $this->db->update('users', $d);
                 // Si se actualizo correctamente el nombre
                 // actualizara el deck... en este punto el deck ya existe, se creo al entrar 
