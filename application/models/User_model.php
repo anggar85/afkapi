@@ -24,7 +24,7 @@ class User_model extends CI_Model {
             $this->db->limit(1);
             $q = $this->db->get('users');
             if ($q->num_rows() == 1){
-                $user - $q->row();
+                $user = $q->row();
                 // Si el usuario existe, busca el row en decks, solo debe haber 1 deck por usuario
                 $this->db->where('user_id', $id);
                 $this->db->limit(1);
