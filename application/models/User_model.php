@@ -171,13 +171,6 @@ class User_model extends CI_Model {
                 // a la seccion get profile
                 // Agrega el campo author
                 $deck['author'] = $user['name'];
-                $img = base_url()."assets/heroes/basic_icon.png";
-                $deck['hero1'] = ($deck['hero1'] == NULL) ? $img: $deck['hero1'];
-                $deck['hero2'] = ($deck['hero2'] == NULL) ? $img: $deck['hero2'];
-                $deck['hero3'] = ($deck['hero3'] == NULL) ? $img: $deck['hero3'];
-                $deck['hero4'] = ($deck['hero4'] == NULL) ? $img: $deck['hero4'];
-                $deck['hero5'] = ($deck['hero5'] == NULL) ? $img: $deck['hero5'];
-
                 $this->db->where('user_id', $id);
                 $this->db->limit(1);
                 $this->db->update('decks', $deck);
