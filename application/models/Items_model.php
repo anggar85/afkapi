@@ -19,7 +19,8 @@ class Items_model extends CI_Model {
                     'id' => $item['id'],
                     'title' => $item['title'],
                     'desc' => $item['desc'],
-                    'image' => base_url()."/assets/heroes/items/".$item['image'],
+                    // 'image' => base_url()."assets/heroes/items/".$item['image'],
+                    'image' => $item['image'],
                 ];
                 array_push($items, $it);
             }
