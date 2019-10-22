@@ -16,6 +16,47 @@ class User_model extends CI_Model {
         }
     }
 
+    public function show_profile($id){
+        try{
+            
+            // Primero busca al usuario
+            $this->db->where('id', $id);
+            $this->db->limit(1);
+            $q = $this->db->get('users');
+            if ($q->num_rows() == 1){
+                $user - $q->row();
+                // Si el usuario existe, busca el row en decks, solo debe haber 1 deck por usuario
+                $this->db->where('user_id', $id);
+                $this->db->limit(1);
+                $q = $this->db->get('decks');
+                if ($q->num_rows() == 1){
+                    // Si existe un row, entonces regresa la informacion como esta
+                    $deck = $q->row();
+                }else{
+                    // Si el usuario no tiene row en decks, se le crea uno
+                    $d = ["user_id"=> $id];
+                    $this->db->insert("decks", $d);
+                    $this->db->where('user_id', $id);
+                    $this->db->limit(1);
+                    $q = $this->db->get('decks');
+                    $deck = $q->row();
+                }
+
+                $response['error']  = false;
+                $response['data']['profile']['user']    = $user;
+                $response['data']['profile']['deck']    = $deck;
+            }else{
+                $response['data']['error']  = true;
+                $response['msg']    = "Can't find that User.";
+            }
+
+            return ($response);
+        }catch (Exception $e){
+            $response['data']['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
+    }
 
     public function show_fb($data){
         try{
