@@ -81,7 +81,6 @@ class User_model extends CI_Model {
         }
     }
 
-
     public function show($data){
         try{
             $user_id = $data['id'];
@@ -132,6 +131,42 @@ class User_model extends CI_Model {
             }
             
 
+        }
+        catch (Exception $e){
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
+    }
+     
+
+    public function update_profile($profile, $id){
+        try{
+            $user = $profile['user'];
+            $deck = $profile['deck'];
+            // Valida que el usuario exista
+            $this->db->where('id', $id);
+            $this->db->limit(1);
+            $q = $this->db->get('users');
+            if ($q->num_rows() == 1){
+                // Si el usuario existe, entonces actualiza el nombre
+                $d = ["name"=> $user['name']];
+                $this->db->update('users', $d);
+                // Si se actualizo correctamente el nombre
+                // actualizara el deck... en este punto el deck ya existe, se creo al entrar 
+                // a la seccion get profile
+                $this->db->where('user_id', $id);
+                $this->db->limit(1);
+                $this->db->update('decks', $deck);
+
+                $response['error']  = false;
+                $response['msg']    = "Profile updated";
+                return $response;
+            }else{
+                $response['error']  = trye;
+                $response['msg']    = "Cant find the user, try login again";
+                return ($response);
+            }
         }
         catch (Exception $e){
             $response['error']  = true;
