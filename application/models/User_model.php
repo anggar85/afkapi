@@ -1,6 +1,15 @@
 <?php
 class User_model extends CI_Model {
 
+    function __construct() {
+
+        parent::__construct();
+
+        // Metodos disponibles
+        $this->load->helper('Util_helper');
+        
+    }
+
     public function list_all(){
         try{
             $this->db->where('level !=', 100);
@@ -41,6 +50,9 @@ class User_model extends CI_Model {
                     $q = $this->db->get('decks');
                     $deck = $q->row();
                 }
+
+                // Busca la imagen que tiene en facebook y la agrega al objeto
+                $user->fb_image = getProfilePic($user->token);
 
                 $response['error']  = false;
                 $response['data']['profile']['user']    = $user;
