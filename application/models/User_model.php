@@ -169,6 +169,8 @@ class User_model extends CI_Model {
                 // Si se actualizo correctamente el nombre
                 // actualizara el deck... en este punto el deck ya existe, se creo al entrar 
                 // a la seccion get profile
+                // Agrega el campo author
+                $deck['author'] = $user['name'];
                 $this->db->where('user_id', $id);
                 $this->db->limit(1);
                 $this->db->update('decks', $deck);
