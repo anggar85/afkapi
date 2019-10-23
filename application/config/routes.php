@@ -22,6 +22,7 @@ $route['api/v1/extras/create_StrengthWeakness']     = 'extras/create_StrengthWea
 $route['api/v2/hero/list']                          = 'api/v2/hero/list_all';
 $route['api/v2/hero/list_advanced']                 = 'api/v2/hero/list_advanced';
 $route['api/v2/hero/detail/(:num)']                 = 'api/v2/hero/detail/$1';
+$route['api/v2/hero/show/(:num)/(:any)']            = 'api/v2/hero/show/$1/$2';
 
 $route['api/v2/extras/faq']                         = 'extras/faq';
 $route['api/v2/extras/items_list']                  = 'extras/items_list';
