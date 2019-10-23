@@ -37,7 +37,9 @@ class Deck_model extends CI_Model {
 
     public function decks_list($columna, $asc_desc){
         try{
-            $query = "SELECT  *  FROM decks where `status` = 1  order by $columna $asc_desc";
+            $query = "SELECT  *  FROM decks where `status` = 1 
+            AND `hero1` != '' AND `hero2` != '' AND `hero3` != '' AND `hero4` != '' AND `hero5` != ''
+             order by $columna $asc_desc";
 
             $q = $this->db->query($query);
             $decks = [];
