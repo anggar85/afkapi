@@ -59,13 +59,13 @@ class User_model extends CI_Model {
                 $response['data']['profile']['deck']    = $deck;
             }else{
                 $response['data']['error']  = true;
-                $response['msg']    = "Can't find that User.";
+                $response['data']['msg']    = "Can't find that User.";
             }
 
             return ($response);
         }catch (Exception $e){
             $response['data']['error']  = true;
-            $response['msg']   = $e->getMessage();
+            $response['data']['msg']   = $e->getMessage();
             return ($response);
         }
     }
