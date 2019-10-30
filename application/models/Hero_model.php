@@ -128,7 +128,7 @@ class Hero_model extends CI_Model {
             $d['primary_rol']  = $data['primary_rol'];
             $d['secondary_rol']  = $data['secondary_rol'];
             $d['race_name'] = $data['race_name'];
-            $d['role'] = $data['role'];
+            // $d['role'] = $data['role'];
             if (isset($data['synergy']) && $data['synergy'] != "") {
                 $d['synergy'] = implode(",", $data['synergy']);
             }
