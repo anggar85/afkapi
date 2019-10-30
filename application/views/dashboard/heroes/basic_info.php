@@ -76,7 +76,22 @@
                 ?>
                 </select>
         </td>
-        <td><input class="form-control" type="text" name="role" value="<?php echo $hero['role']?>"></td>
+        <td>
+        <!-- <input class="form-control" type="text" name="role" value="<?php //echo $hero['role']?>"> -->
+        
+        <!-- Se ponen tabla con los 2 roles -->
+        <table>
+                <tr>
+                    <td>Primary Rol</td>
+                    <td>Secondary Rol</td>
+                </tr>
+                <tr>
+                <td><input class="form-control" type="text" name="primary_rol" value="<?php echo $hero['primary_rol']?>"></td>
+                <td><input class="form-control" type="text" name="secondary_rol" value="<?php echo $hero['secondary_rol']?>"></td>
+                </tr>
+        </table>
+
+        </td>
         
         </tr>
         <tr>
