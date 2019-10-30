@@ -55,6 +55,17 @@ class Hero extends CI_Controller {
         }
     }
 
+    public function show($id = NULL, $language = "en")
+	{
+        try {
+            header('Content-Type: application/json');
+            $response = $this->Hero_model->show($id, $language);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
 
 
 }

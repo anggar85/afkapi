@@ -40,6 +40,36 @@ class Users extends CI_Controller {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }
     }
+
+    
+    public function show_profile($id = NULL)
+	{
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            header('Content-Type: application/json');
+            $response = $this->User_model->show_profile($id);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+    
+    public function update_profile($id = NULL)
+	{
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $profile = $data['data']["profile"];
+            header('Content-Type: application/json');
+            $response = $this->User_model->update_profile($profile, $id);
+            echo json_encode($response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
+
+    
     public function show()
 	{
         try {

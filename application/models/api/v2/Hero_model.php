@@ -1,14 +1,10 @@
 <?php
 class Hero_model extends CI_Model {
     function __construct() {
-
         parent::__construct();
-        
         // Metodos disponibles
         $this->load->helper('Util_helper');
-        
     }
-
 
     public function list_advanced($d){
         try{
@@ -52,8 +48,6 @@ class Hero_model extends CI_Model {
 
         }
     }
-
-
 
     public function list_all($table, $columna, $rarity, $classe, $race_name){
         try{
@@ -115,9 +109,91 @@ class Hero_model extends CI_Model {
         }
     }
 
-
-
     public function detail($id){
+
+        try{
+            $this->db->where("id", $id);
+            $this->db->limit(1);
+            $q = $this->db->get("hero_details");
+
+            if ($q->num_rows() == 1) {
+                # Encontro al heroe
+                $heroe = (array) $q->row();
+
+                # Busca los tiers data y los pinta de acuerdo a su valor
+                $early  = $this->getTierData($heroe['name'], 1);
+                $mid    = $this->getTierData($heroe['name'], 2);
+                $late   = $this->getTierData($heroe['name'], 3);
+
+
+                # Skills
+                $skillsArray = [];
+                $this->db->where("name", $heroe['name']);
+                $skills =  $this->db->get("skills");
+
+                $base = base_url()."assets/heroes/skills/";
+                if ($skills->num_rows() != 0) {
+                    $cont = 1;
+                    foreach ($skills->result() as $sk) {
+                        $sk = (array) $sk;
+                        $singleSkill = [
+                            'id'          => $sk['id'],
+                            'skill'       => $sk['skill'],
+                            'skillOrder'  => $sk['skillOrder'],
+                            'desc'        => $sk['desc'],
+                            'name'        => $sk['name'],
+                            'lvlUpgrades' => $sk['lvlUpgrades'],
+                            'skillIcon'   => $base.strtolower($heroe['name']).$cont.".png"
+                        ];
+                        array_push($skillsArray, $singleSkill);
+                        $cont++;
+                    }
+                }
+
+
+                # Strength & Weakness
+                $strengthWeakness = $this->strengthWeakness($heroe['id']);
+
+
+                
+                # Arma toda la informacion para el heroe
+                if ($heroe['synergy'] == null) {
+                    $heroe['synergy'] = "";
+                }
+                if ($heroe['artifact'] == null) {
+                    $heroe['artifact'] = "";
+                }
+                $heroe['early'] = $early;
+                $heroe['mid']   = $mid;
+                $heroe['late']  = $late;
+                $heroe['race_name']  = $heroe['race_name'];
+                $heroe['skills']  = $skillsArray;
+                $icon = addImages($heroe);
+                $heroe['smallImage']  = $icon['smallImage'];
+                $heroe['strengths'] = $strengthWeakness['strength'];
+                $heroe['weaknesses'] = $strengthWeakness['weakness'];
+
+                $response['error']  = false;
+                $response['data']['heroe']    = $heroe;
+                
+            }else{
+                # No hay resultados
+                $response['error']  = true;
+                $response['id']  = $id;
+                $response['msg']    = "Can't find the hero.";
+            }
+
+            return ($response);
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+
+        }
+    }
+
+    public function show($id, $lang){
 
         try{
             $this->db->where("id", $id);

@@ -22,6 +22,7 @@ $route['api/v1/extras/create_StrengthWeakness']     = 'extras/create_StrengthWea
 $route['api/v2/hero/list']                          = 'api/v2/hero/list_all';
 $route['api/v2/hero/list_advanced']                 = 'api/v2/hero/list_advanced';
 $route['api/v2/hero/detail/(:num)']                 = 'api/v2/hero/detail/$1';
+$route['api/v2/hero/show/(:num)/(:any)']            = 'api/v2/hero/show/$1/$2';
 
 $route['api/v2/extras/faq']                         = 'extras/faq';
 $route['api/v2/extras/items_list']                  = 'extras/items_list';
@@ -30,6 +31,8 @@ $route['api/v2/extras/rol_definitions']             = 'extras/rol_definitions';
 $route['api/v2/extras/add_suggestion']              = 'extras/add_suggestion';
 $route['api/v2/extras/news']                        = 'extras/news_list';
 
+$route['api/v2/user/show_profile/(:num)']           = 'users/show_profile/$1';
+$route['api/v2/user/update_profile/(:num)']         = 'users/update_profile/$1';
 $route['api/v2/user/show_fb']                       = 'users/show_fb';
 $route['api/v2/user/create_fb']                     = 'users/create_fb';
 

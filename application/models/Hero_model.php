@@ -125,6 +125,8 @@ class Hero_model extends CI_Model {
             $d['group'] = $data['group'];
             $d['type']  = $data['type'];
             $d['desc']  = $data['desc'];
+            $d['primary_rol']  = $data['primary_rol'];
+            $d['secondary_rol']  = $data['secondary_rol'];
             $d['race_name'] = $data['race_name'];
             $d['role'] = $data['role'];
             if (isset($data['synergy']) && $data['synergy'] != "") {

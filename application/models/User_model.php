@@ -1,6 +1,15 @@
 <?php
 class User_model extends CI_Model {
 
+    function __construct() {
+
+        parent::__construct();
+
+        // Metodos disponibles
+        $this->load->helper('Util_helper');
+        
+    }
+
     public function list_all(){
         try{
             $this->db->where('level !=', 100);
@@ -16,6 +25,50 @@ class User_model extends CI_Model {
         }
     }
 
+    public function show_profile($id){
+        try{
+            
+            // Primero busca al usuario
+            $this->db->where('id', $id);
+            $this->db->limit(1);
+            $q = $this->db->get('users');
+            if ($q->num_rows() == 1){
+                $user = $q->row();
+                // Si el usuario existe, busca el row en decks, solo debe haber 1 deck por usuario
+                $this->db->where('user_id', $id);
+                $this->db->limit(1);
+                $q = $this->db->get('decks');
+                if ($q->num_rows() == 1){
+                    // Si existe un row, entonces regresa la informacion como esta
+                    $deck = $q->row();
+                }else{
+                    // Si el usuario no tiene row en decks, se le crea uno
+                    $d = ["user_id"=> $id];
+                    $this->db->insert("decks", $d);
+                    $this->db->where('user_id', $id);
+                    $this->db->limit(1);
+                    $q = $this->db->get('decks');
+                    $deck = $q->row();
+                }
+
+                // Busca la imagen que tiene en facebook y la agrega al objeto
+                $user->fb_image = getProfilePic($user->token);
+
+                $response['error']  = false;
+                $response['data']['profile']['user']    = $user;
+                $response['data']['profile']['deck']    = $deck;
+            }else{
+                $response['data']['error']  = true;
+                $response['data']['msg']    = "Can't find that User.";
+            }
+
+            return ($response);
+        }catch (Exception $e){
+            $response['data']['error']  = true;
+            $response['data']['msg']   = $e->getMessage();
+            return ($response);
+        }
+    }
 
     public function show_fb($data){
         try{
@@ -39,7 +92,6 @@ class User_model extends CI_Model {
             return ($response);
         }
     }
-
 
     public function show($data){
         try{
@@ -91,6 +143,46 @@ class User_model extends CI_Model {
             }
             
 
+        }
+        catch (Exception $e){
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return ($response);
+        }
+    }
+     
+
+    public function update_profile($profile, $id){
+        try{
+            $user = $profile['user'];
+            $deck = $profile['deck'];
+            // Valida que el usuario exista
+            $this->db->where('id', $id);
+            $this->db->limit(1);
+            $q = $this->db->get('users');
+            if ($q->num_rows() == 1){
+                // Si el usuario existe, entonces actualiza el nombre
+                $d = ["name"=> $user['name']];
+                $this->db->where('id', $id);
+                $this->db->limit(1);
+                $this->db->update('users', $d);
+                // Si se actualizo correctamente el nombre
+                // actualizara el deck... en este punto el deck ya existe, se creo al entrar 
+                // a la seccion get profile
+                // Agrega el campo author
+                $deck['author'] = $user['name'];
+                $this->db->where('user_id', $id);
+                $this->db->limit(1);
+                $this->db->update('decks', $deck);
+
+                $response['error']  = false;
+                $response['msg']    = "Profile updated";
+                return $response;
+            }else{
+                $response['error']  = trye;
+                $response['msg']    = "Cant find the user, try login again";
+                return ($response);
+            }
         }
         catch (Exception $e){
             $response['error']  = true;
