@@ -37,7 +37,8 @@ class Deck_model extends CI_Model {
 
     public function decks_list($columna, $asc_desc){
         try{
-            $query = "SELECT  d.*, u.id as userId, u.token as user_token  FROM decks as d 
+            $query = "SELECT  d.*, u.id as userId, u.token as user_token, 
+            (select count('id') from votes where item_id = d.id) as numero_votos  FROM decks as d 
             JOIN users as u
             ON u.id = d.user_id
             where d.status = 1 
@@ -54,7 +55,6 @@ class Deck_model extends CI_Model {
                 $deck['hero4'] = getImage($deck['hero4']); 
                 $deck['hero5'] = getImage($deck['hero5']);
                 $deck['fb_image'] = getProfilePic($deck['user_token']);
-
                 array_push($decks, $deck);
             }
             
