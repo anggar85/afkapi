@@ -30,6 +30,7 @@ $route['api/v2/extras/contributors']                = 'extras/contributors';
 $route['api/v2/extras/rol_definitions']             = 'extras/rol_definitions';
 $route['api/v2/extras/add_suggestion']              = 'extras/add_suggestion';
 $route['api/v2/extras/news']                        = 'extras/news_list';
+$route['api/v2/extras/new_show/(:num)']             = 'extras/new_show/$1';
 
 $route['api/v2/user/show_profile/(:num)']           = 'users/show_profile/$1';
 $route['api/v2/user/update_profile/(:num)']         = 'users/update_profile/$1';

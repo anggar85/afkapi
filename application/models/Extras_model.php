@@ -79,6 +79,26 @@ class Extras_model extends CI_Model {
     }
 
 
+    public function new_show($id){
+
+        try {
+			$this->db->where('id', $id);
+			$this->db->limit(1);
+            $new = (array) $this->db->get("news")->row();
+
+            $response['error']          = false;
+            $response['data']['news']    = $new;
+            return $response;
+
+        }catch (Exception $e){
+
+            $response['error']  = true;
+            $response['msg']   = $e->getMessage();
+            return $response;
+        }
+    }
+
+
 
     public function rol_definitions(){
 

@@ -24,6 +24,15 @@ class Extras extends CI_Controller {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }
     }
+    public function new_show($id = NULL)
+	{
+        try {
+            $response['data'] = $this->Extras_model->new_show($id);
+			$this->load->view('dashboard/news/show', $response);
+        } catch (Exception $e) {
+            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
+        }
+    }
     public function faq()
 	{
         try {
