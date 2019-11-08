@@ -16,13 +16,21 @@
         images[x].removeAttribute('sizes')
         images[x].style.display = "block"
         images[x].style.margin = "0px auto"
-        images[x].style.width = "90%"
+        images[x].style.maxWidth = "60%"
         images[x].style.height = "auto"
 		console.log(images[x].src)
 	}
 
     for (i = 0; i < links.length; i++) {
 		links[i].href = "#"
+    }
+
+    textos = document.getElementsByTagName('p')
+    for(x= 0 ; x < textos.length; x++){
+
+    textos[x].style.wordBreak = "break-all"
+
+
     }
 
 

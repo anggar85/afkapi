@@ -56,7 +56,6 @@ class News_model extends CI_Model {
             }
 
             $item = [
-                'title' => $data['title'],
                 'desc'  => $data['desc'],
                 'image' => $imgName
             ];
