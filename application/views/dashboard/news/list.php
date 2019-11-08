@@ -1,25 +1,20 @@
 <?php $this->view('dashboard/header'); ?>
 
-<!-- Sidebar -->
-<?php //$this->view('dashboard/sidebar'); ?>
-
-
   <div class="container ">
     <br>
-    <h4>Items</h4>
+    <h4>News</h4>
     
-    <a href="<?php echo base_url('items/new');?>"  class="btn btn-primary fa-pull-right">New Item</a>
+    <a href="<?php echo base_url('news/new');?>"  class="btn btn-primary fa-pull-right">New Item</a>
     <br>
     <br>
     <table class="table table-hover">
       <?php
-      foreach ($data['data']['items'] as $item) {
+      foreach ($data['data']['news'] as $news) {
         echo "<tr>";
-        echo "<td><img src='".$item['image']."'></td>";
-        echo "<td>".$item['title']."</td>";
-        echo "<td>".$item['desc']."</td>";
-        echo "<td><a href='edit/".$item['id']."'><span class='fa fa-edit'></span></a></td>";
-        echo "<td><a class='deleteItem' href='delete/".$item['id']."'><span class='fa fa-trash'></span></a></td>";
+        echo "<td width='200px'><a target='new' href='".base_url("assets/heroes/news/{$news['image']}")."'><img width='200px' src='".base_url("assets/heroes/news/{$news['image']}")."'></a></td>";
+        echo "<td>".$news['title']."</td>";
+        echo "<td>".$news['desc']."</td>";
+        echo "<td><a class='deleteItem' href='delete/".$news['id']."'><span class='fa fa-trash'></span></a></td>";
         echo "</tr>";
       }
       ?>       
@@ -52,4 +47,3 @@
       });
 
 </script>
-    

@@ -6,11 +6,11 @@
   <div class="container ">
     <hr>
     <br>
-    <h4>Items</h4>
+    <h4>News</h4>
 
-    <?php echo form_open_multipart('items/save/');?>
+    <?php echo form_open_multipart('news/save/');?>
 
-    <legend>New Item</legend>
+    <legend>New Noticia</legend>
     
     <br>
     <label for="">Image</label>
@@ -25,7 +25,7 @@
     <input class="form-control" type="text" name="desc" />
           
     <br>
-    <center><input type="submit" class="btn btn-success" value="Create Item" /></center>
+    <center><input type="submit" class="btn btn-success" value="Create New" /></center>
     <br>
 
     </form>
@@ -37,4 +37,3 @@
 <!--  -->
 <!-- Sticky Footer -->
 <?php $this->view('dashboard/footer'); ?>
-    

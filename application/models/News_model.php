@@ -1,52 +1,32 @@
 <?php
-class Items_model extends CI_Model {
+class News_model extends CI_Model {
 
    
 
-    public function list_items(){
+    public function list_news(){
 
         try {
             
             $this->db->order_by('id', 'desc');
             
-            $list = $this->db->get("items");
+            $list = $this->db->get("news");
             
-            $items = [];
+            $news = [];
 
-            foreach ($list->result() as $item) {
-                $item = (array) $item;
+            foreach ($list->result() as $noticia) {
+                $noticia = (array) $noticia;
                 $it = [
-                    'id' => $item['id'],
-                    'title' => $item['title'],
-                    'desc' => $item['desc'],
-                    // 'image' => base_url()."assets/heroes/items/".$item['image'],
-                    'image' => $item['image'],
+                    'id' => $noticia['id'],
+                    'title' => $noticia['title'],
+                    'desc' => $noticia['desc'],
+                    // 'image' => base_url()."assets/heroes/items/".$noticia['image'],
+                    'image' => $noticia['image'],
                 ];
-                array_push($items, $it);
+                array_push($news, $it);
             }
 
             $response['error']          = false;
-            $response['data']['items']    = $items;
-            return $response;
-
-        }catch (Exception $e){
-
-            $response['error']  = true;
-            $response['msg']   = $e->getMessage();
-            return $response;
-        }
-    }
-
-
-    public function edit($id){
-
-        try {
-            
-            $this->db->where('id', $id);
-            $this->db->limit(1);
-            $list = $this->db->get("items");
-            $response['error']          = false;
-            $response['data']['item']    = $list->row();
+            $response['data']['news']    = $news;
             return $response;
 
         }catch (Exception $e){
@@ -63,7 +43,7 @@ class Items_model extends CI_Model {
             
             $this->db->where('id', $id);
             $this->db->limit(1);
-            $this->db->delete('items');
+            $this->db->delete('news');
             
             $response['error']          = false;
             return $response;
@@ -72,46 +52,6 @@ class Items_model extends CI_Model {
 
             $response['error']  = true;
             $response['msg']   = $e->getMessage();
-            return $response;
-        }
-    }
-
-
-    public function update($imgName, $data){
-
-        try {
-
-            if ($data['title'] == "") {
-                throw new Exception("Title can't be empty");
-            }
-
-            if ($data['desc'] == "") {
-                throw new Exception("Description can't be empty");
-            }
-
-            if ($imgName != "") {
-                $item = [
-                    'title' => $data['title'],
-                    'desc'  => $data['desc'],
-                    'image' => $imgName
-                ];
-            } else {
-                $item = [
-                    'title' => $data['title'],
-                    'desc'  => $data['desc'],
-                ];
-
-            }
-            
-            $this->db->where('id', $data['id']);
-            $this->db->update("items", $item);
-            $response['error']  = false;
-            return $response;
-
-        }catch (Exception $e){
-
-            $response['error']  = true;
-            $response['msg']    = $e->getMessage();
             return $response;
         }
     }
@@ -135,7 +75,7 @@ class Items_model extends CI_Model {
                 'image' => $imgName
             ];
             
-            $this->db->insert("items", $item);
+            $this->db->insert("news", $item);
             $response['error']  = false;
             return $response;
 

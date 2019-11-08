@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 header('Access-Control-Allow-Origin: *');
 
-class Items extends CI_Controller {
+class News extends CI_Controller {
     
     function __construct() {
 
         parent::__construct();
-        $this->load->model('Items_model');
+        $this->load->model('News_model');
 
         $this->load->helper('form');
 
@@ -19,87 +19,46 @@ class Items extends CI_Controller {
     }
 
 
-    public function list_items()
+    public function list_news()
 	{
         try {
-            $response['data'] = $this->Items_model->list_items();
-            $this->load->view('dashboard/items/list', $response);
+            $response['data'] = $this->News_model->list_news();
+            $this->load->view('dashboard/news/list', $response);
         } catch (Exception $e) {
-            $this->load->view('dashboard/items/list', $response);
+            $this->load->view('dashboard/news/list', $response);
         }
     }
 
 
-    public function new_item()
+    public function new_news()
 	{
-        $this->load->view('dashboard/items/new');
+        $this->load->view('dashboard/news/new');
     }
 
     public function edit($id = NULL)
 	{
         try {
-            $response['data'] = $this->Items_model->edit($id);
-            $this->load->view('dashboard/items/edit', $response);
+            $response['data'] = $this->News_model->edit($id);
+            $this->load->view('dashboard/news/edit', $response);
         } catch (Exception $e) {
-            $this->load->view('dashboard/items/list', $response);
+            $this->load->view('dashboard/news/list', $response);
         }
     }
 
     public function delete($id = NULL)
 	{
         try {
-            $response['data'] = $this->Items_model->delete($id);
+            $response['data'] = $this->News_model->delete($id);
             if ($response['error']) {
                 echo $response['msg'];
             } else {
-                redirect('/items/list');
+                redirect('/news/list');
             }
         } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
-    public function update($id = NULL)
-	{
-        try {
-            $data['upload_data']['file_name'] = "";
-            // var_dump($_FILES['image']['name']);
-            // return;
-            if ($_FILES['image']['name'] != "") {
-                // Upload the new image
-                $config['upload_path']          = './assets/heroes/items';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 0;
-                $config['remove_spaces']		= true;
-                $config['encrypt_name']		    = true;
-                $config['overwrite']		    = true;
-    
-                $this->load->library('upload', $config);
-                $this->upload->initialize($config);
-    
-                if ( ! $this->upload->do_upload('image'))
-                {
-                    $error = array('error' => $this->upload->display_errors());
-                    return var_dump($this->upload->display_errors());
-                }
-                $data = array('upload_data' => $this->upload->data());
-            }
-
-            $response  = $this->Items_model->update($data['upload_data']['file_name'], $_POST);
-
-            if ($response['error']) {
-                echo $response['msg'];
-            } else {
-                redirect('/items/list');
-            }
-            
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-    }
-
-
-    
     public function save()
 	{
         try {
@@ -108,7 +67,7 @@ class Items extends CI_Controller {
             // return;
             if ($_FILES['image']['name'] != "") {
                 // Upload the new image
-                $config['upload_path']          = './assets/heroes/items';
+                $config['upload_path']          = './assets/heroes/news';
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 0;
                 $config['remove_spaces']		= true;
@@ -125,15 +84,15 @@ class Items extends CI_Controller {
                 }
                 $data = array('upload_data' => $this->upload->data());
             }else{
-                return "Can't create new item without an image";
+                return "Can't create new noticia without an image";
             }
 
-            $response  = $this->Items_model->save($data['upload_data']['file_name'], $_POST);
+            $response  = $this->News_model->save($data['upload_data']['file_name'], $_POST);
 
             if ($response['error']) {
                 echo $response['msg'];
             } else {
-                redirect('/items/list');
+                redirect('/news/list');
             }
             
         } catch (Exception $e) {

@@ -37,7 +37,8 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="<?php echo base_url("hero/list") ?>">Heroes</a></li>
       <li><a href="<?php echo base_url("items/list") ?>">Items</a></li>
-      <li><a href="#">Artifacts</a></li>
+		<li><a href="#">Artifacts</a></li>
+		<li><a href="<?php echo base_url("news/list") ?>">News</a></li>
       <li><a href="#">FAQ</a></li>
       <li><a href="#">Rol Description</a></li>
       <li><a href="<?php echo base_url("auth/logout") ?>">Logout</a></li>
