@@ -4,7 +4,7 @@
     <br>
     <h4>News</h4>
     
-    <a href="<?php echo base_url('news/new');?>"  class="btn btn-primary fa-pull-right">New Item</a>
+    <a href="<?php echo base_url('index.php/news/new');?>"  class="btn btn-primary fa-pull-right">New Item</a>
     <br>
     <br>
     <table class="table table-hover">

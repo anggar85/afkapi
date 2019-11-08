@@ -51,10 +51,6 @@ class News_model extends CI_Model {
 
         try {
 
-            if ($data['title'] == "") {
-                throw new Exception("Title can't be empty");
-            }
-
             if ($data['desc'] == "") {
                 throw new Exception("Description can't be empty");
             }
