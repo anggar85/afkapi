@@ -11,10 +11,10 @@
       <?php
       foreach ($data['data']['news'] as $news) {
         echo "<tr>";
-        echo "<td width='200px'><a target='new' href='".base_url("assets/heroes/news/{$news['image']}")."'><img width='200px' src='".base_url("assets/heroes/news/{$news['image']}")."'></a></td>";
-        echo "<td>".$news['title']."</td>";
-        echo "<td>".$news['desc']."</td>";
-        echo "<td><a class='deleteItem' href='delete/".$news['id']."'><span class='fa fa-trash'></span></a></td>";
+        echo "<td width='200px'><a target='new' href='".$news->image."'><img width='200px' src='".$news->image."'></a></td>";
+        echo "<td>".$news->title."</td>";
+        echo "<td>".$news->desc."</td>";
+        echo "<td><a class='deleteItem' href='delete/".$news->id."'><span class='fa fa-trash'></span></a></td>";
         echo "</tr>";
       }
       ?>       

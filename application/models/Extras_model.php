@@ -58,8 +58,16 @@ class Extras_model extends CI_Model {
         try {
 
             $news_list = $this->db->get("news");
+
+            $news = [];
+            foreach ($news_list->result() as $noticia){
+            	$noticia->image = base_url("assets/heroes/news/").$noticia->image;
+            	$news[] = $noticia;
+			}
+
+
             $response['error']          = false;
-            $response['data']['news']    = $news_list->result();
+            $response['data']['news']    = $news;
             return $response;
 
         }catch (Exception $e){

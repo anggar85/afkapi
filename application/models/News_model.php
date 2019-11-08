@@ -6,27 +6,17 @@ class News_model extends CI_Model {
     public function list_news(){
 
         try {
-            
-            $this->db->order_by('id', 'desc');
-            
-            $list = $this->db->get("news");
-            
-            $news = [];
 
-            foreach ($list->result() as $noticia) {
-                $noticia = (array) $noticia;
-                $it = [
-                    'id' => $noticia['id'],
-                    'title' => $noticia['title'],
-                    'desc' => $noticia['desc'],
-                    // 'image' => base_url()."assets/heroes/items/".$noticia['image'],
-                    'image' => $noticia['image'],
-                ];
-                array_push($news, $it);
-            }
+			$news_list = $this->db->get("news");
 
-            $response['error']          = false;
-            $response['data']['news']    = $news;
+			$news = [];
+			foreach ($news_list->result() as $noticia){
+				$noticia->image = base_url("assets/heroes/news/").$noticia->image;
+				$news[] = $noticia;
+			}
+
+			$response['error']          = false;
+			$response['data']['news']    = $news;
             return $response;
 
         }catch (Exception $e){
