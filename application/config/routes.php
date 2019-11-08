@@ -80,3 +80,9 @@ $route['items/new']             = 'items/new_item';
 $route['items/save']            = 'items/save';
 $route['items/delete/(:num)']    = 'items/delete/$1';
 
+// News
+$route['news/list']            = 'news/list_news';
+$route['news/new']            = 'news/new_news';
+$route['news/save']            = 'news/save';
+$route['news/delete/(:num)']    = 'news/delete/$1';
+
