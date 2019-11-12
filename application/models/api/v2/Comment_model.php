@@ -42,7 +42,7 @@ class Comment_model extends CI_Model {
             $deck = $deck['data']['deck'];
 
             $response['error']  = false;
-            $response['data']['deck']    = $deck;
+            $response['deck']    = $deck;
             $response['msg']   = "Comment Added";
             return $response;
         }catch (Exception $e){
