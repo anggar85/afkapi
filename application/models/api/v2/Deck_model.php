@@ -83,6 +83,16 @@ class Deck_model extends CI_Model {
             $deck['hero3'] = getImage($deck['hero3']); 
             $deck['hero4'] = getImage($deck['hero4']); 
             $deck['hero5'] = getImage($deck['hero5']);
+
+            // Se agregan los comentarios disponibles
+            $query = "SELECT u.id as userId, u.name as userName, c.* , u.email as `user` from comments as `c`
+                        JOIN users as u on c.user = u.id 
+                        WHERE c.item_id= ".$deck['id']." 
+                        AND `section`='decks' order by `date` DESC";
+
+            $q = $this->db->query($query);
+            $deck['comments'] = $q->result();
+
             $response['error']  = false;
             $response['data']['deck']    = $deck;
             return $response;
