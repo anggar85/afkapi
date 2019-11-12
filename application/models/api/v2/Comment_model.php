@@ -39,11 +39,11 @@ class Comment_model extends CI_Model {
             // $this->Deck_model->show_deck($id);
             $deck = $this->Deck_model->show_deck($comment['item_id']);
             
+            $deck = $deck['data']['deck'];
 
             $response['error']  = false;
-            $response['data']['comment']    = $comment;
-            $response['data']['deck']    = $deck['data']['deck'];
-            $response['msg']   = "Added";
+            $response['data']['deck']    = $deck;
+            $response['msg']   = "Comment Added";
             return $response;
         }catch (Exception $e){
             $response['error']  = true;
