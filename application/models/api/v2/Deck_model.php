@@ -71,7 +71,10 @@ class Deck_model extends CI_Model {
 
     public function show_deck($deck_id){
         try{
-            $query = "SELECT  *  FROM decks where `id` = ".$deck_id."  limit 1";
+            $query = "SELECT  *, 
+            (select count('id') from votes where item_id = d.id) as numero_votos
+              FROM decks as d where `id` = ".$deck_id."  limit 1";
+
             $q = $this->db->query($query);
             if ($q->num_rows() == 0) {
                 throw new Exception("Deck doesnt exist");
