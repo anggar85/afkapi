@@ -43,6 +43,9 @@ $route['api/v2/deck/mydecks/(:num)']                = 'api/v2/deck/mydecks/$1';
 $route['api/v2/deck/show_deck/(:num)']              = 'api/v2/deck/show_deck/$1';
 $route['api/v2/deck/create_deck/']                  = 'api/v2/deck/create_deck/';
 
+// Comments
+$route['api/v2/comments/create_comment']            = 'api/v2/comments/create_comment';
+
 // VOTES
 $route['api/v2/votes/create_vote']                  = 'api/v2/votes/create_vote';
 
