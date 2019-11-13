@@ -4,7 +4,9 @@ class Deck_model extends CI_Model {
         parent::__construct();
         // Metodos disponibles
         $this->load->helper('Util_helper');
-    }
+		$this->load->library('gravatar');
+
+	}
 
     public function mydecks($user_id){
         try{
@@ -71,7 +73,10 @@ class Deck_model extends CI_Model {
 
     public function show_deck($deck_id){
         try{
-            $query = "SELECT  *  FROM decks where `id` = ".$deck_id."  limit 1";
+            $query = "SELECT  *, 
+            (select count('id') from votes where item_id = d.id) as numero_votos
+              FROM decks as d where `id` = ".$deck_id."  limit 1";
+
             $q = $this->db->query($query);
             if ($q->num_rows() == 0) {
                 throw new Exception("Deck doesnt exist");
@@ -83,7 +88,30 @@ class Deck_model extends CI_Model {
             $deck['hero3'] = getImage($deck['hero3']); 
             $deck['hero4'] = getImage($deck['hero4']); 
             $deck['hero5'] = getImage($deck['hero5']);
-            $response['error']  = false;
+
+            // Se agregan los comentarios disponibles
+            $query = "SELECT u.id as userId, u.name as userName, c.* , u.email as `user` from comments as `c`
+                        JOIN users as u on c.user = u.id 
+                        WHERE c.item_id= ".$deck['id']." 
+                        AND `section`='decks' order by `date` DESC";
+
+            $q = $this->db->query($query);
+
+			$comments = [];
+			// Valida que tenga comentarios el deck para solicitar los gravatars
+			if ($q->result() != null && sizeof($q->result()) > 0) {
+				// Si tiene comentarios, transforma el correo en un gravatar
+				foreach ($q->result() as $comment) {
+					$img = $this->gravatar->get($comment->user);
+					$comment->avatar = $img;
+					array_push($comments, $comment);
+				}
+			}
+			// Reasigna la variable con el gravatar incluido
+			$deck['comments'] = $comments;
+
+
+			$response['error']  = false;
             $response['data']['deck']    = $deck;
             return $response;
         }catch (Exception $e){

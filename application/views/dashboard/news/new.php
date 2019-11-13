@@ -1,5 +1,17 @@
 <?php $this->view('dashboard/header'); ?>
 
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
+<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script> 
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+
+
+
+<!-- Initialize Quill editor -->
+
 <!-- Sidebar -->
 <?php //$this->view('dashboard/sidebar'); ?>
 
@@ -17,12 +29,8 @@
     <input class="form-control" type="file" name="image" />
       
     <br>
-    <label for="">Title</label>
-    <input class="form-control" type="text" name="title" />
-      
-    <br>
     <label for="">Description</label>
-    <input class="form-control" type="text" name="desc" />
+    <textarea id="summernote" class="form-control" type="text" name="desc"></textarea>
           
     <br>
     <center><input type="submit" class="btn btn-success" value="Create New" /></center>
@@ -35,5 +43,13 @@
     
   </div>
 <!--  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+<script>
+  $('#summernote').summernote({
+  height: 300
+});
+</script>
+
 <!-- Sticky Footer -->
 <?php $this->view('dashboard/footer'); ?>
