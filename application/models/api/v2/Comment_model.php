@@ -64,8 +64,8 @@ class Comment_model extends CI_Model {
             $response['data']['deck']['comments'] = $comments;
             return $response;
         }catch (Exception $e){
-            $response['error']  = true;
-            $response['msg']   = $e->getMessage();
+            $response['data']['error']  = true;
+            $response['data']['msg']   = $e->getMessage();
             return ($response);
         }
     }
