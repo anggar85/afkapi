@@ -4,7 +4,9 @@ class Deck_model extends CI_Model {
         parent::__construct();
         // Metodos disponibles
         $this->load->helper('Util_helper');
-    }
+		$this->load->library('gravatar');
+
+	}
 
     public function mydecks($user_id){
         try{
