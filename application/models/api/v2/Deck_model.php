@@ -94,9 +94,22 @@ class Deck_model extends CI_Model {
                         AND `section`='decks' order by `date` DESC";
 
             $q = $this->db->query($query);
-            $deck['comments'] = $q->result();
 
-            $response['error']  = false;
+			$comments = [];
+			// Valida que tenga comentarios el deck para solicitar los gravatars
+			if ($q->result() != null && sizeof($q->result()) > 0) {
+				// Si tiene comentarios, transforma el correo en un gravatar
+				foreach ($q->result() as $comment) {
+					$img = $this->gravatar->get($comment->user);
+					$comment->avatar = $img;
+					array_push($comments, $comment);
+				}
+			}
+			// Reasigna la variable con el gravatar incluido
+			$deck['comments'] = $comments;
+
+
+			$response['error']  = false;
             $response['data']['deck']    = $deck;
             return $response;
         }catch (Exception $e){

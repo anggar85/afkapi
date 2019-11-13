@@ -36,6 +36,7 @@ class Comment_model extends CI_Model {
             
             // Aqui comienza a iterar los comentarios buscando el usuario para generar el gravatar
             $comments = [];
+
             // Valida que tenga comentarios el deck para solicitar los gravatars
             if ($response['data']['deck']['comments'] != null && sizeof($response['data']['deck']['comments']) > 0) {
                 // Si tiene comentarios, transforma el correo en un gravatar
