@@ -28,19 +28,18 @@ class Comment_model extends CI_Model {
             // usuario no peuda agregar multiuples comentarios
             // hasta que pase cierto tiempo
 			// Busca ultimo comentario agregado del usuario
-			$this->db->where('user_id', $comment['user']);
-			$this->db->limit(1);
+			$this->db->where('user', $comment['user']);
+            $this->db->limit(1);
+            $this->db->order_by('id', 'desc');
 			$q = $this->db->get('comments');
 			if ($q->num_rows() > 0){
 				// Tiene comentarios, se validara si ya puede publicar otro comentario
-//				$now = date("Y-m-d H:m:s");
-//
-//				$date_a = new DateTime($now);
-//				$date_b = new DateTime('2008-12-13 10:42:00');
-//
-//				$interval = date_diff($date_a,$date_b);
-//
-//				echo $interval->format('%Y-%m-%d %h:%i:%s');
+				$now = date("Y-m-d H:m:s");
+                $c = $q->result()[0];
+                $diff_mins = $this->alihan_diff_dates($c->date, "minutes");
+                if ($diff_mins == 0) {
+                    throw new Exception("Wait 1 minute to post another comment");
+                }
 			}
 
             $this->db->insert("comments", $comment);
@@ -70,5 +69,28 @@ class Comment_model extends CI_Model {
             return ($response);
         }
     }
+
+    public function alihan_diff_dates($date = null, $diff = "minutes") {
+        $start_date = new DateTime($date);
+        $since_start = $start_date->diff(new DateTime( date('Y-m-d H:i:s') )); // date now
+        // print_r($since_start);
+        switch ($diff) {
+           case 'seconds':
+               return $since_start->s;
+               break;
+           case 'minutes':
+               return $since_start->i;
+               break;
+           case 'hours':
+               return $since_start->h;
+               break;
+           case 'days':
+               return $since_start->d;
+               break;      
+           default:
+               # code...
+               break;
+        }
+       }
     
 }
