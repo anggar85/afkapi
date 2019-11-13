@@ -27,6 +27,21 @@ class Comment_model extends CI_Model {
             // Se puede agregar una limitacion de tiempo para que el 
             // usuario no peuda agregar multiuples comentarios
             // hasta que pase cierto tiempo
+			// Busca ultimo comentario agregado del usuario
+			$this->db->where('user_id', $comment['user']);
+			$this->db->limit(1);
+			$q = $this->db->get('comments');
+			if ($q->num_rows() > 0){
+				// Tiene comentarios, se validara si ya puede publicar otro comentario
+//				$now = date("Y-m-d H:m:s");
+//
+//				$date_a = new DateTime($now);
+//				$date_b = new DateTime('2008-12-13 10:42:00');
+//
+//				$interval = date_diff($date_a,$date_b);
+//
+//				echo $interval->format('%Y-%m-%d %h:%i:%s');
+			}
 
             $this->db->insert("comments", $comment);
 
