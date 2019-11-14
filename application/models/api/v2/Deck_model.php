@@ -44,6 +44,7 @@ class Deck_model extends CI_Model {
             JOIN users as u
             ON u.id = d.user_id
             where d.status = 1 
+            AND d.name != '' AND d.desc != ''
             AND d.hero1 != '' AND d.hero2 != '' AND d.hero3 != '' AND d.hero4 != '' AND d.hero5 != ''
              order by $columna $asc_desc";
 
@@ -90,25 +91,17 @@ class Deck_model extends CI_Model {
             $deck['hero5'] = getImage($deck['hero5']);
 
             // Se agregan los comentarios disponibles
-            $query = "SELECT u.id as userId, u.name as userName, c.* , u.email as `user` from comments as `c`
+            $baseUrl = base_url('assets/images/users/user_');
+            $query = 'SELECT u.id as userId, u.name as userName, c.* , u.email as `user`, 
+            concat("'.$baseUrl.'" , u.id) as avatar
+            from comments as `c`
                         JOIN users as u on c.user = u.id 
-                        WHERE c.item_id= ".$deck['id']." 
-                        AND `section`='decks' order by `date` DESC";
+                        WHERE c.item_id= '.$deck['id'].' 
+                        AND `section`="decks" order by `date` DESC';
 
             $q = $this->db->query($query);
 
-			$comments = [];
-			// Valida que tenga comentarios el deck para solicitar los gravatars
-			if ($q->result() != null && sizeof($q->result()) > 0) {
-				// Si tiene comentarios, transforma el correo en un gravatar
-				foreach ($q->result() as $comment) {
-					$img = $this->gravatar->get($comment->user);
-					$comment->avatar = $img;
-					array_push($comments, $comment);
-				}
-			}
-			// Reasigna la variable con el gravatar incluido
-			$deck['comments'] = $comments;
+			$deck['comments'] = $q->result();
 
 
 			$response['error']  = false;
