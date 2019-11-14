@@ -15,7 +15,7 @@ class Deck_model extends CI_Model {
 
             $query = 'SELECT  d.*, u.id as userId, u.token as user_token, 
             (select count("id") from votes where item_id = d.id) as numero_votos,  
-            concat("'.$baseUrl.'", u.id) as fb_image
+            concat("'.$baseUrl.'", u.id, ".jpg") as fb_image
             FROM decks as d 
             JOIN users as u
             ON u.id = d.user_id
@@ -69,7 +69,7 @@ class Deck_model extends CI_Model {
             // Se agregan los comentarios disponibles
             $baseUrl = base_url('assets/images/users/user_');
             $query = 'SELECT u.id as userId, u.name as userName, c.* , u.email as `user`, 
-            concat("'.$baseUrl.'" , u.id) as avatar
+            concat("'.$baseUrl.'" , u.id, ".jpg") as avatar
             from comments as `c`
                         JOIN users as u on c.user = u.id 
                         WHERE c.item_id= '.$deck['id'].' 
