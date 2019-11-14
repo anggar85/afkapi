@@ -52,7 +52,9 @@ class User_model extends CI_Model {
                 }
 
                 // Busca la imagen que tiene en facebook y la agrega al objeto
-                $user->fb_image = getProfilePic($user->token);
+                $img = FCPATH."assets/images/users/"."user_".$id.".jpg";
+                $content = copy(getProfilePic($user->token), $img);
+                $user->fb_image = base_url()."assets/images/users/"."user_".$id.".jpg";
 
                 $response['error']  = false;
                 $response['data']['profile']['user']    = $user;
