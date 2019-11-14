@@ -198,7 +198,7 @@ class User_model extends CI_Model {
     {
         try {
             $this->db->where("token !=", "");
-            $this->db->limit(10);
+            $this->db->limit(50);
         $q = $this->db->get('users');
         if ($q->num_rows() > 0 ){
             
@@ -210,7 +210,7 @@ class User_model extends CI_Model {
                     $img = FCPATH."assets/images/users/"."user_".$id.".jpg";
                     $content = copy(getProfilePic($user->token), $img);
                     $user->fb_image = base_url()."assets/images/users/"."user_".$id.".jpg";
-                    sleep(1);
+                    // sleep(1);
                     $cont++;
                 }
                 
