@@ -98,61 +98,17 @@ class Users extends CI_Controller {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }
     }
-    public function create()
-	{
+
+    public function getFacebookImages()
+    {
         try {
-            $data = json_decode(file_get_contents('php://input'), true);
-            $user = $data['data']["user"];
             header('Content-Type: application/json');
-            $response = $this->User_model->create($user);
+            $res = $this->User_model->getFacebookImages();
+            $response['data'] = $res;
             echo json_encode($response);
         } catch (Exception $e) {
             echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
         }
     }
-
-    public function update_user_password()
-	{
-        try {
-            $data = json_decode(file_get_contents('php://input'), true);
-            $user = $data['data']["user"];
-            header('Content-Type: application/json');
-            $response = $this->User_model->update_user_password($user);            
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-
-
-    public function update()
-	{
-        try {
-            $data = json_decode(file_get_contents('php://input'), true);
-            $user = $data['data']["user"];
-            header('Content-Type: application/json');
-            $response = $this->User_model->update($user);            
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-
-    public function delete()
-	{
-        try {
-            $data = json_decode(file_get_contents('php://input'), true);
-            $user = $data['data']["user"];
-            header('Content-Type: application/json');
-            $response = $this->User_model->delete($user);
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
-
-  
 
 }
