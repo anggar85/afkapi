@@ -37,7 +37,7 @@ class Comment_model extends CI_Model {
 				$now = date("Y-m-d H:m:s");
                 $c = $q->result()[0];
                 $diff_mins = $this->alihan_diff_dates($c->date, "minutes");
-                if ($diff_mins == 0) {
+                if ($diff_mins == 0 && $comment['item_id'] == $c->item_id) {
                     throw new Exception("Wait 1 minute to post another comment");
                 }
             }
@@ -49,19 +49,6 @@ class Comment_model extends CI_Model {
                 # DECKS
                 // Obtiene el objeto deck original que ya trae comentarios
                 $response = $this->Deck_model->show_deck($comment['item_id']);
-                // Aqui comienza a iterar los comentarios buscando el usuario para generar el gravatar
-                // $comments = [];
-                // // Valida que tenga comentarios el deck para solicitar los gravatars
-                // if ($response['data']['deck']['comments'] != null && sizeof($response['data']['deck']['comments']) > 0) {
-                //     // Si tiene comentarios, transforma el correo en un gravatar
-                //     foreach ($response['data']['deck']['comments'] as $comment) {
-                //         $img = $this->gravatar->get($comment->user);
-                //         $comment->avatar = $img;
-                //         array_push($comments, $comment);
-                //     }
-                // } 
-                // // Reasigna la variable con el gravatar incluido
-                // $response['data']['deck']['comments'] = $comments;
                 return $response;
             } else {
                 # DETALLE DE HEROE
