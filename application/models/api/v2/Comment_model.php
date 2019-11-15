@@ -66,6 +66,7 @@ class Comment_model extends CI_Model {
 
                 $response['data']['error']      = false;
                 $response['data']['comments']   = $q->result();
+                return ($response);
             }
             
             
