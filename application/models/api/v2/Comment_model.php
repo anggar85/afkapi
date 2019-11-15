@@ -63,7 +63,8 @@ class Comment_model extends CI_Model {
                             AND `section`="hero_detail" order by `date` DESC';
 
                 $q = $this->db->query($query);
-
+                
+                $response['data']['msg']   = "Comments added";
                 $response['data']['error']      = false;
                 $response['data']['comments']   = $q->result();
                 return ($response);
