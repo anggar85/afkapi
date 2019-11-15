@@ -53,6 +53,19 @@ class Comment_model extends CI_Model {
             } else {
                 # DETALLE DE HEROE
                 // aqui se buscaran todos los comentarios de detalle de heroe de el hero seleccionado
+                // Se agregan los comentarios disponibles
+                $baseUrl = base_url('assets/images/users/user_');
+                $query = 'SELECT u.id as userId, u.name as userName, c.* , u.email as `user`, 
+                concat("'.$baseUrl.'" , u.id, ".jpg") as avatar
+                from comments as `c`
+                            JOIN users as u on c.user = u.id 
+                            WHERE c.item_id= '.$comment['item_id'].' 
+                            AND `section`="hero_detail" order by `date` DESC';
+
+                $q = $this->db->query($query);
+
+                $response['data']['error']      = false;
+                $response['data']['comments']   = $q->result();
             }
             
             
