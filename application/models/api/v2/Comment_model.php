@@ -37,32 +37,40 @@ class Comment_model extends CI_Model {
 				$now = date("Y-m-d H:m:s");
                 $c = $q->result()[0];
                 $diff_mins = $this->alihan_diff_dates($c->date, "minutes");
-                if ($diff_mins == 0) {
+                if ($diff_mins == 0 && $comment['item_id'] == $c->item_id) {
                     throw new Exception("Wait 1 minute to post another comment");
                 }
-			}
-
+            }
+            // Como si paso las validaciones, inserta el comentario
             $this->db->insert("comments", $comment);
 
-            // $this->Deck_model->show_deck($id);
-            // Obtiene el objeto deck original que ya trae comentarios
-            $response = $this->Deck_model->show_deck($comment['item_id']);
-            
-            // Aqui comienza a iterar los comentarios buscando el usuario para generar el gravatar
-            $comments = [];
+            // Decide que tipo de objeto va a regresar al cliente dependiendo de la seccion
+            if ($comment['section'] == 'decks') {
+                # DECKS
+                // Obtiene el objeto deck original que ya trae comentarios
+                $response = $this->Deck_model->show_deck($comment['item_id']);
+                return $response;
+            } else {
+                # DETALLE DE HEROE
+                // aqui se buscaran todos los comentarios de detalle de heroe de el hero seleccionado
+                // Se agregan los comentarios disponibles
+                $baseUrl = base_url('assets/images/users/user_');
+                $query = 'SELECT u.id as userId, u.name as userName, c.* , u.email as `user`, 
+                concat("'.$baseUrl.'" , u.id, ".jpg") as avatar
+                from comments as `c`
+                            JOIN users as u on c.user = u.id 
+                            WHERE c.item_id= '.$comment['item_id'].' 
+                            AND `section`="hero_detail" order by `date` DESC';
 
-            // Valida que tenga comentarios el deck para solicitar los gravatars
-            if ($response['data']['deck']['comments'] != null && sizeof($response['data']['deck']['comments']) > 0) {
-                // Si tiene comentarios, transforma el correo en un gravatar
-                foreach ($response['data']['deck']['comments'] as $comment) {
-                    $img = $this->gravatar->get($comment->user);
-                    $comment->avatar = $img;
-                    array_push($comments, $comment);
-                }
-            } 
-            // Reasigna la variable con el gravatar incluido
-            $response['data']['deck']['comments'] = $comments;
-            return $response;
+                $q = $this->db->query($query);
+                
+                $response['data']['msg']   = "Comments added";
+                $response['data']['error']      = false;
+                $response['data']['comments']   = $q->result();
+                return ($response);
+            }
+            
+            
         }catch (Exception $e){
             $response['data']['error']  = true;
             $response['data']['msg']   = $e->getMessage();

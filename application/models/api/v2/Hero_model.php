@@ -173,6 +173,19 @@ class Hero_model extends CI_Model {
                 $heroe['strengths'] = $strengthWeakness['strength'];
                 $heroe['weaknesses'] = $strengthWeakness['weakness'];
 
+                // Se agregan los comentarios disponibles
+                $baseUrl = base_url('assets/images/users/user_');
+                $query = 'SELECT u.id as userId, u.name as userName, c.* , u.email as `user`, 
+                concat("'.$baseUrl.'" , u.id, ".jpg") as avatar
+                from comments as `c`
+                            JOIN users as u on c.user = u.id 
+                            WHERE c.item_id= '.$id.' 
+                            AND `section`="hero_detail" order by `date` DESC';
+
+                $q = $this->db->query($query);
+
+                $heroe['comments'] = $q->result();
+
                 $response['error']  = false;
                 $response['data']['heroe']    = $heroe;
                 
@@ -256,6 +269,19 @@ class Hero_model extends CI_Model {
                 $heroe['smallImage']  = $icon['smallImage'];
                 $heroe['strengths'] = $strengthWeakness['strength'];
                 $heroe['weaknesses'] = $strengthWeakness['weakness'];
+
+                // Se agregan los comentarios disponibles
+                $baseUrl = base_url('assets/images/users/user_');
+                $query = 'SELECT u.id as userId, u.name as userName, c.* , u.email as `user`, 
+                concat("'.$baseUrl.'" , u.id, ".jpg") as avatar
+                from comments as `c`
+                            JOIN users as u on c.user = u.id 
+                            WHERE c.item_id= '.$id.' 
+                            AND `section`="hero_detail" order by `date` DESC';
+
+                $q = $this->db->query($query);
+
+                $heroe['comments'] = $q->result();
 
                 $response['error']  = false;
                 $response['data']['heroe']    = $heroe;
