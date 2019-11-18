@@ -198,7 +198,7 @@ class User_model extends CI_Model {
     {
         try {
             $this->db->where("token !=", "");
-            $this->db->limit(50);
+            // $this->db->limit(50);
         $q = $this->db->get('users');
         if ($q->num_rows() > 0 ){
             
