@@ -28,47 +28,77 @@ class Comment_model extends CI_Model {
             // usuario no peuda agregar multiuples comentarios
             // hasta que pase cierto tiempo
 			// Busca ultimo comentario agregado del usuario
-			$this->db->where('user_id', $comment['user']);
-			$this->db->limit(1);
+			$this->db->where('user', $comment['user']);
+            $this->db->limit(1);
+            $this->db->order_by('id', 'desc');
 			$q = $this->db->get('comments');
 			if ($q->num_rows() > 0){
 				// Tiene comentarios, se validara si ya puede publicar otro comentario
-//				$now = date("Y-m-d H:m:s");
-//
-//				$date_a = new DateTime($now);
-//				$date_b = new DateTime('2008-12-13 10:42:00');
-//
-//				$interval = date_diff($date_a,$date_b);
-//
-//				echo $interval->format('%Y-%m-%d %h:%i:%s');
-			}
-
+				$now = date("Y-m-d H:m:s");
+                $c = $q->result()[0];
+                $diff_mins = $this->alihan_diff_dates($c->date, "minutes");
+                if ($diff_mins == 0 && $comment['item_id'] == $c->item_id) {
+                    throw new Exception("Wait 1 minute to post another comment");
+                }
+            }
+            // Como si paso las validaciones, inserta el comentario
             $this->db->insert("comments", $comment);
 
-            // $this->Deck_model->show_deck($id);
-            // Obtiene el objeto deck original que ya trae comentarios
-            $response = $this->Deck_model->show_deck($comment['item_id']);
-            
-            // Aqui comienza a iterar los comentarios buscando el usuario para generar el gravatar
-            $comments = [];
+            // Decide que tipo de objeto va a regresar al cliente dependiendo de la seccion
+            if ($comment['section'] == 'decks') {
+                # DECKS
+                // Obtiene el objeto deck original que ya trae comentarios
+                $response = $this->Deck_model->show_deck($comment['item_id']);
+                return $response;
+            } else {
+                # DETALLE DE HEROE
+                // aqui se buscaran todos los comentarios de detalle de heroe de el hero seleccionado
+                // Se agregan los comentarios disponibles
+                $baseUrl = base_url('assets/images/users/user_');
+                $query = 'SELECT u.id as userId, u.name as userName, c.* , u.email as `user`, 
+                concat("'.$baseUrl.'" , u.id, ".jpg") as avatar
+                from comments as `c`
+                            JOIN users as u on c.user = u.id 
+                            WHERE c.item_id= '.$comment['item_id'].' 
+                            AND `section`="hero_detail" order by `date` DESC';
 
-            // Valida que tenga comentarios el deck para solicitar los gravatars
-            if ($response['data']['deck']['comments'] != null && sizeof($response['data']['deck']['comments']) > 0) {
-                // Si tiene comentarios, transforma el correo en un gravatar
-                foreach ($response['data']['deck']['comments'] as $comment) {
-                    $img = $this->gravatar->get($comment->user);
-                    $comment->avatar = $img;
-                    array_push($comments, $comment);
-                }
-            } 
-            // Reasigna la variable con el gravatar incluido
-            $response['data']['deck']['comments'] = $comments;
-            return $response;
+                $q = $this->db->query($query);
+                
+                $response['data']['msg']   = "Comments added";
+                $response['data']['error']      = false;
+                $response['data']['comments']   = $q->result();
+                return ($response);
+            }
+            
+            
         }catch (Exception $e){
-            $response['error']  = true;
-            $response['msg']   = $e->getMessage();
+            $response['data']['error']  = true;
+            $response['data']['msg']   = $e->getMessage();
             return ($response);
         }
     }
+
+    public function alihan_diff_dates($date = null, $diff = "minutes") {
+        $start_date = new DateTime($date);
+        $since_start = $start_date->diff(new DateTime( date('Y-m-d H:i:s') )); // date now
+        // print_r($since_start);
+        switch ($diff) {
+           case 'seconds':
+               return $since_start->s;
+               break;
+           case 'minutes':
+               return $since_start->i;
+               break;
+           case 'hours':
+               return $since_start->h;
+               break;
+           case 'days':
+               return $since_start->d;
+               break;      
+           default:
+               # code...
+               break;
+        }
+       }
     
 }

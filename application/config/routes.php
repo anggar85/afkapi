@@ -32,6 +32,7 @@ $route['api/v2/extras/add_suggestion']              = 'extras/add_suggestion';
 $route['api/v2/extras/news']                        = 'extras/news_list';
 $route['api/v2/extras/new_show/(:num)']             = 'extras/new_show/$1';
 
+$route['api/v2/user/getFacebookImages']             = 'users/getFacebookImages';
 $route['api/v2/user/show_profile/(:num)']           = 'users/show_profile/$1';
 $route['api/v2/user/update_profile/(:num)']         = 'users/update_profile/$1';
 $route['api/v2/user/show_fb']                       = 'users/show_fb';

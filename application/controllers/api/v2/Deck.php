@@ -10,17 +10,6 @@ class Deck extends CI_Controller {
         $this->load->model('api/v2/Deck_model');        
     }
 
-    public function mydecks($user_id)
-	{
-        try {
-            // Regresa los decks del usuario 
-            header('Content-Type: application/json');
-            $response = $this->Deck_model->mydecks($user_id);
-            echo json_encode($response);
-        } catch (Exception $e) {
-            echo json_encode(['error'=>true, 'msg'=>$e->getMessage()]);
-        }
-    }
     public function decks_list($columna = "id", $asc_desc = "desc")
 	{
         try {
