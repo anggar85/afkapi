@@ -27,6 +27,20 @@ class Comment_model extends CI_Model {
             // Se puede agregar una limitacion de tiempo para que el 
             // usuario no peuda agregar multiuples comentarios
             // hasta que pase cierto tiempo
+			// Busca ultimo comentario agregado del usuario
+			$this->db->where('user', $comment['user']);
+            $this->db->limit(1);
+            $this->db->order_by('id', 'desc');
+			$q = $this->db->get('comments');
+			if ($q->num_rows() > 0){
+				// Tiene comentarios, se validara si ya puede publicar otro comentario
+				$now = date("Y-m-d H:m:s");
+                $c = $q->result()[0];
+                $diff_mins = $this->alihan_diff_dates($c->date, "minutes");
+                if ($diff_mins == 0) {
+                    throw new Exception("Wait 1 minute to post another comment");
+                }
+			}
 
             $this->db->insert("comments", $comment);
 
@@ -55,5 +69,28 @@ class Comment_model extends CI_Model {
             return ($response);
         }
     }
+
+    public function alihan_diff_dates($date = null, $diff = "minutes") {
+        $start_date = new DateTime($date);
+        $since_start = $start_date->diff(new DateTime( date('Y-m-d H:i:s') )); // date now
+        // print_r($since_start);
+        switch ($diff) {
+           case 'seconds':
+               return $since_start->s;
+               break;
+           case 'minutes':
+               return $since_start->i;
+               break;
+           case 'hours':
+               return $since_start->h;
+               break;
+           case 'days':
+               return $since_start->d;
+               break;      
+           default:
+               # code...
+               break;
+        }
+       }
     
 }
