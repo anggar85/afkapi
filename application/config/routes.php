@@ -50,6 +50,44 @@ $route['api/v2/comments/create_comment']            = 'api/v2/comments/create_co
 // VOTES
 $route['api/v2/votes/create_vote']                  = 'api/v2/votes/create_vote';
 
+
+
+// API V3
+// V2
+$route['api/v3/hero/list']                          = 'api/v3/hero/list_all';
+$route['api/v3/hero/list_advanced']                 = 'api/v3/hero/list_advanced';
+$route['api/v3/hero/detail/(:num)']                 = 'api/v3/hero/detail/$1';
+$route['api/v3/hero/show/(:num)/(:any)']            = 'api/v3/hero/show/$1/$2';
+
+$route['api/v3/extras/faq']                         = 'extras/faq';
+$route['api/v3/extras/items_list']                  = 'extras/items_list';
+$route['api/v3/extras/contributors']                = 'extras/contributors';
+$route['api/v3/extras/rol_definitions']             = 'extras/rol_definitions';
+$route['api/v3/extras/add_suggestion']              = 'extras/add_suggestion';
+$route['api/v3/extras/news']                        = 'extras/news_list';
+$route['api/v3/extras/new_show/(:num)']             = 'extras/new_show/$1';
+
+$route['api/v3/user/getFacebookImages']             = 'users/getFacebookImages';
+$route['api/v3/user/show_profile/(:num)']           = 'users/show_profile/$1';
+$route['api/v3/user/update_profile/(:num)']         = 'users/update_profile/$1';
+$route['api/v3/user/show_fb']                       = 'users/show_fb';
+$route['api/v3/user/create_fb']                     = 'users/create_fb';
+
+// DECKS
+$route['api/v3/deck/decks_list/(:num)/(:num)']      = 'api/v3/deck/decks_list/$1/$2';
+$route['api/v3/deck/mydecks/(:num)']                = 'api/v3/deck/mydecks/$1';
+$route['api/v3/deck/show_deck/(:num)']              = 'api/v3/deck/show_deck/$1';
+$route['api/v3/deck/create_deck/']                  = 'api/v3/deck/create_deck/';
+
+// Comments
+$route['api/v3/comments/create_comment']            = 'api/v3/comments/create_comment';
+
+// VOTES
+$route['api/v3/votes/create_vote']                  = 'api/v3/votes/create_vote';
+
+
+
+
 // Web Interface
 
 // Login
